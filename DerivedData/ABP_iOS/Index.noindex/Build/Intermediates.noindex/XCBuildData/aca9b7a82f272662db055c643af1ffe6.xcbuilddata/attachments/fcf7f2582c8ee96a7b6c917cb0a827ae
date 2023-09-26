@@ -1,0 +1,12 @@
+{
+  "" : {
+    "dependencies" : "/Volumes/ExternalStorage/Study/iOS/Swift/ABP_iOS/DerivedData/ABP_iOS/Index.noindex/Build/Intermediates.noindex/ABP_iOS.build/Debug-iphonesimulator/ABP_iOSTests.build/Objects-normal/arm64/ABP_iOSTests-master.d",
+    "diagnostics" : "/Volumes/ExternalStorage/Study/iOS/Swift/ABP_iOS/DerivedData/ABP_iOS/Index.noindex/Build/Intermediates.noindex/ABP_iOS.build/Debug-iphonesimulator/ABP_iOSTests.build/Objects-normal/arm64/ABP_iOSTests-master.dia",
+    "emit-module-dependencies" : "/Volumes/ExternalStorage/Study/iOS/Swift/ABP_iOS/DerivedData/ABP_iOS/Index.noindex/Build/Intermediates.noindex/ABP_iOS.build/Debug-iphonesimulator/ABP_iOSTests.build/Objects-normal/arm64/ABP_iOSTests-master-emit-module.d",
+    "emit-module-diagnostics" : "/Volumes/ExternalStorage/Study/iOS/Swift/ABP_iOS/DerivedData/ABP_iOS/Index.noindex/Build/Intermediates.noindex/ABP_iOS.build/Debug-iphonesimulator/ABP_iOSTests.build/Objects-normal/arm64/ABP_iOSTests-master-emit-module.dia",
+    "swift-dependencies" : "/Volumes/ExternalStorage/Study/iOS/Swift/ABP_iOS/DerivedData/ABP_iOS/Index.noindex/Build/Intermediates.noindex/ABP_iOS.build/Debug-iphonesimulator/ABP_iOSTests.build/Objects-normal/arm64/ABP_iOSTests-master.swiftdeps"
+  },
+  "/Volumes/ExternalStorage/Study/iOS/Swift/ABP_iOS/ABP_iOSTests/ABP_iOSTests.swift" : {
+
+  }
+}
