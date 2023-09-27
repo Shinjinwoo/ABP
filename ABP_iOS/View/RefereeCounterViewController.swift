@@ -20,7 +20,14 @@ class RefereeCounterViewController: UIViewController {
         super.viewDidLoad()
 
         self.hideKeyboardWhenTappedAround()
+        setupUI()
         
+        
+        print("RefereeCounterViewController.viewDidLoad: ")
+    }
+    
+    
+    private func setupUI() {
         homeTeamTF.delegate = self
         awayTeamTF.delegate = self
         
@@ -35,8 +42,6 @@ class RefereeCounterViewController: UIViewController {
         bottomStackView.layer.borderWidth = 1.0
         bottomStackView.layer.borderColor = UIColor.gray.cgColor
         bottomStackView.layer.cornerRadius = 25
-        
-        print("RefereeCounterViewController.viewDidLoad: ")
     }
     
     

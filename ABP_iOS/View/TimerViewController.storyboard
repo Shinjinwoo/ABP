@@ -18,7 +18,7 @@
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="타이머" image="timer" catalog="system" selectedImage="list.bullet.clipboard.fill" id="FD3-My-N9r"/>
+                    <tabBarItem key="tabBarItem" title="타이머" image="timer" catalog="system" selectedImage="timer.circle.fill" id="FD3-My-N9r"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -27,8 +27,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="list.bullet.clipboard.fill" catalog="system" width="98" height="128"/>
         <image name="timer" catalog="system" width="128" height="123"/>
+        <image name="timer.circle.fill" catalog="system" width="128" height="123"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
