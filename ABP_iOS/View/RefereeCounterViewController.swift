@@ -12,6 +12,9 @@ class RefereeCounterViewController: UIViewController {
     @IBOutlet weak var homeTeamTF: UITextField!
     @IBOutlet weak var awayTeamTF: UITextField!
     
+    @IBOutlet weak var topStackView: UIStackView!
+    @IBOutlet weak var midStackView: UIStackView!
+    @IBOutlet weak var bottomStackView: UIStackView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +23,18 @@ class RefereeCounterViewController: UIViewController {
         
         homeTeamTF.delegate = self
         awayTeamTF.delegate = self
+        
+        midStackView.layer.borderWidth = 1.0
+        midStackView.layer.borderColor = UIColor.gray.cgColor
+        midStackView.layer.cornerRadius = 25
+        
+        topStackView.layer.borderWidth = 1.0
+        topStackView.layer.borderColor = UIColor.gray.cgColor
+        topStackView.layer.cornerRadius = 25
+        
+        bottomStackView.layer.borderWidth = 1.0
+        bottomStackView.layer.borderColor = UIColor.gray.cgColor
+        bottomStackView.layer.cornerRadius = 25
         
         print("RefereeCounterViewController.viewDidLoad: ")
     }

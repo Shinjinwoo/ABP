@@ -15,6 +15,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        if #available(iOS 13.0, *) {
+            //self.window?.overrideUserInterfaceStyle = .light // 라이트모드만 지원하기
+        //    self.window?.overrideUserInterfaceStyle = .dark // 다크모드만 지원하기
+        }
+        
         return true
     }
 
