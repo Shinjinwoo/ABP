@@ -9,24 +9,30 @@ import UIKit
 
 class RefereeCounterViewController: UIViewController {
 
+    @IBOutlet weak var homeTeamTF: UITextField!
+    @IBOutlet weak var awayTeamTF: UITextField!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
         self.hideKeyboardWhenTappedAround()
+        
+        homeTeamTF.delegate = self
+        awayTeamTF.delegate = self
         
         print("RefereeCounterViewController.viewDidLoad: ")
     }
     
+    
+}
 
-    /*
-        // MARK: - Navigation
-
-        // In a storyboard-based application, you will often want to do a little preparation before navigation
-        override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-            // Get the new view controller using segue.destination.
-            // Pass the selected object to the new view controller.
-        }
-    */
-
+extension RefereeCounterViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        
+        //해당 VC에서는 입력을 완료시에 저장하거나 포커스 이동기능이 불필요
+        textField.resignFirstResponder()
+        return true
+    }
 }
