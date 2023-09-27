@@ -63,7 +63,6 @@ class RefereeCounterViewController: UIViewController {
         viewModel.$scoreboard
             .receive(on: RunLoop.main)
             .sink { scoreboard in
-                
                 self.strikeCountStepper.value = Double(scoreboard.strikeCount)
                 self.ballCountStepper.value = Double(scoreboard.ballCount)
                 self.outCountStepper.value  = Double(scoreboard.outCount)
@@ -77,7 +76,7 @@ class RefereeCounterViewController: UIViewController {
     
     @IBAction func strikeStepperOnTabed(_ sender: UIStepper) {
         if ( sender.maximumValue == sender.value ) {
-            viewModel.setStrikeCount(strikeCount: 0 )
+            viewModel.strikeOut()
         } else {
             viewModel.setStrikeCount(strikeCount:Int(sender.value))
         }
@@ -86,7 +85,7 @@ class RefereeCounterViewController: UIViewController {
     @IBAction func ballStepperOnTabed(_ sender: UIStepper) {
         
         if (sender.maximumValue == sender.value) {
-            viewModel.setBallCount(ballCount: 0 )
+            viewModel.baseOnBalls()
         } else {
             viewModel.setBallCount(ballCount: Int(sender.value))
         }
@@ -94,7 +93,7 @@ class RefereeCounterViewController: UIViewController {
     
     @IBAction func outStepperOnTabed(_ sender: UIStepper) {
         if ( sender.maximumValue == sender.value ) {
-            viewModel.setOutCount(outCount: 0)
+            viewModel.endOfTheInning()
         } else {
             viewModel.setOutCount(outCount: Int(sender.value))
         }

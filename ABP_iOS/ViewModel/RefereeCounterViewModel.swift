@@ -13,9 +13,9 @@ import Combine
 final class RefereeCounterViewModel {
     
     private final let MAX_INNING:Int = 28
-    private final let MAX_S: Int = 3;
-    private final let MAX_B: Int = 4;
-    private final let MAX_O: Int = 3;
+    private final let MAX_STRIKECOUNT:Int = 2
+    private final let MAX_BALLCOUNT:Int = 3
+    private final let MAX_OUTCOUNT:Int = 2
     
     @Published var scoreboard: ScoreBoard
     
@@ -34,6 +34,32 @@ final class RefereeCounterViewModel {
     
     func setOutCount(outCount:Int) {
         scoreboard.outCount = outCount
+    }
+    
+    func strikeOut() {
+        
+        if MAX_OUTCOUNT <= scoreboard.outCount {
+            endOfTheInning()
+            return
+        }
+        
+        scoreboard.strikeCount = 0
+        scoreboard.ballCount = 0
+        scoreboard.outCount = scoreboard.outCount + 1
+        print("strike out !")
+    }
+    
+    func baseOnBalls() {
+        scoreboard.strikeCount = 0
+        scoreboard.ballCount = 0
+        print("baseOnBalls")
+    }
+    
+    func endOfTheInning() {
+        scoreboard.strikeCount = 0
+        scoreboard.ballCount = 0
+        scoreboard.outCount = 0
+        scoreboard.inning = scoreboard.inning + 1
     }
     
 }
