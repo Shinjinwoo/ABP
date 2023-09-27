@@ -8,8 +8,12 @@
 import Foundation
 
 struct ScoreBoard: Hashable {
-    var strikeCount: Int = 0
-    var ballCount: Int = 0
-    var outCount: Int = 0
-    var inning: Int = 0
+    var strikeCount: Int
+    var ballCount: Int
+    var outCount: Int
+    var inning: Int
+}
+
+extension ScoreBoard {
+    static let `default` = ScoreBoard(strikeCount: 0, ballCount: 0, outCount: 0, inning: 1)
 }

@@ -10,26 +10,24 @@ import Combine
 
 
 // 심판카운트기 VM,
-class RefereeCounterViewModel:ObservableObject {
+final class RefereeCounterViewModel {
     
     private final let MAX_INNING:Int = 28
     private final let MAX_S: Int = 2;
     private final let MAX_B: Int = 3;
     private final let MAX_O: Int = 2;
-
-    private var currentStage: Int = 2;
-    private var currentLeftScore: Int = 0;
-    private var currentRightScore: Int = 0;
     
-    private var currentS: Int = 0;
-    private var currentB: Int = 0;
-    private var currentO: Int = 0;
+    @Published var scoreboard: ScoreBoard
     
-    let item: CurrentValueSubject<ScoreBoard,Never>
-    
-    init(item:ScoreBoard) {
+    init(scoreboard:ScoreBoard) {
         print("RefereeCounterViewModel init")
-        self.item = CurrentValueSubject(item)
+        self.scoreboard = scoreboard
+    }
+    
+    
+    private func strikePlus() {
+        
+        
     }
     
     

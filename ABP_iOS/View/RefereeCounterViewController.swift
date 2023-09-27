@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 class RefereeCounterViewController: UIViewController {
 
@@ -18,6 +19,10 @@ class RefereeCounterViewController: UIViewController {
     @IBOutlet weak var topStackView: UIStackView!
     @IBOutlet weak var midStackView: UIStackView!
     @IBOutlet weak var bottomStackView: UIStackView!
+    
+    
+    var viewModel: RefereeCounterViewModel!
+    var subscriptions = Set<AnyCancellable>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,7 +54,13 @@ class RefereeCounterViewController: UIViewController {
         bottomStackView.layer.cornerRadius = 25
     }
     
-    
+    private func bind() {
+        viewModel.$scoreboard
+            .receive(on: RunLoop.main)
+            .sink { scoreboard in
+                print(scoreboard.ballCount)
+            }.store(in: &subscriptions)
+    }
 }
 
 extension RefereeCounterViewController: UITextFieldDelegate {
