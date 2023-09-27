@@ -13,9 +13,9 @@ import Combine
 final class RefereeCounterViewModel {
     
     private final let MAX_INNING:Int = 28
-    private final let MAX_S: Int = 2;
-    private final let MAX_B: Int = 3;
-    private final let MAX_O: Int = 2;
+    private final let MAX_S: Int = 3;
+    private final let MAX_B: Int = 4;
+    private final let MAX_O: Int = 3;
     
     @Published var scoreboard: ScoreBoard
     
@@ -24,9 +24,16 @@ final class RefereeCounterViewModel {
         self.scoreboard = scoreboard
     }
     
-    func setStrike(strike:Int) {
-        scoreboard.strikeCount = strike
+    func setStrikeCount(strikeCount:Int) {
+        scoreboard.strikeCount = strikeCount
     }
     
+    func setBallCount(ballCount:Int) {
+        scoreboard.ballCount = ballCount
+    }
+    
+    func setOutCount(outCount:Int) {
+        scoreboard.outCount = outCount
+    }
     
 }

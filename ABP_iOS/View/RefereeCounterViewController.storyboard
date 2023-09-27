@@ -148,7 +148,7 @@
                                                             <constraint firstAttribute="height" constant="45" id="Ytr-FU-2s7"/>
                                                         </constraints>
                                                     </imageView>
-                                                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="2" translatesAutoresizingMaskIntoConstraints="NO" id="fsC-nI-T6f">
+                                                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="3" translatesAutoresizingMaskIntoConstraints="NO" id="fsC-nI-T6f">
                                                         <rect key="frame" x="279" y="22.333333333333314" width="94" height="32"/>
                                                         <connections>
                                                             <action selector="strikeStepperOnTabed:" destination="Y6W-OH-hqX" eventType="valueChanged" id="5We-us-uSE"/>
@@ -201,8 +201,11 @@
                                                             <constraint firstAttribute="width" constant="45" id="Sea-61-o1z"/>
                                                         </constraints>
                                                     </imageView>
-                                                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="3" translatesAutoresizingMaskIntoConstraints="NO" id="ECZ-Dz-qeZ">
+                                                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="4" translatesAutoresizingMaskIntoConstraints="NO" id="ECZ-Dz-qeZ">
                                                         <rect key="frame" x="279" y="22.333333333333314" width="94" height="32"/>
+                                                        <connections>
+                                                            <action selector="ballStepperOnTabed:" destination="Y6W-OH-hqX" eventType="valueChanged" id="Ugl-sr-iAb"/>
+                                                        </connections>
                                                     </stepper>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle_outline_green" translatesAutoresizingMaskIntoConstraints="NO" id="xEF-gI-YeM">
                                                         <rect key="frame" x="145" y="16" width="45" height="45"/>
@@ -245,8 +248,11 @@
                                                             <constraint firstAttribute="height" constant="45" id="z1c-V3-VKB"/>
                                                         </constraints>
                                                     </imageView>
-                                                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="ClV-E6-CFU">
+                                                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="3" translatesAutoresizingMaskIntoConstraints="NO" id="ClV-E6-CFU">
                                                         <rect key="frame" x="279" y="22.333333333333371" width="94" height="32"/>
+                                                        <connections>
+                                                            <action selector="outStepperOnTabed:" destination="Y6W-OH-hqX" eventType="valueChanged" id="fo6-su-VVg"/>
+                                                        </connections>
                                                     </stepper>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="O" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a99-ap-EMf">
                                                         <rect key="frame" x="20" y="13.333333333333371" width="30" height="50"/>
@@ -298,10 +304,13 @@
                     <connections>
                         <outlet property="awayTeamNameTF" destination="xAs-Ld-ufe" id="B7D-C6-3EB"/>
                         <outlet property="awayTeamScoreTF" destination="Tk3-k9-e3y" id="0oY-Fd-KRj"/>
+                        <outlet property="ballCountStepper" destination="ECZ-Dz-qeZ" id="Bec-3y-a3J"/>
                         <outlet property="bottomStackView" destination="5qy-qh-Z6C" id="k9S-jb-b1k"/>
                         <outlet property="homeTeamNameTF" destination="ZPM-qw-MFs" id="LzV-lT-Fz9"/>
                         <outlet property="homeTeamScoreTF" destination="hVR-d4-VYp" id="r5k-Lr-5EA"/>
                         <outlet property="midStackView" destination="k3v-co-YW0" id="zNP-Y4-4Gl"/>
+                        <outlet property="outCountStepper" destination="ClV-E6-CFU" id="jUi-Wa-LVd"/>
+                        <outlet property="strikeCountStepper" destination="fsC-nI-T6f" id="OTe-rz-SbP"/>
                         <outlet property="topStackView" destination="FoV-u6-Dzv" id="3wT-KA-CPK"/>
                     </connections>
                 </viewController>

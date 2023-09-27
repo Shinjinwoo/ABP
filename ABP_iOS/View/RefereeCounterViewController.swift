@@ -13,6 +13,9 @@ class RefereeCounterViewController: UIViewController {
     @IBOutlet weak var homeTeamNameTF: UITextField!
     @IBOutlet weak var awayTeamNameTF: UITextField!
     
+    @IBOutlet weak var strikeCountStepper: UIStepper!
+    @IBOutlet weak var ballCountStepper: UIStepper!
+    @IBOutlet weak var outCountStepper: UIStepper!
     
     @IBOutlet weak var homeTeamScoreTF: UITextField!
     @IBOutlet weak var awayTeamScoreTF: UITextField!
@@ -20,6 +23,7 @@ class RefereeCounterViewController: UIViewController {
     @IBOutlet weak var topStackView: UIStackView!
     @IBOutlet weak var midStackView: UIStackView!
     @IBOutlet weak var bottomStackView: UIStackView!
+    
     
     var viewModel: RefereeCounterViewModel!
     var subscriptions = Set<AnyCancellable>()
@@ -59,12 +63,41 @@ class RefereeCounterViewController: UIViewController {
         viewModel.$scoreboard
             .receive(on: RunLoop.main)
             .sink { scoreboard in
+                
+                self.strikeCountStepper.value = Double(scoreboard.strikeCount)
+                self.ballCountStepper.value = Double(scoreboard.ballCount)
+                self.outCountStepper.value  = Double(scoreboard.outCount)
+    
                 print("스트라이크 카운트 바인딩 값 : \(scoreboard.strikeCount)")
+                print("볼 카운트 바인딩 값 : \(scoreboard.ballCount)")
+                print("아웃 카운트 바인딩 값 : \(scoreboard.outCount)")
+                
             }.store(in: &subscriptions)
     }
     
     @IBAction func strikeStepperOnTabed(_ sender: UIStepper) {
-        viewModel.setStrike(strike:1)
+        if ( sender.maximumValue == sender.value ) {
+            viewModel.setStrikeCount(strikeCount: 0 )
+        } else {
+            viewModel.setStrikeCount(strikeCount:Int(sender.value))
+        }
+    }
+    
+    @IBAction func ballStepperOnTabed(_ sender: UIStepper) {
+        
+        if (sender.maximumValue == sender.value) {
+            viewModel.setBallCount(ballCount: 0 )
+        } else {
+            viewModel.setBallCount(ballCount: Int(sender.value))
+        }
+    }
+    
+    @IBAction func outStepperOnTabed(_ sender: UIStepper) {
+        if ( sender.maximumValue == sender.value ) {
+            viewModel.setOutCount(outCount: 0)
+        } else {
+            viewModel.setOutCount(outCount: Int(sender.value))
+        }
     }
 }
 
