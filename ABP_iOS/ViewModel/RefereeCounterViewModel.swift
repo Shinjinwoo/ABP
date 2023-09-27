@@ -24,10 +24,8 @@ final class RefereeCounterViewModel {
         self.scoreboard = scoreboard
     }
     
-    
-    private func strikePlus() {
-        
-        
+    func setStrike(strike:Int) {
+        scoreboard.strikeCount = strike
     }
     
     

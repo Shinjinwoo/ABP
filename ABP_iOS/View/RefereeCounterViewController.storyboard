@@ -148,8 +148,11 @@
                                                             <constraint firstAttribute="height" constant="45" id="Ytr-FU-2s7"/>
                                                         </constraints>
                                                     </imageView>
-                                                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="fsC-nI-T6f">
+                                                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="2" translatesAutoresizingMaskIntoConstraints="NO" id="fsC-nI-T6f">
                                                         <rect key="frame" x="279" y="22.333333333333314" width="94" height="32"/>
+                                                        <connections>
+                                                            <action selector="strikeStepperOnTabed:" destination="Y6W-OH-hqX" eventType="valueChanged" id="5We-us-uSE"/>
+                                                        </connections>
                                                     </stepper>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle_outline_yellow" translatesAutoresizingMaskIntoConstraints="NO" id="4Pw-TY-q7X">
                                                         <rect key="frame" x="75" y="16" width="45" height="45"/>
@@ -198,7 +201,7 @@
                                                             <constraint firstAttribute="width" constant="45" id="Sea-61-o1z"/>
                                                         </constraints>
                                                     </imageView>
-                                                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="ECZ-Dz-qeZ">
+                                                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="3" translatesAutoresizingMaskIntoConstraints="NO" id="ECZ-Dz-qeZ">
                                                         <rect key="frame" x="279" y="22.333333333333314" width="94" height="32"/>
                                                     </stepper>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle_outline_green" translatesAutoresizingMaskIntoConstraints="NO" id="xEF-gI-YeM">

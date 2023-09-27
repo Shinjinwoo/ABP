@@ -13,13 +13,13 @@ class RefereeCounterViewController: UIViewController {
     @IBOutlet weak var homeTeamNameTF: UITextField!
     @IBOutlet weak var awayTeamNameTF: UITextField!
     
+    
     @IBOutlet weak var homeTeamScoreTF: UITextField!
     @IBOutlet weak var awayTeamScoreTF: UITextField!
     
     @IBOutlet weak var topStackView: UIStackView!
     @IBOutlet weak var midStackView: UIStackView!
     @IBOutlet weak var bottomStackView: UIStackView!
-    
     
     var viewModel: RefereeCounterViewModel!
     var subscriptions = Set<AnyCancellable>()
@@ -28,8 +28,9 @@ class RefereeCounterViewController: UIViewController {
         super.viewDidLoad()
 
         self.hideKeyboardWhenTappedAround()
+        viewModel = RefereeCounterViewModel(scoreboard: ScoreBoard.default)
         setupUI()
-        
+        bind()
         
         print("RefereeCounterViewController.viewDidLoad: ")
     }
@@ -58,8 +59,12 @@ class RefereeCounterViewController: UIViewController {
         viewModel.$scoreboard
             .receive(on: RunLoop.main)
             .sink { scoreboard in
-                print(scoreboard.ballCount)
+                print("스트라이크 카운트 바인딩 값 : \(scoreboard.strikeCount)")
             }.store(in: &subscriptions)
+    }
+    
+    @IBAction func strikeStepperOnTabed(_ sender: UIStepper) {
+        viewModel.setStrike(strike:1)
     }
 }
 
@@ -75,3 +80,5 @@ extension RefereeCounterViewController: UITextFieldDelegate {
         textField.selectedTextRange = textField.textRange(from: textField.beginningOfDocument, to: textField.endOfDocument)
     }
 }
+
+
