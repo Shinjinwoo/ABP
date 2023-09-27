@@ -7,10 +7,9 @@
 
 import Foundation
 
-
 struct ScoreBoard: Hashable {
-    let strikeCount: Int
-    let ballCount: Int
-    let outCount: Int
-    let inning: Int
+    var strikeCount: Int = 0
+    var ballCount: Int = 0
+    var outCount: Int = 0
+    var inning: Int = 0
 }

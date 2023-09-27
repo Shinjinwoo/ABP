@@ -9,13 +9,14 @@ import Foundation
 import Combine
 
 
-
-class RefereeCounterViewModel {
+// 심판카운트기 VM,
+class RefereeCounterViewModel:ObservableObject {
     
-    
-    init() {
-        
+    init(item:ScoreBoard) {
+        print("RefereeCounterViewModel init")
+        self.item = CurrentValueSubject(item)
     }
     
+    let item: CurrentValueSubject<ScoreBoard,Never>
     
 }
