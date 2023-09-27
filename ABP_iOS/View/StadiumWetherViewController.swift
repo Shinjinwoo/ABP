@@ -14,7 +14,11 @@ class StadiumWetherViewController: UIViewController {
 
         print("하이롱2")
         
+<<<<<<< Updated upstream
         print("하이룽룽test1111ddd")
+=======
+        print("하이룽룽test2222")
+>>>>>>> Stashed changes
         // Do any additional setup after loading the view.
     }
 }
