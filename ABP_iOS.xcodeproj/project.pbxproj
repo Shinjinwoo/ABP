@@ -12,6 +12,7 @@
 		32D724432AC3F4B8005DDBBC /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D724422AC3F4B8005DDBBC /* TimerViewController.swift */; };
 		32D724452AC3F4C6005DDBBC /* TimerViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32D724442AC3F4C6005DDBBC /* TimerViewController.storyboard */; };
 		32D7244A2AC3F834005DDBBC /* RefereeCounterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D724492AC3F834005DDBBC /* RefereeCounterViewModel.swift */; };
+		32D7244F2AC3FBC1005DDBBC /* ViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D7244E2AC3FBC1005DDBBC /* ViewControllerExtension.swift */; };
 		5E47A7952AC15D8400F67449 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E47A7942AC15D8400F67449 /* AppDelegate.swift */; };
 		5E47A7972AC15D8400F67449 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E47A7962AC15D8400F67449 /* SceneDelegate.swift */; };
 		5E47A79C2AC15D8400F67449 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E47A79A2AC15D8400F67449 /* Main.storyboard */; };
@@ -51,6 +52,7 @@
 		32D724422AC3F4B8005DDBBC /* TimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
 		32D724442AC3F4C6005DDBBC /* TimerViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TimerViewController.storyboard; sourceTree = "<group>"; };
 		32D724492AC3F834005DDBBC /* RefereeCounterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefereeCounterViewModel.swift; sourceTree = "<group>"; };
+		32D7244E2AC3FBC1005DDBBC /* ViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerExtension.swift; sourceTree = "<group>"; };
 		5E47A7912AC15D8400F67449 /* ABP_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ABP_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E47A7942AC15D8400F67449 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5E47A7962AC15D8400F67449 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -104,6 +106,14 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		32D7244B2AC3FB33005DDBBC /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				32D7244E2AC3FBC1005DDBBC /* ViewControllerExtension.swift */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
 		5E47A7882AC15D8400F67449 = {
 			isa = PBXGroup;
 			children = (
@@ -127,6 +137,7 @@
 		5E47A7932AC15D8400F67449 /* ABP_iOS */ = {
 			isa = PBXGroup;
 			children = (
+				32D7244B2AC3FB33005DDBBC /* Util */,
 				32D724482AC3F81A005DDBBC /* ViewModel */,
 				5E47A7CB2AC1610800F67449 /* View */,
 				5E47A7C92AC160ED00F67449 /* Model */,
@@ -324,6 +335,7 @@
 				32D724432AC3F4B8005DDBBC /* TimerViewController.swift in Sources */,
 				5E47A7D12AC174BD00F67449 /* StadiumWetherViewController.swift in Sources */,
 				32D7243F2AC3F2CB005DDBBC /* LineupViewController.swift in Sources */,
+				32D7244F2AC3FBC1005DDBBC /* ViewControllerExtension.swift in Sources */,
 				5E47A7972AC15D8400F67449 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

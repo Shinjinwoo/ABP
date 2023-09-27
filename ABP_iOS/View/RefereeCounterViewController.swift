@@ -12,9 +12,10 @@ class RefereeCounterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
         
-        print("하이룽")
+        self.hideKeyboardWhenTappedAround()
+        
+        print("RefereeCounterViewController.viewDidLoad: ")
     }
     
 
