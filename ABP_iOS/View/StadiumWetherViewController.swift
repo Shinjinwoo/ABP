@@ -14,7 +14,7 @@ class StadiumWetherViewController: UIViewController {
 
         print("하이롱2")
         
-        print("하이룽룽test")
+        print("하이룽룽test1111ddd")
         // Do any additional setup after loading the view.
     }
 }
