@@ -46,12 +46,14 @@ final class RefereeCounterViewModel {
         scoreboard.strikeCount = 0
         scoreboard.ballCount = 0
         scoreboard.outCount = scoreboard.outCount + 1
+        
         print("strike out !")
     }
     
     func baseOnBalls() {
         scoreboard.strikeCount = 0
         scoreboard.ballCount = 0
+        
         print("baseOnBalls")
     }
     

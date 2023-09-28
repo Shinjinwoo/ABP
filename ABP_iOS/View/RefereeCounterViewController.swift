@@ -13,6 +13,9 @@ class RefereeCounterViewController: UIViewController {
     @IBOutlet weak var homeTeamNameTF: UITextField!
     @IBOutlet weak var awayTeamNameTF: UITextField!
     
+    @IBOutlet weak var firstStrikeImage: UIImageView!
+    @IBOutlet weak var secondStrikeImage: UIImageView!
+    
     @IBOutlet weak var strikeCountStepper: UIStepper!
     @IBOutlet weak var ballCountStepper: UIStepper!
     @IBOutlet weak var outCountStepper: UIStepper!
@@ -23,7 +26,6 @@ class RefereeCounterViewController: UIViewController {
     @IBOutlet weak var topStackView: UIStackView!
     @IBOutlet weak var midStackView: UIStackView!
     @IBOutlet weak var bottomStackView: UIStackView!
-    
     
     var viewModel: RefereeCounterViewModel!
     var subscriptions = Set<AnyCancellable>()
@@ -66,12 +68,34 @@ class RefereeCounterViewController: UIViewController {
                 self.strikeCountStepper.value = Double(scoreboard.strikeCount)
                 self.ballCountStepper.value = Double(scoreboard.ballCount)
                 self.outCountStepper.value  = Double(scoreboard.outCount)
+                
+                self.configureScoreboard(scoreboard: scoreboard)
     
                 print("스트라이크 카운트 바인딩 값 : \(scoreboard.strikeCount)")
                 print("볼 카운트 바인딩 값 : \(scoreboard.ballCount)")
                 print("아웃 카운트 바인딩 값 : \(scoreboard.outCount)")
                 
             }.store(in: &subscriptions)
+    }
+    
+    
+    private func configureScoreboard(scoreboard: ScoreBoard) {
+        
+        switch scoreboard.strikeCount 
+        {
+        
+        case 0  :
+            firstStrikeImage.image = UIImage(named: "circle_outline_yellow")
+            secondStrikeImage.image = UIImage(named: "circle_outline_yellow")
+        case 1  :
+            firstStrikeImage.image = UIImage(named: "circle_yellow")
+            secondStrikeImage.image = UIImage(named: "circle_outline_yellow")
+        case 2  :
+            secondStrikeImage.image = UIImage(named: "circle_yellow")
+        default :
+            break
+        }
+        
     }
     
     @IBAction func strikeStepperOnTabed(_ sender: UIStepper) {
@@ -83,7 +107,6 @@ class RefereeCounterViewController: UIViewController {
     }
     
     @IBAction func ballStepperOnTabed(_ sender: UIStepper) {
-        
         if (sender.maximumValue == sender.value) {
             viewModel.baseOnBalls()
         } else {
@@ -108,7 +131,6 @@ extension RefereeCounterViewController: UITextFieldDelegate {
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        
         textField.selectedTextRange = textField.textRange(from: textField.beginningOfDocument, to: textField.endOfDocument)
     }
 }

@@ -306,10 +306,12 @@
                         <outlet property="awayTeamScoreTF" destination="Tk3-k9-e3y" id="0oY-Fd-KRj"/>
                         <outlet property="ballCountStepper" destination="ECZ-Dz-qeZ" id="Bec-3y-a3J"/>
                         <outlet property="bottomStackView" destination="5qy-qh-Z6C" id="k9S-jb-b1k"/>
+                        <outlet property="firstStrikeImage" destination="4Pw-TY-q7X" id="ZAk-pq-5lw"/>
                         <outlet property="homeTeamNameTF" destination="ZPM-qw-MFs" id="LzV-lT-Fz9"/>
                         <outlet property="homeTeamScoreTF" destination="hVR-d4-VYp" id="r5k-Lr-5EA"/>
                         <outlet property="midStackView" destination="k3v-co-YW0" id="zNP-Y4-4Gl"/>
                         <outlet property="outCountStepper" destination="ClV-E6-CFU" id="jUi-Wa-LVd"/>
+                        <outlet property="secondStrikeImage" destination="Hrn-v4-BYV" id="PlO-IE-0OR"/>
                         <outlet property="strikeCountStepper" destination="fsC-nI-T6f" id="OTe-rz-SbP"/>
                         <outlet property="topStackView" destination="FoV-u6-Dzv" id="3wT-KA-CPK"/>
                     </connections>
