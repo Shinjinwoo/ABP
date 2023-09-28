@@ -38,6 +38,9 @@
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                        <connections>
+                                                            <action selector="homeTeamScoreEditingChanged:" destination="Y6W-OH-hqX" eventType="editingChanged" id="DyH-TD-El3"/>
+                                                        </connections>
                                                     </textField>
                                                     <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="n0L-08-gLT">
                                                         <rect key="frame" x="17" y="160" width="94" height="20"/>
@@ -291,8 +294,52 @@
                                             </view>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5qy-qh-Z6C">
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="5qy-qh-Z6C">
                                         <rect key="frame" x="0.0" y="480" width="393" height="230"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OPF-Ab-nRD">
+                                                <rect key="frame" x="0.0" y="0.0" width="196.66666666666666" height="230"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7zc-Ic-0UL">
+                                                        <rect key="frame" x="35.666666666666657" y="95" width="125" height="40"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="125" id="T2x-Tn-aJY"/>
+                                                            <constraint firstAttribute="height" constant="40" id="m6v-6F-I0i"/>
+                                                        </constraints>
+                                                        <buttonConfiguration key="configuration" style="filled" title="볼카운트 리셋" titleAlignment="center"/>
+                                                        <connections>
+                                                            <action selector="resetSBCounteTebed:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Ict-83-jDD"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstItem="7zc-Ic-0UL" firstAttribute="centerY" secondItem="OPF-Ab-nRD" secondAttribute="centerY" id="2zT-lB-rPi"/>
+                                                    <constraint firstItem="7zc-Ic-0UL" firstAttribute="centerX" secondItem="OPF-Ab-nRD" secondAttribute="centerX" id="npB-Df-UZq"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uSw-gJ-7bQ">
+                                                <rect key="frame" x="196.66666666666663" y="0.0" width="196.33333333333337" height="230"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yR7-84-UsM">
+                                                        <rect key="frame" x="32.333333333333343" y="97.666666666666629" width="131.33333333333334" height="35"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="35" id="3cy-GY-Khr"/>
+                                                        </constraints>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="filled" title="스코어보드 리셋"/>
+                                                        <connections>
+                                                            <action selector="resetScoreboardTebed:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Zjc-HX-ctS"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstItem="yR7-84-UsM" firstAttribute="centerY" secondItem="uSw-gJ-7bQ" secondAttribute="centerY" id="25b-mv-WVW"/>
+                                                    <constraint firstItem="yR7-84-UsM" firstAttribute="centerX" secondItem="uSw-gJ-7bQ" secondAttribute="centerX" id="SMb-20-JBx"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
                                     </stackView>
                                 </subviews>
                                 <constraints>

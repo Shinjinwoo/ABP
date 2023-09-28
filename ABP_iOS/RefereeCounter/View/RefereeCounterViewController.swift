@@ -214,11 +214,24 @@ class RefereeCounterViewController: UIViewController {
         viewModel.setAwayTeamScore(score: Int(sender.value))
     }
     
-    @IBAction func awayTeamScoreEditingChanged(_ sender: UITextField) {
-        
-        print(sender.text)
+    @IBAction func homeTeamScoreEditingChanged(_ sender: UITextField) {
+        let textValue: Int = Int(String(sender.text!))!
+        viewModel.setHomeTeamScore(score: Int(textValue))
     }
     
+    @IBAction func awayTeamScoreEditingChanged(_ sender: UITextField) {
+        let textValue: Int = Int(String(sender.text!))!
+        viewModel.setAwayTeamScore(score: Int(textValue))
+    }
+    
+    
+    @IBAction func resetSBCounteTebed(_ sender: UIButton) {
+        viewModel.resetSBCount()
+    }
+    
+    @IBAction func resetScoreboardTebed(_ sender: UIButton) {
+        viewModel.resetScoreBoard()
+    }
     
     
     

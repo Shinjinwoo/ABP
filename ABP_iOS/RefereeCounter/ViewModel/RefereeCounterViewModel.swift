@@ -75,4 +75,19 @@ final class RefereeCounterViewModel {
         scoreboard.inning = scoreboard.inning + 1
     }
     
+    func resetSBCount() {
+        scoreboard.strikeCount = 0
+        scoreboard.ballCount = 0
+    }
+    
+    
+    func resetScoreBoard() {
+        scoreboard.strikeCount = 0
+        scoreboard.ballCount = 0
+        scoreboard.outCount = 0
+        scoreboard.inning = 2
+        scoreboard.homeTeamScore = 0
+        scoreboard.awayTeamScore = 0
+    }
+    
 }
