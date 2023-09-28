@@ -12,7 +12,9 @@ class StadiumWetherViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        print("하이롱 회사")
+        print("StadiumWetherViewController : viewDidLoad")
+        
+        
         
         // Do any additional setup after loading the view.
     }

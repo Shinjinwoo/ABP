@@ -9,7 +9,7 @@ import UIKit
 import Combine
 
 class RefereeCounterViewController: UIViewController {
-
+    
     // 팀이름
     @IBOutlet weak var homeTeamNameTF: UITextField!
     @IBOutlet weak var awayTeamNameTF: UITextField!
@@ -54,13 +54,13 @@ class RefereeCounterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.hideKeyboardWhenTappedAround()
         viewModel = RefereeCounterViewModel(scoreboard: ScoreBoard.default)
         setupUI()
         bind()
         
-        print("RefereeCounterViewController.viewDidLoad: ")
+        print("RefereeCounterViewController : viewDidLoad: ")
     }
     
     
@@ -232,10 +232,6 @@ class RefereeCounterViewController: UIViewController {
     @IBAction func resetScoreboardTebed(_ sender: UIButton) {
         viewModel.resetScoreBoard()
     }
-    
-    
-    
-    
 }
 
 extension RefereeCounterViewController: UITextFieldDelegate {

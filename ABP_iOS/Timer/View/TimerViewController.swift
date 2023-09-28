@@ -12,6 +12,7 @@ class TimerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        print("TimerViewController : viewDidLoad")
         // Do any additional setup after loading the view.
     }
     
