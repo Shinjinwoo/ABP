@@ -65,6 +65,11 @@ class RefereeCounterViewController: UIViewController {
     
     
     private func setupUI() {
+        
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        
+        
         homeTeamNameTF.delegate  = self
         awayTeamNameTF.delegate  = self
         homeTeamScore.delegate = self
@@ -109,7 +114,6 @@ class RefereeCounterViewController: UIViewController {
         configureBallImage(ballCount: scoreboard.ballCount)
         configureOutImage(outCount: scoreboard.outCount)
     }
-    
     
     private func configureScore(homeTeamScore:Int, awayTeamScore:Int) {
         
@@ -209,6 +213,15 @@ class RefereeCounterViewController: UIViewController {
     @IBAction func awayTeamStepperOnTabbed(_ sender: UIStepper) {
         viewModel.setAwayTeamScore(score: Int(sender.value))
     }
+    
+    @IBAction func awayTeamScoreEditingChanged(_ sender: UITextField) {
+        
+        print(sender.text)
+    }
+    
+    
+    
+    
     
 }
 

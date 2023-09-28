@@ -110,6 +110,9 @@
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                        <connections>
+                                                            <action selector="awayTeamScoreEditingChanged:" destination="Y6W-OH-hqX" eventType="editingChanged" id="fTg-Zu-btm"/>
+                                                        </connections>
                                                     </textField>
                                                     <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="CJB-ps-i3s">
                                                         <rect key="frame" x="17" y="160" width="94" height="20"/>

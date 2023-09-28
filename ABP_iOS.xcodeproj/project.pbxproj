@@ -98,10 +98,44 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		32D724482AC3F81A005DDBBC /* ViewModel */ = {
+		32C5BDCF2AC635A6007E7D4E /* RefereeCounter */ = {
+			isa = PBXGroup;
+			children = (
+				32C5BDD12AC635C3007E7D4E /* ViewModel */,
+				32C5BDD02AC635BD007E7D4E /* View */,
+				32C5BDD22AC635CF007E7D4E /* Model */,
+			);
+			path = RefereeCounter;
+			sourceTree = "<group>";
+		};
+		32C5BDD02AC635BD007E7D4E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5E47A7CC2AC16D1C00F67449 /* RefereeCounterViewController.swift */,
+				5E47A7D42AC174FC00F67449 /* RefereeCounterViewController.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		32C5BDD12AC635C3007E7D4E /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
 				32D724492AC3F834005DDBBC /* RefereeCounterViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		32C5BDD22AC635CF007E7D4E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5E47A7D62AC2CE7E00F67449 /* ScoreBoard.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		32D724482AC3F81A005DDBBC /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -137,6 +171,7 @@
 		5E47A7932AC15D8400F67449 /* ABP_iOS */ = {
 			isa = PBXGroup;
 			children = (
+				32C5BDCF2AC635A6007E7D4E /* RefereeCounter */,
 				32D7244B2AC3FB33005DDBBC /* Util */,
 				32D724482AC3F81A005DDBBC /* ViewModel */,
 				5E47A7CB2AC1610800F67449 /* View */,
@@ -172,7 +207,6 @@
 		5E47A7C92AC160ED00F67449 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				5E47A7D62AC2CE7E00F67449 /* ScoreBoard.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -180,8 +214,6 @@
 		5E47A7CB2AC1610800F67449 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				5E47A7CC2AC16D1C00F67449 /* RefereeCounterViewController.swift */,
-				5E47A7D42AC174FC00F67449 /* RefereeCounterViewController.storyboard */,
 				5E47A7D02AC174BD00F67449 /* StadiumWetherViewController.swift */,
 				5E47A7D22AC174D500F67449 /* StadiumWetherViewController.storyboard */,
 				32D7243E2AC3F2CB005DDBBC /* LineupViewController.swift */,
