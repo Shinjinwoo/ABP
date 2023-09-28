@@ -41,6 +41,9 @@
                                                     </textField>
                                                     <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="n0L-08-gLT">
                                                         <rect key="frame" x="17" y="160" width="94" height="20"/>
+                                                        <connections>
+                                                            <action selector="homeTeamStepperOnTabbed:" destination="Y6W-OH-hqX" eventType="valueChanged" id="XqM-FV-HP1"/>
+                                                        </connections>
                                                     </stepper>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -72,8 +75,11 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="ZkA-K3-te5">
+                                                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="2" minimumValue="2" maximumValue="25" translatesAutoresizingMaskIntoConstraints="NO" id="ZkA-K3-te5">
                                                         <rect key="frame" x="17" y="160" width="97" height="32"/>
+                                                        <connections>
+                                                            <action selector="inningStepperOnTabed:" destination="Y6W-OH-hqX" eventType="valueChanged" id="dam-NT-82O"/>
+                                                        </connections>
                                                     </stepper>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -107,6 +113,9 @@
                                                     </textField>
                                                     <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="CJB-ps-i3s">
                                                         <rect key="frame" x="17" y="160" width="94" height="20"/>
+                                                        <connections>
+                                                            <action selector="awayTeamStepperOnTabbed:" destination="Y6W-OH-hqX" eventType="valueChanged" id="qdQ-Kn-ae8"/>
+                                                        </connections>
                                                     </stepper>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -303,14 +312,18 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="awayTeamNameTF" destination="xAs-Ld-ufe" id="B7D-C6-3EB"/>
-                        <outlet property="awayTeamScoreTF" destination="Tk3-k9-e3y" id="0oY-Fd-KRj"/>
+                        <outlet property="awayTeamScore" destination="Tk3-k9-e3y" id="MLU-Ro-gHT"/>
+                        <outlet property="awayTeamScoreStepper" destination="CJB-ps-i3s" id="dRd-QQ-WJX"/>
                         <outlet property="ballCountStepper" destination="ECZ-Dz-qeZ" id="Bec-3y-a3J"/>
                         <outlet property="bottomStackView" destination="5qy-qh-Z6C" id="k9S-jb-b1k"/>
                         <outlet property="firstBallImage" destination="cM1-5a-08I" id="QVS-WE-4kz"/>
                         <outlet property="firstOutImage" destination="6Vy-cY-cIc" id="JK0-BE-oRV"/>
                         <outlet property="firstStrikeImage" destination="4Pw-TY-q7X" id="ZAk-pq-5lw"/>
                         <outlet property="homeTeamNameTF" destination="ZPM-qw-MFs" id="LzV-lT-Fz9"/>
-                        <outlet property="homeTeamScoreTF" destination="hVR-d4-VYp" id="r5k-Lr-5EA"/>
+                        <outlet property="homeTeamScore" destination="hVR-d4-VYp" id="aut-9U-ZGG"/>
+                        <outlet property="homeTeamScoreStepper" destination="n0L-08-gLT" id="84G-Sv-Fwa"/>
+                        <outlet property="inningLabel" destination="J7g-yv-d0t" id="Azz-ut-m3z"/>
+                        <outlet property="inningStepper" destination="ZkA-K3-te5" id="565-f0-AFx"/>
                         <outlet property="midStackView" destination="k3v-co-YW0" id="zNP-Y4-4Gl"/>
                         <outlet property="outCountStepper" destination="ClV-E6-CFU" id="jUi-Wa-LVd"/>
                         <outlet property="secondBallImage" destination="xEF-gI-YeM" id="YfW-Qe-2Du"/>

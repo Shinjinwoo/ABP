@@ -36,6 +36,17 @@ final class RefereeCounterViewModel {
         scoreboard.outCount = outCount
     }
     
+    func setInning(inning:Int) {
+        scoreboard.inning = inning
+    }
+    
+    func setHomeTeamScore(score:Int){
+        scoreboard.homeTeamScore = score
+    }
+    func setAwayTeamScore(score:Int){
+        scoreboard.awayTeamScore = score
+    }
+    
     func strikeOut() {
         
         if MAX_OUTCOUNT <= scoreboard.outCount {

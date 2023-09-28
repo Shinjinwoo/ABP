@@ -10,25 +10,40 @@ import Combine
 
 class RefereeCounterViewController: UIViewController {
 
+    // 팀이름
     @IBOutlet weak var homeTeamNameTF: UITextField!
     @IBOutlet weak var awayTeamNameTF: UITextField!
     
+    
+    //스트라이크 이미지
     @IBOutlet weak var firstStrikeImage: UIImageView!
     @IBOutlet weak var secondStrikeImage: UIImageView!
     
+    //볼 이미지
     @IBOutlet weak var firstBallImage: UIImageView!
     @IBOutlet weak var secondBallImage: UIImageView!
     @IBOutlet weak var thirdBallImage: UIImageView!
     
+    //아웃카운트 이미지
     @IBOutlet weak var firstOutImage: UIImageView!
     @IBOutlet weak var secondOutImage: UIImageView!
     
+    //이닝 라벨
+    @IBOutlet weak var inningLabel: UILabel!
+    
+    //이닝,S,B,O 스탭퍼
+    @IBOutlet weak var inningStepper: UIStepper!
     @IBOutlet weak var strikeCountStepper: UIStepper!
     @IBOutlet weak var ballCountStepper: UIStepper!
     @IBOutlet weak var outCountStepper: UIStepper!
     
-    @IBOutlet weak var homeTeamScoreTF: UITextField!
-    @IBOutlet weak var awayTeamScoreTF: UITextField!
+    // 팀별 스코어
+    @IBOutlet weak var homeTeamScore: UITextField!
+    @IBOutlet weak var awayTeamScore: UITextField!
+    
+    // 스코어 스탭퍼
+    @IBOutlet weak var homeTeamScoreStepper: UIStepper!
+    @IBOutlet weak var awayTeamScoreStepper: UIStepper!
     
     @IBOutlet weak var topStackView: UIStackView!
     @IBOutlet weak var midStackView: UIStackView!
@@ -52,8 +67,8 @@ class RefereeCounterViewController: UIViewController {
     private func setupUI() {
         homeTeamNameTF.delegate  = self
         awayTeamNameTF.delegate  = self
-        homeTeamScoreTF.delegate = self
-        awayTeamScoreTF.delegate = self
+        homeTeamScore.delegate = self
+        awayTeamScore.delegate = self
         
         midStackView.layer.borderWidth  = 1.0
         midStackView.layer.borderColor  = UIColor.gray.cgColor
@@ -74,10 +89,6 @@ class RefereeCounterViewController: UIViewController {
             .sink { scoreboard in
                 
                 self.configureScoreboard(scoreboard: scoreboard)
-    
-//                print("스트라이크 카운트 바인딩 값 : \(scoreboard.strikeCount)")
-//                print("볼 카운트 바인딩 값 : \(scoreboard.ballCount)")
-//                print("아웃 카운트 바인딩 값 : \(scoreboard.outCount)")
                 
             }.store(in: &subscriptions)
     }
@@ -88,12 +99,30 @@ class RefereeCounterViewController: UIViewController {
         self.strikeCountStepper.value = Double(scoreboard.strikeCount)
         self.ballCountStepper.value = Double(scoreboard.ballCount)
         self.outCountStepper.value  = Double(scoreboard.outCount)
+        self.inningStepper.value = Double(scoreboard.inning)
+        self.homeTeamScoreStepper.value = Double(scoreboard.homeTeamScore)
+        self.awayTeamScoreStepper.value = Double(scoreboard.awayTeamScore)
         
-        
+        configureScore(homeTeamScore: scoreboard.homeTeamScore, awayTeamScore: scoreboard.awayTeamScore)
+        configureInning(inning: scoreboard.inning)
         configureStrikeImage(strikeCount: scoreboard.strikeCount)
         configureBallImage(ballCount: scoreboard.ballCount)
         configureOutImage(outCount: scoreboard.outCount)
+    }
+    
+    
+    private func configureScore(homeTeamScore:Int, awayTeamScore:Int) {
         
+        self.homeTeamScore.text = "\(homeTeamScore)"
+        self.awayTeamScore.text = "\(awayTeamScore)"
+    }
+    
+    private func configureInning(inning: Int ) {
+        if ( inning % 2 == 0 ) {
+            inningLabel.text = "\(inning / 2 )회 초"
+        } else {
+            inningLabel.text = "\(inning / 2 )회 말"
+        }
     }
     
     private func configureStrikeImage(strikeCount:Int) {
@@ -154,7 +183,7 @@ class RefereeCounterViewController: UIViewController {
     }
     
     @IBAction func ballStepperOnTabed(_ sender: UIStepper) {
-        if (sender.maximumValue == sender.value) {
+        if ( sender.maximumValue == sender.value) {
             viewModel.baseOnBalls()
         } else {
             viewModel.setBallCount(ballCount: Int(sender.value))
@@ -168,6 +197,19 @@ class RefereeCounterViewController: UIViewController {
             viewModel.setOutCount(outCount: Int(sender.value))
         }
     }
+    
+    @IBAction func inningStepperOnTabed(_ sender: UIStepper) {
+        viewModel.setInning(inning: Int(sender.value))
+    }
+    
+    @IBAction func homeTeamStepperOnTabbed(_ sender: UIStepper) {
+        viewModel.setHomeTeamScore(score: Int(sender.value))
+    }
+    
+    @IBAction func awayTeamStepperOnTabbed(_ sender: UIStepper) {
+        viewModel.setAwayTeamScore(score: Int(sender.value))
+    }
+    
 }
 
 extension RefereeCounterViewController: UITextFieldDelegate {
