@@ -306,13 +306,18 @@
                         <outlet property="awayTeamScoreTF" destination="Tk3-k9-e3y" id="0oY-Fd-KRj"/>
                         <outlet property="ballCountStepper" destination="ECZ-Dz-qeZ" id="Bec-3y-a3J"/>
                         <outlet property="bottomStackView" destination="5qy-qh-Z6C" id="k9S-jb-b1k"/>
+                        <outlet property="firstBallImage" destination="cM1-5a-08I" id="QVS-WE-4kz"/>
+                        <outlet property="firstOutImage" destination="6Vy-cY-cIc" id="JK0-BE-oRV"/>
                         <outlet property="firstStrikeImage" destination="4Pw-TY-q7X" id="ZAk-pq-5lw"/>
                         <outlet property="homeTeamNameTF" destination="ZPM-qw-MFs" id="LzV-lT-Fz9"/>
                         <outlet property="homeTeamScoreTF" destination="hVR-d4-VYp" id="r5k-Lr-5EA"/>
                         <outlet property="midStackView" destination="k3v-co-YW0" id="zNP-Y4-4Gl"/>
                         <outlet property="outCountStepper" destination="ClV-E6-CFU" id="jUi-Wa-LVd"/>
+                        <outlet property="secondBallImage" destination="xEF-gI-YeM" id="YfW-Qe-2Du"/>
+                        <outlet property="secondOutImage" destination="KJf-Wo-E6L" id="8yd-4k-3v9"/>
                         <outlet property="secondStrikeImage" destination="Hrn-v4-BYV" id="PlO-IE-0OR"/>
                         <outlet property="strikeCountStepper" destination="fsC-nI-T6f" id="OTe-rz-SbP"/>
+                        <outlet property="thirdBallImage" destination="UVZ-gS-SOf" id="T64-AX-Qqy"/>
                         <outlet property="topStackView" destination="FoV-u6-Dzv" id="3wT-KA-CPK"/>
                     </connections>
                 </viewController>

@@ -16,6 +16,13 @@ class RefereeCounterViewController: UIViewController {
     @IBOutlet weak var firstStrikeImage: UIImageView!
     @IBOutlet weak var secondStrikeImage: UIImageView!
     
+    @IBOutlet weak var firstBallImage: UIImageView!
+    @IBOutlet weak var secondBallImage: UIImageView!
+    @IBOutlet weak var thirdBallImage: UIImageView!
+    
+    @IBOutlet weak var firstOutImage: UIImageView!
+    @IBOutlet weak var secondOutImage: UIImageView!
+    
     @IBOutlet weak var strikeCountStepper: UIStepper!
     @IBOutlet weak var ballCountStepper: UIStepper!
     @IBOutlet weak var outCountStepper: UIStepper!
@@ -65,15 +72,12 @@ class RefereeCounterViewController: UIViewController {
         viewModel.$scoreboard
             .receive(on: RunLoop.main)
             .sink { scoreboard in
-                self.strikeCountStepper.value = Double(scoreboard.strikeCount)
-                self.ballCountStepper.value = Double(scoreboard.ballCount)
-                self.outCountStepper.value  = Double(scoreboard.outCount)
                 
                 self.configureScoreboard(scoreboard: scoreboard)
     
-                print("스트라이크 카운트 바인딩 값 : \(scoreboard.strikeCount)")
-                print("볼 카운트 바인딩 값 : \(scoreboard.ballCount)")
-                print("아웃 카운트 바인딩 값 : \(scoreboard.outCount)")
+//                print("스트라이크 카운트 바인딩 값 : \(scoreboard.strikeCount)")
+//                print("볼 카운트 바인딩 값 : \(scoreboard.ballCount)")
+//                print("아웃 카운트 바인딩 값 : \(scoreboard.outCount)")
                 
             }.store(in: &subscriptions)
     }
@@ -81,9 +85,19 @@ class RefereeCounterViewController: UIViewController {
     
     private func configureScoreboard(scoreboard: ScoreBoard) {
         
-        switch scoreboard.strikeCount 
-        {
+        self.strikeCountStepper.value = Double(scoreboard.strikeCount)
+        self.ballCountStepper.value = Double(scoreboard.ballCount)
+        self.outCountStepper.value  = Double(scoreboard.outCount)
         
+        
+        configureStrikeImage(strikeCount: scoreboard.strikeCount)
+        configureBallImage(ballCount: scoreboard.ballCount)
+        configureOutImage(outCount: scoreboard.outCount)
+        
+    }
+    
+    private func configureStrikeImage(strikeCount:Int) {
+        switch strikeCount  {
         case 0  :
             firstStrikeImage.image = UIImage(named: "circle_outline_yellow")
             secondStrikeImage.image = UIImage(named: "circle_outline_yellow")
@@ -95,7 +109,40 @@ class RefereeCounterViewController: UIViewController {
         default :
             break
         }
-        
+    }
+    
+    private func configureBallImage(ballCount:Int) {
+        switch ballCount  {
+        case 0  :
+            firstBallImage.image = UIImage(named: "circle_outline_green")
+            secondBallImage.image = UIImage(named: "circle_outline_green")
+            thirdBallImage.image = UIImage(named: "circle_outline_green")
+        case 1  :
+            firstBallImage.image = UIImage(named: "circle_green")
+            secondBallImage.image = UIImage(named: "circle_outline_green")
+        case 2  :
+            secondBallImage.image = UIImage(named: "circle_green")
+            thirdBallImage.image = UIImage(named: "circle_outline_green")
+        case 3  :
+            thirdBallImage.image = UIImage(named: "circle_green")
+        default :
+            break
+        }
+    }
+    
+    private func configureOutImage(outCount:Int) {
+        switch outCount  {
+        case 0  :
+            firstOutImage.image = UIImage(named: "circle_outline_red")
+            secondOutImage.image = UIImage(named: "circle_outline_red")
+        case 1  :
+            firstOutImage.image = UIImage(named: "circle_red")
+            secondOutImage.image = UIImage(named: "circle_outline_red")
+        case 2  :
+            secondOutImage.image = UIImage(named: "circle_red")
+        default :
+            break
+        }
     }
     
     @IBAction func strikeStepperOnTabed(_ sender: UIStepper) {
