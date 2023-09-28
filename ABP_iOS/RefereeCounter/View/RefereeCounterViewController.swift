@@ -178,7 +178,7 @@ class RefereeCounterViewController: UIViewController {
         }
     }
     
-    @IBAction func strikeStepperOnTabed(_ sender: UIStepper) {
+    @IBAction func strikeStepperOnTapped(_ sender: UIStepper) {
         if ( sender.maximumValue == sender.value ) {
             viewModel.strikeOut()
         } else {
@@ -186,7 +186,7 @@ class RefereeCounterViewController: UIViewController {
         }
     }
     
-    @IBAction func ballStepperOnTabed(_ sender: UIStepper) {
+    @IBAction func ballStepperOnTapped(_ sender: UIStepper) {
         if ( sender.maximumValue == sender.value) {
             viewModel.baseOnBalls()
         } else {
@@ -194,7 +194,7 @@ class RefereeCounterViewController: UIViewController {
         }
     }
     
-    @IBAction func outStepperOnTabed(_ sender: UIStepper) {
+    @IBAction func outStepperOnTapped(_ sender: UIStepper) {
         if ( sender.maximumValue == sender.value ) {
             viewModel.endOfTheInning()
         } else {
@@ -202,15 +202,15 @@ class RefereeCounterViewController: UIViewController {
         }
     }
     
-    @IBAction func inningStepperOnTabed(_ sender: UIStepper) {
+    @IBAction func inningStepperOnTapped(_ sender: UIStepper) {
         viewModel.setInning(inning: Int(sender.value))
     }
     
-    @IBAction func homeTeamStepperOnTabbed(_ sender: UIStepper) {
+    @IBAction func homeTeamStepperOnTapped(_ sender: UIStepper) {
         viewModel.setHomeTeamScore(score: Int(sender.value))
     }
     
-    @IBAction func awayTeamStepperOnTabbed(_ sender: UIStepper) {
+    @IBAction func awayTeamStepperOnTapped(_ sender: UIStepper) {
         viewModel.setAwayTeamScore(score: Int(sender.value))
     }
     
@@ -225,11 +225,11 @@ class RefereeCounterViewController: UIViewController {
     }
     
     
-    @IBAction func resetSBCounteTebed(_ sender: UIButton) {
+    @IBAction func resetSBCounteOnTapped(_ sender: UIButton) {
         viewModel.resetSBCount()
     }
     
-    @IBAction func resetScoreboardTebed(_ sender: UIButton) {
+    @IBAction func resetScoreboardOnTapped(_ sender: UIButton) {
         viewModel.resetScoreBoard()
     }
 }
@@ -245,5 +245,3 @@ extension RefereeCounterViewController: UITextFieldDelegate {
         textField.selectedTextRange = textField.textRange(from: textField.beginningOfDocument, to: textField.endOfDocument)
     }
 }
-
-
