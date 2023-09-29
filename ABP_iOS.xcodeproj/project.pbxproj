@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		32C5BDE32AC65EEA007E7D4E /* CoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 32C5BDE12AC65EEA007E7D4E /* CoreDataModel.xcdatamodeld */; };
 		32D7243F2AC3F2CB005DDBBC /* LineupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D7243E2AC3F2CB005DDBBC /* LineupViewController.swift */; };
 		32D724412AC3F2E7005DDBBC /* LineupViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32D724402AC3F2E7005DDBBC /* LineupViewController.storyboard */; };
 		32D724432AC3F4B8005DDBBC /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D724422AC3F4B8005DDBBC /* TimerViewController.swift */; };
@@ -47,6 +48,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		32C5BDE22AC65EEA007E7D4E /* CoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel.xcdatamodel; sourceTree = "<group>"; };
 		32D7243E2AC3F2CB005DDBBC /* LineupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineupViewController.swift; sourceTree = "<group>"; };
 		32D724402AC3F2E7005DDBBC /* LineupViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LineupViewController.storyboard; sourceTree = "<group>"; };
 		32D724422AC3F4B8005DDBBC /* TimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
@@ -263,18 +265,19 @@
 		5E47A7932AC15D8400F67449 /* ABP_iOS */ = {
 			isa = PBXGroup;
 			children = (
-				32C5BDCF2AC635A6007E7D4E /* RefereeCounter */,
-				32C5BDDC2AC6413C007E7D4E /* Timer */,
-				32C5BDD82AC64101007E7D4E /* Lineup */,
-				32C5BDD32AC64099007E7D4E /* StadiumWether */,
-				32D7244B2AC3FB33005DDBBC /* Util */,
+				5E47A7A52AC15D8500F67449 /* Info.plist */,
 				5E47A7942AC15D8400F67449 /* AppDelegate.swift */,
 				5E47A7962AC15D8400F67449 /* SceneDelegate.swift */,
-				5E47A79A2AC15D8400F67449 /* Main.storyboard */,
 				5E47A7A02AC15D8500F67449 /* Assets.xcassets */,
-				5E47A7A22AC15D8500F67449 /* LaunchScreen.storyboard */,
-				5E47A7A52AC15D8500F67449 /* Info.plist */,
 				5E47A79D2AC15D8400F67449 /* ABP_iOS.xcdatamodeld */,
+				5E47A7A22AC15D8500F67449 /* LaunchScreen.storyboard */,
+				5E47A79A2AC15D8400F67449 /* Main.storyboard */,
+				32C5BDD82AC64101007E7D4E /* Lineup */,
+				32C5BDCF2AC635A6007E7D4E /* RefereeCounter */,
+				32C5BDD32AC64099007E7D4E /* StadiumWether */,
+				32C5BDDC2AC6413C007E7D4E /* Timer */,
+				32D7244B2AC3FB33005DDBBC /* Util */,
+				32C5BDE12AC65EEA007E7D4E /* CoreDataModel.xcdatamodeld */,
 			);
 			path = ABP_iOS;
 			sourceTree = "<group>";
@@ -433,6 +436,7 @@
 			files = (
 				32D7244A2AC3F834005DDBBC /* RefereeCounterViewModel.swift in Sources */,
 				5E47A79F2AC15D8400F67449 /* ABP_iOS.xcdatamodeld in Sources */,
+				32C5BDE32AC65EEA007E7D4E /* CoreDataModel.xcdatamodeld in Sources */,
 				5E47A7952AC15D8400F67449 /* AppDelegate.swift in Sources */,
 				5E47A7CD2AC16D1C00F67449 /* RefereeCounterViewController.swift in Sources */,
 				5E47A7D72AC2CE7E00F67449 /* ScoreBoard.swift in Sources */,
@@ -789,6 +793,16 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
+		32C5BDE12AC65EEA007E7D4E /* CoreDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				32C5BDE22AC65EEA007E7D4E /* CoreDataModel.xcdatamodel */,
+			);
+			currentVersion = 32C5BDE22AC65EEA007E7D4E /* CoreDataModel.xcdatamodel */;
+			path = CoreDataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
 		5E47A79D2AC15D8400F67449 /* ABP_iOS.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
