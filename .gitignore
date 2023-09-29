@@ -79,6 +79,7 @@ xcuserdata/
 ## Xcode 8 and earlier
 *.xcscmblueprint
 *.xccheckout
+*.plist
 
 ### Xcode Patch ###
 *.xcodeproj/*
@@ -87,6 +88,7 @@ xcuserdata/
 !*.xcodeproj/project.xcworkspace/
 !*.xcworkspace/contents.xcworkspacedata
 /*.gcno
+
 **/xcshareddata/WorkspaceSettings.xcsettings
 
 ### XcodeInjection ###
