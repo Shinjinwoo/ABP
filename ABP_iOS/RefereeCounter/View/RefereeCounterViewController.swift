@@ -7,12 +7,16 @@
 
 import UIKit
 import Combine
+import CoreData
 
 class RefereeCounterViewController: UIViewController {
     
     // 팀이름
     @IBOutlet weak var homeTeamNameTF: UITextField!
     @IBOutlet weak var awayTeamNameTF: UITextField!
+    
+    
+    
     
     
     //스트라이크 이미지
