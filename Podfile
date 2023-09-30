@@ -6,7 +6,6 @@ target 'ABP_iOS' do
   use_frameworks!
 
   # Pods for ABP_iOS
-  pod 'NMapsMap'
 
   target 'ABP_iOSTests' do
     inherit! :search_paths
