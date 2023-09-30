@@ -15,9 +15,9 @@ class RefereeCounterViewController: UIViewController {
     @IBOutlet weak var homeTeamNameTF: UITextField!
     @IBOutlet weak var awayTeamNameTF: UITextField!
     
-    
-    
-    
+    //팀뷰
+    @IBOutlet var homeTeamView: UIView!
+    @IBOutlet var awayTeamView: UIView!
     
     //스트라이크 이미지
     @IBOutlet weak var firstStrikeImage: UIImageView!
@@ -128,8 +128,21 @@ class RefereeCounterViewController: UIViewController {
     private func configureInning(inning: Int ) {
         if ( inning % 2 == 0 ) {
             inningLabel.text = "\(inning / 2 )회 초"
+            
+            awayTeamNameTF.layer.borderWidth  = 1.0
+            awayTeamNameTF.layer.borderColor  = UIColor.systemBlue.cgColor
+            awayTeamNameTF.layer.cornerRadius = 15
+            
+            homeTeamNameTF.layer.borderWidth = 0
+            
         } else {
             inningLabel.text = "\(inning / 2 )회 말"
+            
+            homeTeamNameTF.layer.borderWidth  = 1.0
+            homeTeamNameTF.layer.borderColor  = UIColor.systemBlue.cgColor
+            homeTeamNameTF.layer.cornerRadius = 15
+            
+            awayTeamNameTF.layer.borderWidth = 0
         }
     }
     

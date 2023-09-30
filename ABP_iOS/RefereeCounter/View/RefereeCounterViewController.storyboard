@@ -19,19 +19,19 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="3z1-DP-gA5">
                                 <rect key="frame" x="0.0" y="59" width="393" height="710"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="FoV-u6-Dzv">
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="FoV-u6-Dzv">
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="230"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jsW-OP-CCP">
-                                                <rect key="frame" x="0.0" y="0.0" width="131" height="230"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="124.33333333333333" height="230"/>
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Home Team" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZPM-qw-MFs">
-                                                        <rect key="frame" x="16" y="30" width="99" height="50"/>
+                                                        <rect key="frame" x="16" y="30" width="92.333333333333329" height="50"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="0" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hVR-d4-VYp">
-                                                        <rect key="frame" x="43" y="100" width="45" height="30"/>
+                                                        <rect key="frame" x="39.666666666666664" y="100" width="44.999999999999993" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="UhV-LH-pcB"/>
                                                             <constraint firstAttribute="width" constant="45" id="ob2-10-OCX"/>
@@ -43,7 +43,7 @@
                                                         </connections>
                                                     </textField>
                                                     <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="n0L-08-gLT">
-                                                        <rect key="frame" x="17" y="160" width="94" height="20"/>
+                                                        <rect key="frame" x="17" y="160" width="87.333333333333329" height="20"/>
                                                         <connections>
                                                             <action selector="homeTeamStepperOnTapped:" destination="Y6W-OH-hqX" eventType="valueChanged" id="XqM-FV-HP1"/>
                                                         </connections>
@@ -64,22 +64,22 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tIL-c7-ZSU">
-                                                <rect key="frame" x="131" y="0.0" width="131" height="230"/>
+                                                <rect key="frame" x="134.33333333333334" y="0.0" width="124.33333333333334" height="230"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이닝" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ibe-HS-Xgc">
-                                                        <rect key="frame" x="50.66666666666665" y="40" width="29.666666666666664" height="20.333333333333329"/>
+                                                        <rect key="frame" x="47.333333333333314" y="40" width="29.666666666666671" height="20.333333333333329"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1회 초" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J7g-yv-d0t">
-                                                        <rect key="frame" x="45" y="105" width="41.333333333333343" height="20.333333333333329"/>
+                                                        <rect key="frame" x="41.666666666666657" y="105" width="41.333333333333343" height="20.333333333333329"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="2" minimumValue="2" maximumValue="25" translatesAutoresizingMaskIntoConstraints="NO" id="ZkA-K3-te5">
-                                                        <rect key="frame" x="17" y="160" width="97" height="32"/>
+                                                        <rect key="frame" x="17" y="160" width="90.333333333333329" height="32"/>
                                                         <connections>
                                                             <action selector="inningStepperOnTapped:" destination="Y6W-OH-hqX" eventType="valueChanged" id="dam-NT-82O"/>
                                                         </connections>
@@ -98,15 +98,15 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sgt-MY-nj9">
-                                                <rect key="frame" x="262" y="0.0" width="131" height="230"/>
+                                                <rect key="frame" x="268.66666666666669" y="0.0" width="124.33333333333331" height="230"/>
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Away Team" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xAs-Ld-ufe">
-                                                        <rect key="frame" x="16" y="30" width="99" height="50"/>
+                                                        <rect key="frame" x="16" y="30" width="92.333333333333329" height="50"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="0" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Tk3-k9-e3y">
-                                                        <rect key="frame" x="43" y="100" width="45" height="30"/>
+                                                        <rect key="frame" x="39.666666666666629" y="100" width="45" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="45" id="hSI-s4-IWl"/>
                                                             <constraint firstAttribute="height" constant="30" id="mT9-pM-FSS"/>
@@ -118,7 +118,7 @@
                                                         </connections>
                                                     </textField>
                                                     <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="CJB-ps-i3s">
-                                                        <rect key="frame" x="17" y="160" width="94" height="20"/>
+                                                        <rect key="frame" x="17" y="160" width="87.333333333333329" height="20"/>
                                                         <connections>
                                                             <action selector="awayTeamStepperOnTapped:" destination="Y6W-OH-hqX" eventType="valueChanged" id="qdQ-Kn-ae8"/>
                                                         </connections>
@@ -364,6 +364,7 @@
                         <outlet property="awayTeamNameTF" destination="xAs-Ld-ufe" id="B7D-C6-3EB"/>
                         <outlet property="awayTeamScore" destination="Tk3-k9-e3y" id="MLU-Ro-gHT"/>
                         <outlet property="awayTeamScoreStepper" destination="CJB-ps-i3s" id="dRd-QQ-WJX"/>
+                        <outlet property="awayTeamView" destination="sgt-MY-nj9" id="gHp-wH-sB2"/>
                         <outlet property="ballCountStepper" destination="ECZ-Dz-qeZ" id="Bec-3y-a3J"/>
                         <outlet property="bottomStackView" destination="5qy-qh-Z6C" id="k9S-jb-b1k"/>
                         <outlet property="firstBallImage" destination="cM1-5a-08I" id="QVS-WE-4kz"/>
@@ -372,6 +373,7 @@
                         <outlet property="homeTeamNameTF" destination="ZPM-qw-MFs" id="LzV-lT-Fz9"/>
                         <outlet property="homeTeamScore" destination="hVR-d4-VYp" id="aut-9U-ZGG"/>
                         <outlet property="homeTeamScoreStepper" destination="n0L-08-gLT" id="84G-Sv-Fwa"/>
+                        <outlet property="homeTeamView" destination="jsW-OP-CCP" id="lgg-Zn-1Wg"/>
                         <outlet property="inningLabel" destination="J7g-yv-d0t" id="Azz-ut-m3z"/>
                         <outlet property="inningStepper" destination="ZkA-K3-te5" id="565-f0-AFx"/>
                         <outlet property="midStackView" destination="k3v-co-YW0" id="zNP-Y4-4Gl"/>
