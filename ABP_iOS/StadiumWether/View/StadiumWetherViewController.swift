@@ -20,27 +20,16 @@ class StadiumWetherViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        naverMapViewConfiguration()
-        
         locationManager.delegate = self
-        //requestGeolocationPermission(locationManager: locationManager)
         
+        naverMapViewConfiguration()
+        requestLocationPermission()
         
         print("StadiumWetherViewController : viewDidLoad")
-        
-        locationManager.requestWhenInUseAuthorization()
-        
-        // Do any additional setup after loading the view.
     }
     
     
-    func naverMapViewConfiguration() {
-        
-        mapView = NMFNaverMapView(frame: mapView.frame)
-        view.addSubview(mapView)
-        
-        mapView.showLocationButton = true
-        
+    private func requestLocationPermission() {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
@@ -49,12 +38,17 @@ class StadiumWetherViewController: UIViewController {
             if CLLocationManager.locationServicesEnabled() {
                 print("위치 서비스 On 상태")
                 self.locationManager.startUpdatingLocation()
-                print(self.locationManager.location?.coordinate)
+                print(self.locationManager.location?.coordinate.latitude as Any)
+                print(self.locationManager.location?.coordinate.longitude as Any)
             } else {
                 print("위치 서비스 Off 상태")
             }
         }
-        
+    }
+    private func naverMapViewConfiguration() {
+        mapView = NMFNaverMapView(frame: mapView.frame)
+        view.addSubview(mapView)
+        mapView.showLocationButton = true
     }
     
 }
@@ -62,5 +56,13 @@ class StadiumWetherViewController: UIViewController {
 
 extension StadiumWetherViewController: CLLocationManagerDelegate {
     
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        // the most recent location update is at the end of the array.
+        let location: CLLocation = locations[locations.count - 1]
+        let _: CLLocationDegrees = location.coordinate.longitude
+        let _:CLLocationDegrees = location.coordinate.latitude
+        
+    }
 }
 
