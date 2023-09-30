@@ -2,8 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>위치정보 권한 요청</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>경기장 날씨정보 조회를 위해 위차정보를 권한을 허용 해주세요</string>
+	<string>위치정보 권한 요청</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>위치정보 권한 요청</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsTabbedSceneCollection</key>

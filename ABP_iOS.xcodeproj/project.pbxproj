@@ -10,6 +10,7 @@
 		091D947DBB6B93735A669455 /* Pods_ABP_iOS_ABP_iOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 338FF1DB8016C01F52F2E40B /* Pods_ABP_iOS_ABP_iOSUITests.framework */; };
 		32C5BDEB2AC6E81C007E7D4E /* APIKey.plist in Resources */ = {isa = PBXBuildFile; fileRef = 32C5BDEA2AC6E81C007E7D4E /* APIKey.plist */; };
 		32C5BDF12AC79B80007E7D4E /* BundleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C5BDF02AC79B80007E7D4E /* BundleExtension.swift */; };
+		32C5BDF32AC7B3DB007E7D4E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32C5BDF22AC7B3DB007E7D4E /* CoreLocation.framework */; };
 		32D7243F2AC3F2CB005DDBBC /* LineupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D7243E2AC3F2CB005DDBBC /* LineupViewController.swift */; };
 		32D724412AC3F2E7005DDBBC /* LineupViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32D724402AC3F2E7005DDBBC /* LineupViewController.storyboard */; };
 		32D724432AC3F4B8005DDBBC /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D724422AC3F4B8005DDBBC /* TimerViewController.swift */; };
@@ -57,6 +58,7 @@
 		32C5BDEA2AC6E81C007E7D4E /* APIKey.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = APIKey.plist; sourceTree = "<group>"; };
 		32C5BDEC2AC79AB9007E7D4E /* NMapsMap.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = NMapsMap.xcframework; path = Pods/NMapsMap/framework/NMapsMap.xcframework; sourceTree = "<group>"; };
 		32C5BDF02AC79B80007E7D4E /* BundleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleExtension.swift; sourceTree = "<group>"; };
+		32C5BDF22AC7B3DB007E7D4E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		32D7243E2AC3F2CB005DDBBC /* LineupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineupViewController.swift; sourceTree = "<group>"; };
 		32D724402AC3F2E7005DDBBC /* LineupViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LineupViewController.storyboard; sourceTree = "<group>"; };
 		32D724422AC3F4B8005DDBBC /* TimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32C5BDF32AC7B3DB007E7D4E /* CoreLocation.framework in Frameworks */,
 				7471F6AA10AC3DC5EA1C6054 /* Pods_ABP_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -323,6 +326,7 @@
 		9AAA948005AF803BE58C596C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				32C5BDF22AC7B3DB007E7D4E /* CoreLocation.framework */,
 				32C5BDEC2AC79AB9007E7D4E /* NMapsMap.xcframework */,
 				8ED6F783B8C457AFCEAFC87A /* Pods_ABP_iOS.framework */,
 				338FF1DB8016C01F52F2E40B /* Pods_ABP_iOS_ABP_iOSUITests.framework */,

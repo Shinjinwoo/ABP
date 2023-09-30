@@ -19,7 +19,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="pMb-c2-euE">
                                 <rect key="frame" x="0.0" y="59" width="393" height="710"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WJ2-jC-6AN" customClass="NMFMapView">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WJ2-jC-6AN">
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="355"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </view>
@@ -42,7 +42,7 @@
                     <tabBarItem key="tabBarItem" title="경기장 날씨" image="cloud" catalog="system" selectedImage="cloud.fill" id="PY9-3P-eP3"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="naverMapView" destination="WJ2-jC-6AN" id="WBG-EV-xpz"/>
+                        <outlet property="mapView" destination="WJ2-jC-6AN" id="1Jd-gw-ZLF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

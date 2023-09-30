@@ -7,22 +7,28 @@
 
 import UIKit
 import NMapsMap
-import NMapsGeometry
+import CoreLocation
 
 class StadiumWetherViewController: UIViewController {
-
-    @IBOutlet weak var naverMapView: NMFMapView!
+    
+    
+    
+    @IBOutlet var mapView: NMFNaverMapView!
+    
+    let locationManager = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        naverMapViewConfiguration()
+        
+        locationManager.delegate = self
+        //requestGeolocationPermission(locationManager: locationManager)
         
         
         print("StadiumWetherViewController : viewDidLoad")
         
-
-        
-        
+        locationManager.requestWhenInUseAuthorization()
         
         // Do any additional setup after loading the view.
     }
@@ -30,15 +36,31 @@ class StadiumWetherViewController: UIViewController {
     
     func naverMapViewConfiguration() {
         
+        mapView = NMFNaverMapView(frame: mapView.frame)
+        view.addSubview(mapView)
         
-//        let locationOverlay = naverMapView.locationOverlay
-//        
-//        naverMapView.allowsZooming = true
-//        naverMapView.positionMode = .direction
+        mapView.showLocationButton = true
         
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
         
-        
-        
+        DispatchQueue.global().async {
+            if CLLocationManager.locationServicesEnabled() {
+                print("위치 서비스 On 상태")
+                self.locationManager.startUpdatingLocation()
+                print(self.locationManager.location?.coordinate)
+            } else {
+                print("위치 서비스 Off 상태")
+            }
+        }
         
     }
+    
 }
+
+
+extension StadiumWetherViewController: CLLocationManagerDelegate {
+    
+}
+
