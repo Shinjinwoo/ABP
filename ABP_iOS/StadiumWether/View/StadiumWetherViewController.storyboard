@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
-    <device id="retina6_12" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="0zz-Ls-qS6">
+    <device id="retina6_12" orientation="portrait" appearance="dark"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
         <capability name="Map view configurations" minToolsVersion="14.0"/>
@@ -18,16 +18,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="pMb-c2-euE">
-                                <rect key="frame" x="0.0" y="59" width="393" height="710"/>
+                                <rect key="frame" x="0.0" y="103" width="393" height="666"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WJ2-jC-6AN">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="355"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                    </view>
                                     <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wqc-kH-fwe">
-                                        <rect key="frame" x="0.0" y="355" width="393" height="355"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="333"/>
                                         <standardMapConfiguration key="preferredConfiguration"/>
                                     </mapView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6aN-2l-23D">
+                                        <rect key="frame" x="0.0" y="333" width="393" height="333"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    </view>
                                 </subviews>
                             </stackView>
                         </subviews>
@@ -41,15 +41,42 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="경기장 날씨" image="cloud" catalog="system" selectedImage="cloud.fill" id="PY9-3P-eP3"/>
+                    <navigationItem key="navigationItem" id="5Xq-r4-JkZ"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="mapView" destination="WJ2-jC-6AN" id="1Jd-gw-ZLF"/>
                         <outlet property="mkMapView" destination="Wqc-kH-fwe" id="R8s-qQ-Mpl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="115" y="-55"/>
+            <point key="canvasLocation" x="-175" y="-344"/>
+        </scene>
+        <!--SearchStadiumLocationViewController-->
+        <scene sceneID="7aM-R3-i4U">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="SearchStadiumLocationViewController" storyboardName="SearchStadiumLocationViewController" referencedIdentifier="SearchStadiumLocationViewController" id="DRs-lt-pim" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="2LK-5A-Tnq"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="39i-fO-xuI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-208" y="46"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="IBA-c7-LVG">
+            <objects>
+                <navigationController id="0zz-Ls-qS6" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="2KO-dq-xlf">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Y6W-OH-hqX" kind="relationship" relationship="rootViewController" id="v53-mU-zOt"/>
+                        <segue destination="DRs-lt-pim" kind="show" id="xiH-1Z-7mO"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4Bs-hg-UL3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1057" y="-159"/>
         </scene>
     </scenes>
     <resources>

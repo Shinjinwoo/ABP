@@ -9,8 +9,6 @@ import Foundation
 
 
 extension Bundle {
-    
-    
     var NAVER_MAP_KEY: String {
         guard let file = self.path(forResource: "APIKey", ofType: "plist") else { return "" }
         

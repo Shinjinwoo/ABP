@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import NMapsMap
 import CoreLocation
 import MapKit
 
@@ -14,15 +13,14 @@ class StadiumWetherViewController: UIViewController {
     
     @IBOutlet var mkMapView: MKMapView!
     
-    public var DEFAULT_CAMERA_POSITION = NMFCameraPosition(NMGLatLng(lat: 37.5666102, lng: 126.9783881), zoom: 14, tilt: 0, heading: 0)
-    
-    @IBOutlet var mapView: NMFNaverMapView!
+    let searchController = UISearchController(searchResultsController: nil)
     
     let locationManager = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setUpUI()
         mkMapViewConfigure()
         requestLocationPermission()
         
@@ -35,6 +33,19 @@ class StadiumWetherViewController: UIViewController {
         // 다음과 같이 뷰가 다 나타난 후에 화면전화를 진행해야한다.
         
         //현재 위치로 카메라 뷰 시작
+    }
+    
+    
+    private func setUpUI() {
+        
+        self.navigationItem.title = "경기장 날씨검색"
+        
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.searchBar.placeholder = "주소 검색"
+        searchController.searchResultsUpdater = self
+        searchController.searchBar.delegate = self
+        self.navigationItem.searchController = searchController
+        
     }
     
     
@@ -97,4 +108,25 @@ extension StadiumWetherViewController: CLLocationManagerDelegate {
 
 extension StadiumWetherViewController: MKMapViewDelegate {
     
+}
+
+extension StadiumWetherViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        let keyword = searchController.searchBar.text
+        print("search: \(keyword)")
+    }
+}
+
+extension StadiumWetherViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let keyword = searchBar.text, !keyword.isEmpty else { return }
+        print(keyword)
+    }
+    
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "SearchStadiumLocationViewController") as! SearchStadiumLocationViewController
+        self.navigationController?.pushViewController(vc, animated: true)
+        
+        return true
+    }
 }
