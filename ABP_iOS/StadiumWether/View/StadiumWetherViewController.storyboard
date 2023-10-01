@@ -51,16 +51,6 @@
             </objects>
             <point key="canvasLocation" x="-175" y="-344"/>
         </scene>
-        <!--SearchStadiumLocationViewController-->
-        <scene sceneID="7aM-R3-i4U">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="SearchStadiumLocationViewController" storyboardName="SearchStadiumLocationViewController" referencedIdentifier="SearchStadiumLocationViewController" id="DRs-lt-pim" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="2LK-5A-Tnq"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="39i-fO-xuI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-208" y="46"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="IBA-c7-LVG">
             <objects>
@@ -71,7 +61,6 @@
                     </navigationBar>
                     <connections>
                         <segue destination="Y6W-OH-hqX" kind="relationship" relationship="rootViewController" id="v53-mU-zOt"/>
-                        <segue destination="DRs-lt-pim" kind="show" id="xiH-1Z-7mO"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Bs-hg-UL3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

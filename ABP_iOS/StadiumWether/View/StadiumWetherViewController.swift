@@ -13,9 +13,28 @@ class StadiumWetherViewController: UIViewController {
     
     @IBOutlet var mkMapView: MKMapView!
     
-    let searchController = UISearchController(searchResultsController: nil)
-    
+    let tableViewController:SearchStadiumLocationViewController = SearchStadiumLocationViewController()
     let locationManager = CLLocationManager()
+    
+    
+    private var searchCompleter: MKLocalSearchCompleter?
+    private var searchRegion: MKCoordinateRegion = MKCoordinateRegion(MKMapRect.world)
+    var completerResults: [MKLocalSearchCompletion]?
+    
+    private var places: MKMapItem? {
+        didSet {
+            tableViewController.tableView.reloadData()
+        }
+    }
+    
+    private var localSearch: MKLocalSearch? {
+        willSet {
+            // Clear the results and cancel the currently running local search before starting a new search.
+            places = nil
+            localSearch?.cancel()
+        }
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +45,13 @@ class StadiumWetherViewController: UIViewController {
         
         print("StadiumWetherViewController : viewDidLoad")
         
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        // searchCompleter는 강한 참조이므로
+        searchCompleter = nil
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -40,12 +66,23 @@ class StadiumWetherViewController: UIViewController {
         
         self.navigationItem.title = "경기장 날씨검색"
         
+        let searchController = UISearchController(searchResultsController: tableViewController)
+        
+        
+        searchCompleter = MKLocalSearchCompleter()
+        searchCompleter?.delegate = self
+        searchCompleter?.resultTypes = .address // 혹시 값이 안날아온다면 이건 주석처리 해주세요
+        searchCompleter?.region = searchRegion
+        
+        tableViewController.tableView.dataSource = tableViewController
+        tableViewController.tableView.delegate = tableViewController
+        
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.searchBar.placeholder = "주소 검색"
         searchController.searchResultsUpdater = self
         searchController.searchBar.delegate = self
-        self.navigationItem.searchController = searchController
         
+        self.navigationItem.searchController = searchController
     }
     
     
@@ -110,10 +147,28 @@ extension StadiumWetherViewController: MKMapViewDelegate {
     
 }
 
+extension StadiumWetherViewController: MKLocalSearchCompleterDelegate {
+    func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
+        completerResults = completer.results
+        tableViewController.tableView.reloadData()
+    }
+    
+    func completer(_ completer: MKLocalSearchCompleter, didFailWithError error: Error) {
+        if let error = error as NSError? {
+            print("MKLocalSearchCompleter encountered an error: \(error.localizedDescription). The query fragment is: \"\(completer.queryFragment)\"")
+        }
+    }
+}
+
 extension StadiumWetherViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        let keyword = searchController.searchBar.text
-        print("search: \(keyword)")
+        let keyword = searchController.searchBar.text!
+        
+        if keyword == "" {
+            completerResults = nil
+        }
+        
+        searchCompleter?.queryFragment = keyword
     }
 }
 
@@ -124,8 +179,8 @@ extension StadiumWetherViewController: UISearchBarDelegate {
     }
     
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "SearchStadiumLocationViewController") as! SearchStadiumLocationViewController
-        self.navigationController?.pushViewController(vc, animated: true)
+        //        let vc = self.storyboard?.instantiateViewController(withIdentifier: "SearchStadiumLocationViewController") as! SearchStadiumLocationViewController
+        //        self.navigationController?.pushViewController(vc, animated: true)
         
         return true
     }
