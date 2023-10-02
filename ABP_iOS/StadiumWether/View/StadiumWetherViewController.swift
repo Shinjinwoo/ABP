@@ -13,7 +13,7 @@ class StadiumWetherViewController: UIViewController {
     
     @IBOutlet var mkMapView: MKMapView!
     
-    let tableViewController:SearchStadiumLocationViewController = SearchStadiumLocationViewController()
+    let tableViewController = ResultsTableController()
     let locationManager = CLLocationManager()
     
     
@@ -63,19 +63,15 @@ class StadiumWetherViewController: UIViewController {
     
     
     private func setUpUI() {
+        //self.navigationItem.title = "경기장 날씨검색"
         
-        self.navigationItem.title = "경기장 날씨검색"
-        
-        let searchController = UISearchController(searchResultsController: tableViewController)
-        
+        let searchController = UISearchController(searchResultsController:tableViewController )
         
         searchCompleter = MKLocalSearchCompleter()
         searchCompleter?.delegate = self
         searchCompleter?.resultTypes = .address // 혹시 값이 안날아온다면 이건 주석처리 해주세요
         searchCompleter?.region = searchRegion
         
-        tableViewController.tableView.dataSource = tableViewController
-        tableViewController.tableView.delegate = tableViewController
         
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.searchBar.placeholder = "주소 검색"
@@ -150,6 +146,11 @@ extension StadiumWetherViewController: MKMapViewDelegate {
 extension StadiumWetherViewController: MKLocalSearchCompleterDelegate {
     func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
         completerResults = completer.results
+        
+        print(completerResults)
+        
+        tableViewController.completerResults = completerResults
+        
         tableViewController.tableView.reloadData()
     }
     
@@ -167,7 +168,6 @@ extension StadiumWetherViewController: UISearchResultsUpdating {
         if keyword == "" {
             completerResults = nil
         }
-        
         searchCompleter?.queryFragment = keyword
     }
 }
@@ -179,8 +179,9 @@ extension StadiumWetherViewController: UISearchBarDelegate {
     }
     
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
-        //        let vc = self.storyboard?.instantiateViewController(withIdentifier: "SearchStadiumLocationViewController") as! SearchStadiumLocationViewController
-        //        self.navigationController?.pushViewController(vc, animated: true)
+        
+//        let vc = self.storyboard?.instantiateViewController(withIdentifier: "SearchStadiumLocationViewController") as! SearchStadiumLocationViewController
+//        self.navigationController?.pushViewController(vc, animated: true)
         
         return true
     }

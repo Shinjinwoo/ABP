@@ -7,8 +7,11 @@
 
 import UIKit
 
-class SearchStadiumLocationViewController: UIViewController {
-
+class SearchStadiumLocationViewController: UIViewController, UISearchResultsUpdating, UISearchBarDelegate {
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        
+    }
     
     @IBOutlet var tableView: UITableView!
     
@@ -16,10 +19,15 @@ class SearchStadiumLocationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        let searchController = UISearchController(searchResultsController:nil )
+        
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.searchBar.placeholder = "주소 검색"
+        searchController.searchResultsUpdater = self
+        searchController.searchBar.delegate = self
+        
+        self.navigationItem.searchController = searchController
     }
-
-
 }
 
 extension SearchStadiumLocationViewController: UITableViewDataSource {
@@ -38,3 +46,5 @@ extension SearchStadiumLocationViewController: UITableViewDataSource {
 extension SearchStadiumLocationViewController: UITableViewDelegate {
     
 }
+
+
