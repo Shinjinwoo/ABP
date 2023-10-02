@@ -37,8 +37,6 @@ class ResultsTableController: UITableViewController {
         
         cell.textLabel?.text = product?.title
         
-    
-        
         return cell
     }
 }

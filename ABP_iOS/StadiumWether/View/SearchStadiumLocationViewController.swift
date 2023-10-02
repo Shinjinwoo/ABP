@@ -6,39 +6,35 @@
 //
 
 import UIKit
+import MapKit
 
-class SearchStadiumLocationViewController: UIViewController, UISearchResultsUpdating, UISearchBarDelegate {
+class SearchStadiumLocationViewController: UIViewController {
     
-    func updateSearchResults(for searchController: UISearchController) {
-        
-    }
     
     @IBOutlet var tableView: UITableView!
     
+    var completerResults: [MKLocalSearchCompletion]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let searchController = UISearchController(searchResultsController:nil )
         
-        searchController.hidesNavigationBarDuringPresentation = false
-        searchController.searchBar.placeholder = "주소 검색"
-        searchController.searchResultsUpdater = self
-        searchController.searchBar.delegate = self
         
-        self.navigationItem.searchController = searchController
     }
 }
 
 extension SearchStadiumLocationViewController: UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0 
+        return completerResults?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         
-        let cell = UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SearchStadiumCellTableViewCell", for: indexPath)
+        let product = completerResults?[indexPath.row]
+        
+        cell.textLabel?.text = product?.title
         return cell
     }
 }

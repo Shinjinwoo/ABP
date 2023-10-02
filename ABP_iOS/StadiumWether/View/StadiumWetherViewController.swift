@@ -13,7 +13,7 @@ class StadiumWetherViewController: UIViewController {
     
     @IBOutlet var mkMapView: MKMapView!
     
-    let tableViewController = ResultsTableController()
+    let tableViewController = SearchStadiumLocationViewController()
     let locationManager = CLLocationManager()
     
     
@@ -150,7 +150,6 @@ extension StadiumWetherViewController: MKLocalSearchCompleterDelegate {
         print(completerResults)
         
         tableViewController.completerResults = completerResults
-        
         tableViewController.tableView.reloadData()
     }
     
