@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="w5x-hz-sL9">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22154"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -23,19 +23,28 @@
                                     <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rda-yh-Sqb">
-                                            <rect key="frame" x="175.66666666666666" y="11.333333333333336" width="42" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="subTitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TE7-PM-dwh">
+                                            <rect key="frame" x="20.000000000000004" y="23.333333333333336" width="59.333333333333343" height="20.333333333333336"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rda-yh-Sqb">
+                                            <rect key="frame" x="20" y="0.0" width="33" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="Rda-yh-Sqb" firstAttribute="centerY" secondItem="U7Z-Fw-N24" secondAttribute="centerY" id="q7K-DY-Woi"/>
-                                        <constraint firstItem="Rda-yh-Sqb" firstAttribute="centerX" secondItem="U7Z-Fw-N24" secondAttribute="centerX" id="wh0-cu-9K2"/>
+                                        <constraint firstItem="Rda-yh-Sqb" firstAttribute="leading" secondItem="U7Z-Fw-N24" secondAttribute="leading" constant="20" symbolic="YES" id="37q-OV-OqC"/>
+                                        <constraint firstItem="TE7-PM-dwh" firstAttribute="leading" secondItem="U7Z-Fw-N24" secondAttribute="leading" constant="20" symbolic="YES" id="A0f-XH-3Hx"/>
+                                        <constraint firstAttribute="bottom" secondItem="TE7-PM-dwh" secondAttribute="bottom" id="Mcf-65-jxc"/>
+                                        <constraint firstItem="Rda-yh-Sqb" firstAttribute="top" secondItem="U7Z-Fw-N24" secondAttribute="top" id="f3d-i0-jk4"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="subTitle" destination="TE7-PM-dwh" id="4Us-3K-5uz"/>
                                     <outlet property="title" destination="Rda-yh-Sqb" id="Akv-F8-SLS"/>
                                 </connections>
                             </tableViewCell>
@@ -45,9 +54,6 @@
                             <outlet property="delegate" destination="w5x-hz-sL9" id="vVJ-M0-NZr"/>
                         </connections>
                     </tableView>
-                    <connections>
-                        <outlet property="tableView2" destination="oLI-4m-73b" id="kS2-S2-Zjn"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rdd-cm-04o" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

@@ -11,21 +11,22 @@ import MapKit
 class SearchStadiumCell: UITableViewCell {
     
     @IBOutlet weak var title: UILabel!
+    @IBOutlet weak var subTitle: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         
     }
     
     func configure(localSearchCompletion :MKLocalSearchCompletion) {
         
         title.text = localSearchCompletion.title
+        subTitle.text = localSearchCompletion.subtitle
     }
 
 }

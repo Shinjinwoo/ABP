@@ -44,6 +44,8 @@ class StadiumWetherViewController: UIViewController {
 
         tableViewController = (storyboarded.instantiateViewController(withIdentifier: "SearchStadiumLocationViewController") as! SearchStadiumLocationViewController)
         
+        tableViewController.tableView.delegate = self
+        
         //let viewController =
         
         setUpUI()
@@ -146,6 +148,41 @@ extension StadiumWetherViewController: CLLocationManagerDelegate {
         
     }
 }
+
+
+extension StadiumWetherViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let suggestion = completerResults?[indexPath.row] {
+            search(for: suggestion)
+        }
+    }
+    
+    private func search(for suggestedCompletion: MKLocalSearchCompletion) {
+        let searchRequest = MKLocalSearch.Request(completion: suggestedCompletion)
+        search(using: searchRequest)
+    }
+    
+    private func search(using searchRequest: MKLocalSearch.Request) {
+        // 검색 지역 설정
+        searchRequest.region = searchRegion
+        
+        // 검색 유형 설정
+        searchRequest.resultTypes = .pointOfInterest
+        // MKLocalSearch 생성
+        localSearch = MKLocalSearch(request: searchRequest)
+        // 비동기로 검색 실행
+        localSearch?.start { [unowned self] (response, error) in
+            guard error == nil else {
+                return
+            }
+            // 검색한 결과 : reponse의 mapItems 값을 가져온다.
+            self.places = response?.mapItems[0]
+            
+            print(places?.placemark.coordinate) // 위경도 가져옴
+        }
+    }
+}
+
 
 
 extension StadiumWetherViewController: MKMapViewDelegate {

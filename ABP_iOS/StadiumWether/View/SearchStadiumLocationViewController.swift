@@ -13,8 +13,6 @@ class SearchStadiumLocationViewController: UITableViewController {
     
     var completerResults: [MKLocalSearchCompletion]?
     
-    @IBOutlet var tableView2: UITableView!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,13 +31,14 @@ class SearchStadiumLocationViewController: UITableViewController {
             
             return UITableViewCell()
         }
-
         
-        let product = completerResults?[indexPath.row]
-        cell.configure(localSearchCompletion: product!)
+        if let suggestion = completerResults?[indexPath.row] {
+            cell.configure(localSearchCompletion: suggestion)
+        }
         
         return cell
     }
+    
 }
 
 
