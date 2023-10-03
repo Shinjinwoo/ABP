@@ -6,11 +6,11 @@
 //
 
 import UIKit
+import MapKit
 
-class SearchStadiumCellTableViewCell: UITableViewCell {
+class SearchStadiumCell: UITableViewCell {
     
-    
-    @IBOutlet var titleLabel: UILabel!
+    @IBOutlet weak var title: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -21,6 +21,11 @@ class SearchStadiumCellTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         
+    }
+    
+    func configure(localSearchCompletion :MKLocalSearchCompletion) {
+        
+        title.text = localSearchCompletion.title
     }
 
 }

@@ -13,7 +13,9 @@ class StadiumWetherViewController: UIViewController {
     
     @IBOutlet var mkMapView: MKMapView!
     
-    let tableViewController = SearchStadiumLocationViewController()
+    var tableViewController:SearchStadiumLocationViewController! = nil
+    let storyboarded = UIStoryboard(name: "SearchStadiumLocationViewController", bundle: nil)
+    
     let locationManager = CLLocationManager()
     
     
@@ -38,6 +40,11 @@ class StadiumWetherViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+
+        tableViewController = (storyboarded.instantiateViewController(withIdentifier: "SearchStadiumLocationViewController") as! SearchStadiumLocationViewController)
+        
+        //let viewController =
         
         setUpUI()
         mkMapViewConfigure()
@@ -64,6 +71,8 @@ class StadiumWetherViewController: UIViewController {
     
     private func setUpUI() {
         //self.navigationItem.title = "경기장 날씨검색"
+        let storyboard = UIStoryboard(name: "SearchStadiumLocationViewController", bundle: nil)
+    
         
         let searchController = UISearchController(searchResultsController:tableViewController )
         
