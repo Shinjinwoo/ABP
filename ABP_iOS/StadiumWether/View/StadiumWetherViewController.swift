@@ -52,6 +52,7 @@ class StadiumWetherViewController: UIViewController {
         mkMapViewConfigure()
         requestLocationPermission()
         
+        
         print("StadiumWetherViewController : viewDidLoad")
         
     }
@@ -103,11 +104,9 @@ class StadiumWetherViewController: UIViewController {
                 print("위치 서비스 On 상태")
                 self.locationManager.startUpdatingLocation()
                 
-                let latitude: Double = self.locationManager.location?.coordinate.latitude ?? 37.5666102
-                let longitude: Double = self.locationManager.location?.coordinate.longitude ?? 126.9783881
+                
                 print(self.locationManager.location?.coordinate.latitude as Any)
                 print(self.locationManager.location?.coordinate.longitude as Any)
-                
                 
             } else {
                 print("위치 서비스 Off 상태")
@@ -135,6 +134,19 @@ class StadiumWetherViewController: UIViewController {
         mkMapView.delegate = self
         
     }
+    
+    
+    func mkMapViewCameraFector(latitude: Double,longitude: Double ) {
+        
+        let center = CLLocationCoordinate2D(latitude: latitude,
+                                            longitude: longitude)
+        
+        let region = MKCoordinateRegion(center: center,
+                                        latitudinalMeters: 500,
+                                        longitudinalMeters: 500)
+        
+        mkMapView.setRegion(region, animated: true)
+    }
 }
 
 
@@ -143,8 +155,11 @@ extension StadiumWetherViewController: CLLocationManagerDelegate {
         
         // the most recent location update is at the end of the array.
         let location: CLLocation = locations[locations.count - 1]
-        let _: CLLocationDegrees = location.coordinate.longitude
-        let _:CLLocationDegrees = location.coordinate.latitude
+        let longitude: CLLocationDegrees = location.coordinate.longitude
+        let latitude:CLLocationDegrees = location.coordinate.latitude
+        
+        
+        mkMapViewCameraFector(latitude: latitude, longitude: longitude)
         
     }
 }
@@ -154,6 +169,8 @@ extension StadiumWetherViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let suggestion = completerResults?[indexPath.row] {
             search(for: suggestion)
+            
+            navigationItem.searchController?.searchBar.placeholder = suggestion.title
         }
     }
     
@@ -179,6 +196,9 @@ extension StadiumWetherViewController: UITableViewDelegate {
             self.places = response?.mapItems[0]
             
             print(places?.placemark.coordinate) // 위경도 가져옴
+            
+            
+            navigationItem.searchController?.isActive = false
         }
     }
 }
@@ -224,9 +244,6 @@ extension StadiumWetherViewController: UISearchBarDelegate {
     }
     
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
-        
-//        let vc = self.storyboard?.instantiateViewController(withIdentifier: "SearchStadiumLocationViewController") as! SearchStadiumLocationViewController
-//        self.navigationController?.pushViewController(vc, animated: true)
         
         return true
     }
