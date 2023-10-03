@@ -15,8 +15,10 @@ class StadiumWetherViewController: UIViewController {
     
     var tableViewController:SearchStadiumLocationViewController! = nil
     let storyboarded = UIStoryboard(name: "SearchStadiumLocationViewController", bundle: nil)
-    
     let locationManager = CLLocationManager()
+    
+    
+    var isMoveCameraByLocate = true
     
     
     private var searchCompleter: MKLocalSearchCompleter?
@@ -159,7 +161,11 @@ extension StadiumWetherViewController: CLLocationManagerDelegate {
         let latitude:CLLocationDegrees = location.coordinate.latitude
         
         
-        mkMapViewCameraFector(latitude: latitude, longitude: longitude)
+        
+        if ( isMoveCameraByLocate == true ) {
+            mkMapViewCameraFector(latitude: latitude, longitude: longitude)
+        }
+        
         
     }
 }
@@ -195,10 +201,20 @@ extension StadiumWetherViewController: UITableViewDelegate {
             // 검색한 결과 : reponse의 mapItems 값을 가져온다.
             self.places = response?.mapItems[0]
             
+            
+            
             print(places?.placemark.coordinate) // 위경도 가져옴
             
+            let latitude: Double = Double((places?.placemark.coordinate.latitude)!)
+            let longitude: Double = Double((places?.placemark.coordinate.longitude)!)
             
             navigationItem.searchController?.isActive = false
+            
+            
+            isMoveCameraByLocate = false
+            mkMapViewCameraFector(latitude: latitude, longitude: longitude)
+            
+            
         }
     }
 }
@@ -241,10 +257,11 @@ extension StadiumWetherViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let keyword = searchBar.text, !keyword.isEmpty else { return }
         print(keyword)
-    }
-    
-    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
         
-        return true
+        if keyword == "" {
+            completerResults = nil
+        }
+        searchCompleter?.queryFragment = keyword
+        
     }
 }
