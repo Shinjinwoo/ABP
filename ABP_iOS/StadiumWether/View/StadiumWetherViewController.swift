@@ -21,6 +21,8 @@ class StadiumWetherViewController: UIViewController {
     //let storyboarded = UIStoryboard(name: "SearchStadiumLocationViewController", bundle: nil)
     let locationManager = CLLocationManager()
     
+    var subscriptions = Set<AnyCancellable>()
+    
     
     var isMoveCameraByLocate = true
     
@@ -51,12 +53,39 @@ class StadiumWetherViewController: UIViewController {
         mkMapViewConfigure()
         requestLocationPermission()
         
+        let testurl = "https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst"
         
-        let url = "https://api.github.com/users/Shinjinwoo"
-        network.fetchData(url: url)
+        let parameters = [
+            "serviceKey": "N8WC8aJkgO2i1UGvFVJ6XQnZyTAwNSXEb0VWol1vsDARg",
+            "pageNo": "1",
+            "numOfRows": "10",
+            "dataType": "JSON",
+            "base_date": "20231004",
+            "base_time": "0500",
+            "nx": "55",
+            "ny": "127"
+        ]
+        
+        let publisher = AF.request(testurl,parameters: parameters)
+            .publishData()
+            .map{$0.data!}
+            .decode(type: WeatherResponse.self, decoder: JSONDecoder())
+            .eraseToAnyPublisher()
+        
+        publisher
+            .sink { completion in
+                switch completion {
+                case .finished:
+                    print("요청 성공")
+                case .failure(let error):
+                    print("요청 실패: \(error)")
+                }
+            } receiveValue: { weatherResponse in
+                print(weatherResponse)
+            }
+            .store(in: &subscriptions)
         
         print("StadiumWetherViewController : viewDidLoad")
-        
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -85,9 +114,8 @@ class StadiumWetherViewController: UIViewController {
         
         searchCompleter = MKLocalSearchCompleter()
         searchCompleter?.delegate = self
-        searchCompleter?.resultTypes = .address // 혹시 값이 안날아온다면 이건 주석처리 해주세요
+        searchCompleter?.resultTypes = .address
         searchCompleter?.region = searchRegion
-        
         
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.searchBar.placeholder = "주소 검색"
@@ -163,8 +191,6 @@ extension StadiumWetherViewController: CLLocationManagerDelegate {
         
         if ( isMoveCameraByLocate == true ) {
             mkMapViewCameraFector(latitude: latitude, longitude: longitude)
-            
-            
         }
     }
 }
@@ -199,8 +225,6 @@ extension StadiumWetherViewController: UITableViewDelegate {
             }
             // 검색한 결과 : reponse의 mapItems 값을 가져온다.
             self.places = response?.mapItems[0]
-            
-            
             
             print(places?.placemark.coordinate) // 위경도 가져옴
             
