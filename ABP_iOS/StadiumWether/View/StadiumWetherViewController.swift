@@ -8,14 +8,20 @@
 import UIKit
 import CoreLocation
 import MapKit
+import Alamofire
+import Combine
 
 class StadiumWetherViewController: UIViewController {
     
     @IBOutlet var mkMapView: MKMapView!
     
+    let network:Network = Network()
+    
     var tableViewController:SearchStadiumLocationViewController! = nil
-    let storyboarded = UIStoryboard(name: "SearchStadiumLocationViewController", bundle: nil)
+    //let storyboarded = UIStoryboard(name: "SearchStadiumLocationViewController", bundle: nil)
     let locationManager = CLLocationManager()
+    
+    var subscriptions = Set<AnyCancellable>()
     
     
     var isMoveCameraByLocate = true
@@ -43,20 +49,44 @@ class StadiumWetherViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
-        tableViewController = (storyboarded.instantiateViewController(withIdentifier: "SearchStadiumLocationViewController") as! SearchStadiumLocationViewController)
-        
-        tableViewController.tableView.delegate = self
-        
-        //let viewController =
-        
         setUpUI()
         mkMapViewConfigure()
         requestLocationPermission()
         
+        //드랍드랍
+        
+        let testurl = "https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst"
+        let parameters = [
+            "serviceKey": Bundle.main.WEATER_API_KEY,
+            "pageNo": "1",
+            "numOfRows": "10",
+            "dataType": "JSON",
+            "base_date": "20231004",
+            "base_time": "0500",
+            "nx": "55",
+            "ny": "127"
+        ]
+        
+        let publisher = AF.request(testurl,parameters: parameters)
+            .publishData()
+            .map{$0.data!}
+            .decode(type: WeatherResponse.self, decoder: JSONDecoder())
+            .eraseToAnyPublisher()
+        
+        publisher
+            .sink { completion in
+                switch completion {
+                case .finished:
+                    print("요청 성공")
+                case .failure(let error):
+                    print("요청 실패: \(error)")
+                }
+            } receiveValue: { weatherResponse in
+                print(weatherResponse)
+            }
+            .store(in: &subscriptions)
         
         print("StadiumWetherViewController : viewDidLoad")
-        
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -77,15 +107,16 @@ class StadiumWetherViewController: UIViewController {
     private func setUpUI() {
         //self.navigationItem.title = "경기장 날씨검색"
         let storyboard = UIStoryboard(name: "SearchStadiumLocationViewController", bundle: nil)
-    
+        tableViewController = (storyboard.instantiateViewController(withIdentifier: "SearchStadiumLocationViewController") as! SearchStadiumLocationViewController)
+        tableViewController.tableView.delegate = self
         
         let searchController = UISearchController(searchResultsController:tableViewController )
         
+        
         searchCompleter = MKLocalSearchCompleter()
         searchCompleter?.delegate = self
-        searchCompleter?.resultTypes = .address // 혹시 값이 안날아온다면 이건 주석처리 해주세요
+        searchCompleter?.resultTypes = .address
         searchCompleter?.region = searchRegion
-        
         
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.searchBar.placeholder = "주소 검색"
@@ -94,7 +125,6 @@ class StadiumWetherViewController: UIViewController {
         
         self.navigationItem.searchController = searchController
     }
-    
     
     private func requestLocationPermission() {
         locationManager.delegate = self
@@ -134,9 +164,7 @@ class StadiumWetherViewController: UIViewController {
         mkMapView.showsUserLocation = true
         
         mkMapView.delegate = self
-        
     }
-    
     
     func mkMapViewCameraFector(latitude: Double,longitude: Double ) {
         
@@ -149,6 +177,8 @@ class StadiumWetherViewController: UIViewController {
         
         mkMapView.setRegion(region, animated: true)
     }
+    
+    
 }
 
 
@@ -160,13 +190,9 @@ extension StadiumWetherViewController: CLLocationManagerDelegate {
         let longitude: CLLocationDegrees = location.coordinate.longitude
         let latitude:CLLocationDegrees = location.coordinate.latitude
         
-        
-        
         if ( isMoveCameraByLocate == true ) {
             mkMapViewCameraFector(latitude: latitude, longitude: longitude)
         }
-        
-        
     }
 }
 
@@ -201,8 +227,6 @@ extension StadiumWetherViewController: UITableViewDelegate {
             // 검색한 결과 : reponse의 mapItems 값을 가져온다.
             self.places = response?.mapItems[0]
             
-            
-            
             print(places?.placemark.coordinate) // 위경도 가져옴
             
             let latitude: Double = Double((places?.placemark.coordinate.latitude)!)
@@ -213,8 +237,6 @@ extension StadiumWetherViewController: UITableViewDelegate {
             
             isMoveCameraByLocate = false
             mkMapViewCameraFector(latitude: latitude, longitude: longitude)
-            
-            
         }
     }
 }
