@@ -10,10 +10,12 @@ import Alamofire
 
 class StadiumWeatherViewModel {
     
+    @Published var weatherItems: WeatherResponse.Response.Body.Items!
+    
     func requestWeatherAPI(latitude:Double,longitude:Double) {
         
         let grid = convertToWeatherGrid(latitude: latitude, longitude: longitude)
-        
+    
         let baseUrl = "https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst"
         let parameters =  [
             "serviceKey": Bundle.main.WEATER_API_KEY,
@@ -34,10 +36,9 @@ class StadiumWeatherViewModel {
                         do {
                             let decoder = JSONDecoder()
                             let weatherResponse = try decoder.decode(WeatherResponse.self, from: jsonData)
-                            
+                            self.weatherItems = weatherResponse.response.body.items
                             // weatherResponse를 사용하여 데이터를 처리합니다.
-                            print(weatherResponse)
-                            
+                            print(self.weatherItems!)
                         } catch {
                             print("JSON 디코딩 오류: \(error)")
                         }
