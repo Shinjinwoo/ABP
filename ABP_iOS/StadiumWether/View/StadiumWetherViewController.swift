@@ -8,10 +8,14 @@
 import UIKit
 import CoreLocation
 import MapKit
+import Alamofire
+import Combine
 
 class StadiumWetherViewController: UIViewController {
     
     @IBOutlet var mkMapView: MKMapView!
+    
+    let network:Network = Network()
     
     var tableViewController:SearchStadiumLocationViewController! = nil
     //let storyboarded = UIStoryboard(name: "SearchStadiumLocationViewController", bundle: nil)
@@ -42,11 +46,14 @@ class StadiumWetherViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                
+        
         setUpUI()
         mkMapViewConfigure()
         requestLocationPermission()
         
+        
+        let url = "https://api.github.com/users/Shinjinwoo"
+        network.fetchData(url: url)
         
         print("StadiumWetherViewController : viewDidLoad")
         
@@ -81,7 +88,7 @@ class StadiumWetherViewController: UIViewController {
         searchCompleter?.resultTypes = .address // 혹시 값이 안날아온다면 이건 주석처리 해주세요
         searchCompleter?.region = searchRegion
         
-
+        
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.searchBar.placeholder = "주소 검색"
         searchController.searchResultsUpdater = self
@@ -89,7 +96,6 @@ class StadiumWetherViewController: UIViewController {
         
         self.navigationItem.searchController = searchController
     }
-    
     
     private func requestLocationPermission() {
         locationManager.delegate = self
@@ -131,7 +137,6 @@ class StadiumWetherViewController: UIViewController {
         mkMapView.delegate = self
     }
     
-    
     func mkMapViewCameraFector(latitude: Double,longitude: Double ) {
         
         let center = CLLocationCoordinate2D(latitude: latitude,
@@ -143,6 +148,8 @@ class StadiumWetherViewController: UIViewController {
         
         mkMapView.setRegion(region, animated: true)
     }
+    
+    
 }
 
 
@@ -156,6 +163,8 @@ extension StadiumWetherViewController: CLLocationManagerDelegate {
         
         if ( isMoveCameraByLocate == true ) {
             mkMapViewCameraFector(latitude: latitude, longitude: longitude)
+            
+            
         }
     }
 }
@@ -203,8 +212,6 @@ extension StadiumWetherViewController: UITableViewDelegate {
             
             isMoveCameraByLocate = false
             mkMapViewCameraFector(latitude: latitude, longitude: longitude)
-            
-            
         }
     }
 }
