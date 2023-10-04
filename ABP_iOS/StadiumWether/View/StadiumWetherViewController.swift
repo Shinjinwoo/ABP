@@ -56,7 +56,6 @@ class StadiumWetherViewController: UIViewController {
         //드랍드랍
         
         let testurl = "https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst"
-        
         let parameters = [
             "serviceKey": Bundle.main.WEATER_API_KEY,
             "pageNo": "1",
