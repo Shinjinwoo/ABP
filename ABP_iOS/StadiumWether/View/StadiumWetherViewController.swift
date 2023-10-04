@@ -86,7 +86,7 @@ class StadiumWetherViewController: UIViewController {
         searchCompleter?.resultTypes = .address // 혹시 값이 안날아온다면 이건 주석처리 해주세요
         searchCompleter?.region = searchRegion
         
-        
+        //가나다라
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.searchBar.placeholder = "주소 검색"
         searchController.searchResultsUpdater = self
