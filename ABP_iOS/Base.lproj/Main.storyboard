@@ -18,6 +18,8 @@
                     <connections>
                         <segue destination="d9f-Bp-0Co" kind="relationship" relationship="viewControllers" id="Nvf-Fc-tvb"/>
                         <segue destination="RkT-di-a8g" kind="relationship" relationship="viewControllers" id="RHs-D1-pyy"/>
+                        <segue destination="wJE-N9-i9T" kind="relationship" relationship="viewControllers" id="bWD-YS-Gs9"/>
+                        <segue destination="aos-Sm-FwJ" kind="relationship" relationship="viewControllers" id="PPA-Zo-tJg"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="69t-F6-1E8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -42,7 +44,27 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ev6-fu-9H3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2592" y="-432"/>
+            <point key="canvasLocation" x="-2594" y="-674"/>
+        </scene>
+        <!--LineupViewController-->
+        <scene sceneID="voe-tl-klj">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="LineupViewController" storyboardName="LineupViewController" id="wJE-N9-i9T" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="9VE-gf-Gdm"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WlV-z1-Fac" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2631" y="-589"/>
+        </scene>
+        <!--TimerViewController-->
+        <scene sceneID="0zX-4k-TDQ">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="TimerViewController" storyboardName="TimerViewController" id="aos-Sm-FwJ" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="pQd-Zt-qSS"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lap-Id-pax" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2630" y="-525"/>
         </scene>
     </scenes>
 </document>
