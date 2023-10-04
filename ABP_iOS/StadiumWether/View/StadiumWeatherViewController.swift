@@ -14,18 +14,12 @@ import Combine
 class StadiumWeatherViewController: UIViewController {
     
     @IBOutlet var mkMapView: MKMapView!
-    
     let network:Network = Network()
-    
     let viewModel = StadiumWeatherViewModel()
-    
     var tableViewController:SearchStadiumLocationViewController! = nil
     //let storyboarded = UIStoryboard(name: "SearchStadiumLocationViewController", bundle: nil)
     let locationManager = CLLocationManager()
-    
     var subscriptions = Set<AnyCancellable>()
-    
-    
     var isMoveCameraByLocate = true
     
     
@@ -54,9 +48,6 @@ class StadiumWeatherViewController: UIViewController {
         setUpUI()
         mkMapViewConfigure()
         requestLocationPermission()
-        
-        
-        
         
         print("StadiumWetherViewController : viewDidLoad")
     }
@@ -150,39 +141,6 @@ class StadiumWeatherViewController: UIViewController {
         mkMapView.setRegion(region, animated: true)
     }
     
-    func requestWeatherAPI(gridX:String,gridY:String) {
-        let url = "https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst"
-        let parameters =  [
-            "serviceKey": Bundle.main.WEATER_API_KEY,
-            "pageNo": "1",
-            "numOfRows": "10",
-            "dataType": "JSON",
-            "base_date": "20231004",
-            "base_time": "0500",
-            "nx": gridX,
-            "ny": gridY ]
-        
-        let publisher = AF.request(url,parameters: parameters)
-            .publishData()
-            .map{$0.data!}
-            .decode(type: WeatherResponse.self, decoder: JSONDecoder())
-            .eraseToAnyPublisher()
-        
-        publisher
-            .sink { completion in
-                switch completion {
-                case .finished:
-                    print("요청 성공")
-                case .failure(let error):
-                    print("요청 실패: \(error)")
-                }
-            } receiveValue: { weatherResponse in
-                print(weatherResponse)
-            }
-            .store(in: &subscriptions)
-        
-    }
-    
     
 }
 
@@ -198,9 +156,7 @@ extension StadiumWeatherViewController: CLLocationManagerDelegate {
         
         if ( isMoveCameraByLocate == true ) {
             mkMapViewCameraFector(latitude: latitude, longitude: longitude)
-            
-            let weatherGrid = viewModel.convertToWeatherGrid(latitude: latitude, longitude: longitude)
-            requestWeatherAPI(gridX: String(weatherGrid.x), gridY: String(weatherGrid.y))
+            viewModel.requestWeatherAPI(latitude: latitude, longitude: longitude)
         }
     }
 }
@@ -243,11 +199,9 @@ extension StadiumWeatherViewController: UITableViewDelegate {
             
             navigationItem.searchController?.isActive = false
             
-            
             isMoveCameraByLocate = false
             mkMapViewCameraFector(latitude: latitude, longitude: longitude)
-            let weatherGrid = viewModel.convertToWeatherGrid(latitude: latitude, longitude: longitude)
-            requestWeatherAPI(gridX: String(weatherGrid.x), gridY: String(weatherGrid.y))
+            viewModel.requestWeatherAPI(latitude: latitude, longitude: longitude)
         }
     }
 }
