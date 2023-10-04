@@ -56,7 +56,7 @@ class StadiumWetherViewController: UIViewController {
         let testurl = "https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst"
         
         let parameters = [
-            "serviceKey": "N8WC8aJkgO2i1UGvFVJ6XQnZyTAwNSXEb0VWol1vsDARg",
+            "serviceKey": "",
             "pageNo": "1",
             "numOfRows": "10",
             "dataType": "JSON",

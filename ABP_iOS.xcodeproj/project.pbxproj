@@ -169,9 +169,9 @@
 		32C5BDD32AC64099007E7D4E /* StadiumWether */ = {
 			isa = PBXGroup;
 			children = (
-				5E7A48602ACD32D6007F3312 /* Model */,
 				32C5BDD42AC640B0007E7D4E /* ViewModel */,
 				32C5BDD62AC640C8007E7D4E /* View */,
+				5E7A48602ACD32D6007F3312 /* Model */,
 			);
 			path = StadiumWether;
 			sourceTree = "<group>";
