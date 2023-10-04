@@ -53,6 +53,8 @@ class StadiumWetherViewController: UIViewController {
         mkMapViewConfigure()
         requestLocationPermission()
         
+        //드랍드랍
+        
         let testurl = "https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst"
         
         let parameters = [
