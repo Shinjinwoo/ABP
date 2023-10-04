@@ -9,13 +9,13 @@ import Foundation
 
 
 extension Bundle {
-    var NAVER_MAP_KEY: String {
-        guard let file = self.path(forResource: "APIKey", ofType: "plist") else { return "" }
+    var WEATER_API_KEY: String {
+        guard let file = self.path(forResource: "API-KEY", ofType: "plist") else { return "" }
         
         guard let resource = NSDictionary(contentsOfFile: file) else { return "" }
         
-        guard let key = resource["NMFClientId"] as? String else {
-            fatalError("NAVER_MAP_API_KEY Error")
+        guard let key = resource["WetherAPIKey"] as? String else {
+            fatalError("WetherAPIKey Error")
         }
         
         return key
