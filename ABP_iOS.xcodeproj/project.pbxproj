@@ -36,6 +36,7 @@
 		5E47A7D72AC2CE7E00F67449 /* ScoreBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E47A7D62AC2CE7E00F67449 /* ScoreBoard.swift */; };
 		5E7A485D2ACD143C007F3312 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7A485C2ACD143C007F3312 /* Network.swift */; };
 		5E7A485F2ACD1DBC007F3312 /* WetherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7A485E2ACD1DBC007F3312 /* WetherModel.swift */; };
+		5EC6CB362ACD61D20037F381 /* StadiumWeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC6CB352ACD61D20037F381 /* StadiumWeatherViewModel.swift */; };
 		72DF47C9AE727E5082C3DFB6 /* Pods_ABP_iOS_ABP_iOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C66AEFC1B75C8A9A4EE8083B /* Pods_ABP_iOS_ABP_iOSUITests.framework */; };
 		FBBF6DF77CB7F553AAFBEAC0 /* Pods_ABP_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC93EE5E851601667F6E5CB2 /* Pods_ABP_iOS.framework */; };
 /* End PBXBuildFile section */
@@ -92,6 +93,7 @@
 		5E47A7D62AC2CE7E00F67449 /* ScoreBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreBoard.swift; sourceTree = "<group>"; };
 		5E7A485C2ACD143C007F3312 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		5E7A485E2ACD1DBC007F3312 /* WetherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WetherModel.swift; path = ABP_iOS/StadiumWether/Model/WetherModel.swift; sourceTree = SOURCE_ROOT; };
+		5EC6CB352ACD61D20037F381 /* StadiumWeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StadiumWeatherViewModel.swift; sourceTree = "<group>"; };
 		634028FF24A1E68F16A78A15 /* Pods-ABP_iOS-ABP_iOSUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ABP_iOS-ABP_iOSUITests.release.xcconfig"; path = "Target Support Files/Pods-ABP_iOS-ABP_iOSUITests/Pods-ABP_iOS-ABP_iOSUITests.release.xcconfig"; sourceTree = "<group>"; };
 		7A052850B6D80F70186C654E /* Pods-ABP_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ABP_iOS.debug.xcconfig"; path = "Target Support Files/Pods-ABP_iOS/Pods-ABP_iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		9AA1929ED546C8B8674E4DD7 /* Pods-ABP_iOS-ABP_iOSUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ABP_iOS-ABP_iOSUITests.debug.xcconfig"; path = "Target Support Files/Pods-ABP_iOS-ABP_iOSUITests/Pods-ABP_iOS-ABP_iOSUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -169,18 +171,11 @@
 		32C5BDD32AC64099007E7D4E /* StadiumWether */ = {
 			isa = PBXGroup;
 			children = (
-				32C5BDD42AC640B0007E7D4E /* ViewModel */,
+				5EC6CB342ACD61B80037F381 /* ViewModel */,
 				32C5BDD62AC640C8007E7D4E /* View */,
 				5E7A48602ACD32D6007F3312 /* Model */,
 			);
 			path = StadiumWether;
-			sourceTree = "<group>";
-		};
-		32C5BDD42AC640B0007E7D4E /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		32C5BDD62AC640C8007E7D4E /* View */ = {
@@ -336,6 +331,14 @@
 				5E7A485E2ACD1DBC007F3312 /* WetherModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		5EC6CB342ACD61B80037F381 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				5EC6CB352ACD61D20037F381 /* StadiumWeatherViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		72A1C733EC3DBF99014548B2 /* Pods */ = {
@@ -619,6 +622,7 @@
 				5E47A7D12AC174BD00F67449 /* StadiumWetherViewController.swift in Sources */,
 				32D7243F2AC3F2CB005DDBBC /* LineupViewController.swift in Sources */,
 				32D7244F2AC3FBC1005DDBBC /* ViewControllerExtension.swift in Sources */,
+				5EC6CB362ACD61D20037F381 /* StadiumWeatherViewModel.swift in Sources */,
 				5E47A7972AC15D8400F67449 /* SceneDelegate.swift in Sources */,
 				32E4634A2ACA4119004E7D04 /* SearchStadiumCell.swift in Sources */,
 				5E7A485D2ACD143C007F3312 /* Network.swift in Sources */,
