@@ -14,7 +14,7 @@ class StadiumWetherViewController: UIViewController {
     @IBOutlet var mkMapView: MKMapView!
     
     var tableViewController:SearchStadiumLocationViewController! = nil
-    let storyboarded = UIStoryboard(name: "SearchStadiumLocationViewController", bundle: nil)
+    //let storyboarded = UIStoryboard(name: "SearchStadiumLocationViewController", bundle: nil)
     let locationManager = CLLocationManager()
     
     
@@ -42,14 +42,7 @@ class StadiumWetherViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-
-        tableViewController = (storyboarded.instantiateViewController(withIdentifier: "SearchStadiumLocationViewController") as! SearchStadiumLocationViewController)
-        
-        tableViewController.tableView.delegate = self
-        
-        //let viewController =
-        
+                
         setUpUI()
         mkMapViewConfigure()
         requestLocationPermission()
@@ -77,16 +70,18 @@ class StadiumWetherViewController: UIViewController {
     private func setUpUI() {
         //self.navigationItem.title = "경기장 날씨검색"
         let storyboard = UIStoryboard(name: "SearchStadiumLocationViewController", bundle: nil)
-    
+        tableViewController = (storyboard.instantiateViewController(withIdentifier: "SearchStadiumLocationViewController") as! SearchStadiumLocationViewController)
+        tableViewController.tableView.delegate = self
         
         let searchController = UISearchController(searchResultsController:tableViewController )
+        
         
         searchCompleter = MKLocalSearchCompleter()
         searchCompleter?.delegate = self
         searchCompleter?.resultTypes = .address // 혹시 값이 안날아온다면 이건 주석처리 해주세요
         searchCompleter?.region = searchRegion
         
-        //가나다라
+
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.searchBar.placeholder = "주소 검색"
         searchController.searchResultsUpdater = self
@@ -134,7 +129,6 @@ class StadiumWetherViewController: UIViewController {
         mkMapView.showsUserLocation = true
         
         mkMapView.delegate = self
-        
     }
     
     
@@ -160,13 +154,9 @@ extension StadiumWetherViewController: CLLocationManagerDelegate {
         let longitude: CLLocationDegrees = location.coordinate.longitude
         let latitude:CLLocationDegrees = location.coordinate.latitude
         
-        
-        
         if ( isMoveCameraByLocate == true ) {
             mkMapViewCameraFector(latitude: latitude, longitude: longitude)
         }
-        
-        
     }
 }
 
