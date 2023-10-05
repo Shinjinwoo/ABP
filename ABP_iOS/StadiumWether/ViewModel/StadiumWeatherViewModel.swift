@@ -21,7 +21,7 @@ class StadiumWeatherViewModel {
         let parameters =  [
             "serviceKey": Bundle.main.WEATER_API_KEY,
             "pageNo": "1",
-            "numOfRows": "10",
+            "numOfRows": "1000",
             "dataType": "JSON",
             "base_date": currentTime.currentDate,
             "base_time": currentTime.currentHour,
@@ -39,7 +39,9 @@ class StadiumWeatherViewModel {
                             print("Success - Status Code: \(statusCode)")
                             self.weatherItems = value.response.body.items.item
                             
-                            print("Success - Response Value: \(self.weatherItems!)")
+                            //print("Success - Response Value: \(self.weatherItems!)")
+                            
+                            self.printGroupdata()
                             
                         case 400..<500:
                             // 클라이언트 오류 처리
@@ -80,27 +82,29 @@ class StadiumWeatherViewModel {
     
     
     func printGroupdata() {
-        var groupedWeatherItems: [String: [String: String]] = [:]
+        
+        var weatherItemModels: [WeatherItemModel] = []
 
         // WeatherItem 배열을 순회하면서 그룹화
+        var groupedData: [String: [String: String]] = [:]
+
         for item in weatherItems {
-            let baseTime = item.baseTime
-            var group = groupedWeatherItems[baseTime] ?? [:]
-            
+            let fcstTime = item.fcstTime
+            var group = groupedData[fcstTime] ?? [:]
+
             // category를 키로, fcstValue를 값으로 매핑
             group[item.category] = item.fcstValue
-            
+
             // Dictionary 업데이트
-            groupedWeatherItems[baseTime] = group
+            groupedData[fcstTime] = group
         }
 
-        // 결과 출력
-        for (baseTime, group) in groupedWeatherItems {
-            print("baseTime: \(baseTime)")
-            for (category, fcstValue) in group {
-                print("  \(category): \(fcstValue)")
-            }
+        for (fcstTime, weatherData) in groupedData {
+            let weatherItemModel = WeatherItemModel(fcstTime: fcstTime, weatherData: weatherData)
+            weatherItemModels.append(weatherItemModel)
         }
+        
+        print(weatherItemModels)
     }
     
     

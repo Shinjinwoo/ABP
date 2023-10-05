@@ -44,3 +44,14 @@ struct WeatherItem: Codable {
     let nx: Int
     let ny: Int
 }
+
+struct WeatherItemModel {
+    let fcstTime: String
+    let weatherData: [String: String] // category를 키로, fcstValue를 값으로 매핑한 데이터
+    
+    // 이니셜라이저
+    init(fcstTime: String, weatherData: [String: String]) {
+        self.fcstTime = fcstTime
+        self.weatherData = weatherData
+    }
+}
