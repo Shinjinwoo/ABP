@@ -15,7 +15,7 @@ class StadiumWeatherViewModel {
     func requestWeatherAPI(latitude:Double,longitude:Double) {
         
         let grid = convertToWeatherGrid(latitude: latitude, longitude: longitude)
-        let currentTime = getTimeForWeaterAPI()
+        let currentTime = getCurrentTimeForWeaterAPI()
         
         let baseUrl = "https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst"
         let parameters =  [
@@ -38,8 +38,8 @@ class StadiumWeatherViewModel {
                         case 200..<300 :
                             print("Success - Status Code: \(statusCode)")
                             self.weatherItems = value.response.body.items.item
-                            //print("Success - Response Value: \(self.weatherItems!)")
-                            print(self.getTimeForWeaterAPI())
+                            
+                            print("Success - Response Value: \(self.weatherItems!)")
                             
                         case 400..<500:
                             // 클라이언트 오류 처리
@@ -61,7 +61,7 @@ class StadiumWeatherViewModel {
     }
     
     
-    func getTimeForWeaterAPI() -> (currentDate: String, currentHour: String) {
+    func getCurrentTimeForWeaterAPI() -> (currentDate: String, currentHour: String) {
         var currentTime = Date()
         
         let dateFormmatter = DateFormatter()
