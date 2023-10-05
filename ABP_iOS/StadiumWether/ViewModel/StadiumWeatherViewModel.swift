@@ -29,7 +29,6 @@ class StadiumWeatherViewModel {
             "ny": grid.y ]
         
         AF.request(baseUrl, parameters: parameters)
-            .validate(statusCode: 200..<300)
             .validate(contentType:["application/json"])
             .responseDecodable(of:WeatherResponse.self) { response in
                 switch response.result {
