@@ -9,14 +9,14 @@
 /* Begin PBXBuildFile section */
 		2D6A4A4E0B1BF01A93DC31F5 /* Pods_ABP_iOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 507670C5AB295F2F7D71B345 /* Pods_ABP_iOSTests.framework */; };
 		3219EA652ACD7CEE00E8C0D2 /* API-KEY.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3219EA642ACD7CEE00E8C0D2 /* API-KEY.plist */; };
-		32C5BDF12AC79B80007E7D4E /* BundleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C5BDF02AC79B80007E7D4E /* BundleExtension.swift */; };
+		32C5BDF12AC79B80007E7D4E /* Bundle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C5BDF02AC79B80007E7D4E /* Bundle+Extensions.swift */; };
 		32C5BDF32AC7B3DB007E7D4E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32C5BDF22AC7B3DB007E7D4E /* CoreLocation.framework */; };
 		32D7243F2AC3F2CB005DDBBC /* LineupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D7243E2AC3F2CB005DDBBC /* LineupViewController.swift */; };
 		32D724412AC3F2E7005DDBBC /* LineupViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32D724402AC3F2E7005DDBBC /* LineupViewController.storyboard */; };
 		32D724432AC3F4B8005DDBBC /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D724422AC3F4B8005DDBBC /* TimerViewController.swift */; };
 		32D724452AC3F4C6005DDBBC /* TimerViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32D724442AC3F4C6005DDBBC /* TimerViewController.storyboard */; };
 		32D7244A2AC3F834005DDBBC /* RefereeCounterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D724492AC3F834005DDBBC /* RefereeCounterViewModel.swift */; };
-		32D7244F2AC3FBC1005DDBBC /* ViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D7244E2AC3FBC1005DDBBC /* ViewControllerExtension.swift */; };
+		32D7244F2AC3FBC1005DDBBC /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D7244E2AC3FBC1005DDBBC /* UIViewController+Extensions.swift */; };
 		32E463442AC8DE59004E7D04 /* SearchStadiumLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E463432AC8DE59004E7D04 /* SearchStadiumLocationViewController.swift */; };
 		32E463482AC8E5F9004E7D04 /* SearchStadiumLocationViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32E463472AC8E5F9004E7D04 /* SearchStadiumLocationViewController.storyboard */; };
 		32E4634A2ACA4119004E7D04 /* SearchStadiumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E463492ACA4119004E7D04 /* SearchStadiumCell.swift */; };
@@ -61,14 +61,14 @@
 /* Begin PBXFileReference section */
 		3219EA642ACD7CEE00E8C0D2 /* API-KEY.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "API-KEY.plist"; sourceTree = "<group>"; };
 		32C5BDEC2AC79AB9007E7D4E /* NMapsMap.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = NMapsMap.xcframework; path = Pods/NMapsMap/framework/NMapsMap.xcframework; sourceTree = "<group>"; };
-		32C5BDF02AC79B80007E7D4E /* BundleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleExtension.swift; sourceTree = "<group>"; };
+		32C5BDF02AC79B80007E7D4E /* Bundle+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extensions.swift"; sourceTree = "<group>"; };
 		32C5BDF22AC7B3DB007E7D4E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		32D7243E2AC3F2CB005DDBBC /* LineupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineupViewController.swift; sourceTree = "<group>"; };
 		32D724402AC3F2E7005DDBBC /* LineupViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LineupViewController.storyboard; sourceTree = "<group>"; };
 		32D724422AC3F4B8005DDBBC /* TimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
 		32D724442AC3F4C6005DDBBC /* TimerViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TimerViewController.storyboard; sourceTree = "<group>"; };
 		32D724492AC3F834005DDBBC /* RefereeCounterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefereeCounterViewModel.swift; sourceTree = "<group>"; };
-		32D7244E2AC3FBC1005DDBBC /* ViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerExtension.swift; sourceTree = "<group>"; };
+		32D7244E2AC3FBC1005DDBBC /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		32E463432AC8DE59004E7D04 /* SearchStadiumLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchStadiumLocationViewController.swift; sourceTree = "<group>"; };
 		32E463472AC8E5F9004E7D04 /* SearchStadiumLocationViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SearchStadiumLocationViewController.storyboard; sourceTree = "<group>"; };
 		32E463492ACA4119004E7D04 /* SearchStadiumCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchStadiumCell.swift; sourceTree = "<group>"; };
@@ -259,8 +259,8 @@
 		32D7244B2AC3FB33005DDBBC /* Util */ = {
 			isa = PBXGroup;
 			children = (
-				32D7244E2AC3FBC1005DDBBC /* ViewControllerExtension.swift */,
-				32C5BDF02AC79B80007E7D4E /* BundleExtension.swift */,
+				32D7244E2AC3FBC1005DDBBC /* UIViewController+Extensions.swift */,
+				32C5BDF02AC79B80007E7D4E /* Bundle+Extensions.swift */,
 				5E7A485C2ACD143C007F3312 /* Network.swift */,
 			);
 			path = Util;
@@ -621,12 +621,12 @@
 				32D724432AC3F4B8005DDBBC /* TimerViewController.swift in Sources */,
 				5E47A7D12AC174BD00F67449 /* StadiumWeatherViewController.swift in Sources */,
 				32D7243F2AC3F2CB005DDBBC /* LineupViewController.swift in Sources */,
-				32D7244F2AC3FBC1005DDBBC /* ViewControllerExtension.swift in Sources */,
+				32D7244F2AC3FBC1005DDBBC /* UIViewController+Extensions.swift in Sources */,
 				5EC6CB362ACD61D20037F381 /* StadiumWeatherViewModel.swift in Sources */,
 				5E47A7972AC15D8400F67449 /* SceneDelegate.swift in Sources */,
 				32E4634A2ACA4119004E7D04 /* SearchStadiumCell.swift in Sources */,
 				5E7A485D2ACD143C007F3312 /* Network.swift in Sources */,
-				32C5BDF12AC79B80007E7D4E /* BundleExtension.swift in Sources */,
+				32C5BDF12AC79B80007E7D4E /* Bundle+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -819,6 +819,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -850,6 +851,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
