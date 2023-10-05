@@ -92,7 +92,7 @@ class StadiumWeatherViewController: UIViewController {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
-        locationManager.distanceFilter = 100
+        locationManager.distanceFilter = 1000
         
         DispatchQueue.global().async {
             if CLLocationManager.locationServicesEnabled() {
