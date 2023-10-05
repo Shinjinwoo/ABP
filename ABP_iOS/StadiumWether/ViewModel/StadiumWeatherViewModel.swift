@@ -80,22 +80,25 @@ class StadiumWeatherViewModel {
     
     
     func printGroupdata() {
-        var groupedData: [String: [WeatherItem]] = [:]
-        
-        for item in self.weatherItems {
-            let fcstTime = item.fcstTime
-            if var existingGroup = groupedData[fcstTime] {
-                existingGroup.append(item)
-                groupedData[fcstTime] = existingGroup
-            } else {
-                groupedData[fcstTime] = [item]
-            }
+        var groupedWeatherItems: [String: [String: String]] = [:]
+
+        // WeatherItem 배열을 순회하면서 그룹화
+        for item in weatherItems {
+            let baseTime = item.baseTime
+            var group = groupedWeatherItems[baseTime] ?? [:]
+            
+            // category를 키로, fcstValue를 값으로 매핑
+            group[item.category] = item.fcstValue
+            
+            // Dictionary 업데이트
+            groupedWeatherItems[baseTime] = group
         }
-        
-        for (fcstTime, items) in groupedData {
-            print("fcstTime: \(fcstTime)")
-            for item in items {
-                print("  \(item)")
+
+        // 결과 출력
+        for (baseTime, group) in groupedWeatherItems {
+            print("baseTime: \(baseTime)")
+            for (category, fcstValue) in group {
+                print("  \(category): \(fcstValue)")
             }
         }
     }

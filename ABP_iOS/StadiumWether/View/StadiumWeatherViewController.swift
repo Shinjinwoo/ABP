@@ -139,8 +139,6 @@ class StadiumWeatherViewController: UIViewController {
         
         mkMapView.setRegion(region, animated: true)
     }
-    
-    
 }
 
 
