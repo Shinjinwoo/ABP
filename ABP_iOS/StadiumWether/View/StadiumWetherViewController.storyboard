@@ -12,7 +12,7 @@
         <!--경기장 날씨-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController storyboardIdentifier="StadiumWetherViewController" id="Y6W-OH-hqX" customClass="StadiumWetherViewController" customModule="ABP_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StadiumWetherViewController" id="Y6W-OH-hqX" customClass="StadiumWeatherViewController" customModule="ABP_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -54,7 +54,6 @@
         <!--Navigation Controller-->
         <scene sceneID="IBA-c7-LVG">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4Bs-hg-UL3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController id="0zz-Ls-qS6" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="2KO-dq-xlf">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
@@ -64,6 +63,7 @@
                         <segue destination="Y6W-OH-hqX" kind="relationship" relationship="rootViewController" id="v53-mU-zOt"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4Bs-hg-UL3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1057" y="-159"/>
         </scene>
