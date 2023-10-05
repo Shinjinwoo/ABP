@@ -15,6 +15,7 @@ class StadiumWeatherViewModel {
     func requestWeatherAPI(latitude:Double,longitude:Double) {
         
         let grid = convertToWeatherGrid(latitude: latitude, longitude: longitude)
+        let currentTime = getTimeForWeaterAPI()
         
         let baseUrl = "https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst"
         let parameters =  [
@@ -22,8 +23,8 @@ class StadiumWeatherViewModel {
             "pageNo": "1",
             "numOfRows": "10",
             "dataType": "JSON",
-            "base_date": "20231004",
-            "base_time": "0500",
+            "base_date": currentTime.currentDate,
+            "base_time": currentTime.currentHour,
             "nx": grid.x,
             "ny": grid.y ]
         
@@ -39,8 +40,10 @@ class StadiumWeatherViewModel {
                             print("Success - Status Code: \(statusCode)")
                             self.weatherItems = value.response.body.items.item
                             
-                            print("Success - Response Value: \(self.weatherItems!)")
-                            self.printGroupdata()
+                            //print("Success - Response Value: \(self.weatherItems!)")
+                            
+                            print(self.getTimeForWeaterAPI())
+                            
                             
                         default:
                             print("Unknown Status Code: \(statusCode)")
@@ -50,6 +53,24 @@ class StadiumWeatherViewModel {
                     print("요청 실패: \(error)")
                 }
             }
+    }
+    
+    
+    func getTimeForWeaterAPI() -> (currentDate: String, currentHour: String) {
+        var currentTime = Date()
+        
+        let dateFormmatter = DateFormatter()
+        dateFormmatter.dateFormat = "yyyyMMdd"
+        
+        let timeFormatter = DateFormatter()
+        timeFormatter.dateFormat = "HH"  // 원하는 날짜 및 시간 형식 지정
+
+        
+        let currentHour = timeFormatter.string(from: currentTime)+"00"
+        let currentDate = dateFormmatter.string(from: currentTime)
+
+        
+        return (currentDate ,currentHour)
     }
     
     
