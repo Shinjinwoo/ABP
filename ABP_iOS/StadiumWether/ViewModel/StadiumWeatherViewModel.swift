@@ -119,14 +119,50 @@ class StadiumWeatherViewModel {
 
         // WeatherItem 배열을 순회하면서 그룹화
         var groupedData: [String: [String: String]] = [:]
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyyMMdd"
 
-        let filteredWeatherItems = weatherItems.filter { $0.baseDate == targetBaseDate }
+        let startDateString:String? = weatherItems[0].baseDate
+        guard let startDate = dateFormatter.date(from: startDateString!) else {
+            fatalError("Invalid start date format")
+        }
+        
+        // 시작 날짜 설정
 
-        for item in weatherItems {
+        var endDateString:String?
+        // 시작 날짜에 1일을 더한 날짜가 종료 날짜가 된다.
+        if let endDate = Calendar.current.date(byAdding: .day, value: 1, to: startDate) {
+             endDateString = dateFormatter.string(from: endDate)
+            print("endDate: \(endDateString)")
+        } else {
+            fatalError("Failed to calculate endDate")
+             endDateString = startDateString
+        }
+        
+        let filteredWeatherItems = weatherItems.filter { item in
+            // fcstDate를 문자열에서 날짜로 변환
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyyMMdd"
+
+            if let itemDate = dateFormatter.date(from: item.fcstDate), // 옵셔널 바인딩 제거
+               let startDateString = startDateString,
+               let endDateString = endDateString {
+
+                if let startDate = dateFormatter.date(from: startDateString),
+                   let endDate = dateFormatter.date(from: endDateString) {
+
+                    // 시작일 이후이고 종료일 이전인 항목 선택
+                    return itemDate >= startDate && itemDate <= endDate
+                }
+            }
+            return false
+        }
+
+        for item in filteredWeatherItems {
             let fcstTime = item.fcstTime
             let fcstDate = item.fcstDate
             
-            print("Date:\(item.fcstDate) Time:\(fcstTime)")
             var group = groupedData[fcstTime] ?? [:]
 
             // category를 키로, fcstValue를 값으로 매핑
@@ -140,7 +176,6 @@ class StadiumWeatherViewModel {
             let weatherItemModel = WeatherItemModel(fcstTime: fcstTime, weatherData: weatherData)
             weatherItemModels.append(weatherItemModel)
         }
-        
         print(weatherItemModels)
     }
     
