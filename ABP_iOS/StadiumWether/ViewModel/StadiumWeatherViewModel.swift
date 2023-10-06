@@ -12,19 +12,21 @@ class StadiumWeatherViewModel {
     
     @Published var weatherItems: [WeatherItem]!
     
+    var currentTime:(currentDate:String,currentHour:String)!
+    
     func requestWeatherAPI(latitude:Double,longitude:Double) {
         
         let grid = convertToWeatherGrid(latitude: latitude, longitude: longitude)
-        let currentTime = getCurrentTimeForWeaterAPI()
+        self.currentTime = getCurrentTimeForWeaterAPI()
         
         let baseUrl = "https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst"
         let parameters =  [
             "serviceKey": Bundle.main.WEATER_API_KEY,
             "pageNo": "1",
-            "numOfRows": "1000",
+            "numOfRows": "100",
             "dataType": "JSON",
-            "base_date": currentTime.currentDate,
-            "base_time": currentTime.currentHour,
+            "base_date": self.currentTime.currentDate,
+            "base_time": self.currentTime.currentHour,
             "nx": grid.x,
             "ny": grid.y ]
         
@@ -41,7 +43,7 @@ class StadiumWeatherViewModel {
                             
                             //print("Success - Response Value: \(self.weatherItems!)")
                             
-                            self.printGroupdata()
+                            self.printGroupdata(targetBaseDate: self.currentTime.currentDate)
                             
                         case 400..<500:
                             // 클라이언트 오류 처리
@@ -64,8 +66,8 @@ class StadiumWeatherViewModel {
     
     
     func getCurrentTimeForWeaterAPI() -> (currentDate: String, currentHour: String) {
-        var currentTime = Date()
-        
+        let currentTime = Date()
+         
         let dateFormmatter = DateFormatter()
         dateFormmatter.dateFormat = "yyyyMMdd"
         
@@ -73,23 +75,58 @@ class StadiumWeatherViewModel {
         timeFormatter.dateFormat = "HH"  // 원하는 날짜 및 시간 형식 지정
         
         
-        let currentHour = timeFormatter.string(from: currentTime)+"00"
         let currentDate = dateFormmatter.string(from: currentTime)
         
+        let calendar = Calendar.current
+
+        // Base_time 값을 배열로
+        let baseTimes = [
+            calendar.date(bySettingHour: 2, minute: 0, second: 0, of: currentTime)!,
+            calendar.date(bySettingHour: 5, minute: 0, second: 0, of: currentTime)!,
+            calendar.date(bySettingHour: 8, minute: 0, second: 0, of: currentTime)!,
+            calendar.date(bySettingHour: 11, minute: 0, second: 0, of: currentTime)!,
+            calendar.date(bySettingHour: 14, minute: 0, second: 0, of: currentTime)!,
+            calendar.date(bySettingHour: 17, minute: 0, second: 0, of: currentTime)!,
+            calendar.date(bySettingHour: 20, minute: 0, second: 0, of: currentTime)!,
+            calendar.date(bySettingHour: 23, minute: 0, second: 0, of: currentTime)!
+        ]
+
+        // 현재 시간과 가장 가까운 Base_time 값을 찾는로직
+        var closestBaseTime = baseTimes[0]
+        var timeDifference = abs(currentTime.timeIntervalSince(closestBaseTime))
+        for baseTime in baseTimes {
+            let difference = abs(currentTime.timeIntervalSince(baseTime))
+            if difference < timeDifference {
+                closestBaseTime = baseTime
+                timeDifference = difference
+            }
+        }
+
+        // 찾은 가장 가까운 Base_time 값을 출력하는 로직
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HHmm"
+        let currentHour = dateFormatter.string(from: closestBaseTime)
+        print("현재 시스템 시간: \(dateFormatter.string(from: currentTime))")
+        print("가장 가까운 Base_time: \(currentHour)")
         
         return (currentDate ,currentHour)
     }
     
     
-    func printGroupdata() {
+    func printGroupdata(targetBaseDate:String) {
         
         var weatherItemModels: [WeatherItemModel] = []
 
         // WeatherItem 배열을 순회하면서 그룹화
         var groupedData: [String: [String: String]] = [:]
 
+        let filteredWeatherItems = weatherItems.filter { $0.baseDate == targetBaseDate }
+
         for item in weatherItems {
             let fcstTime = item.fcstTime
+            let fcstDate = item.fcstDate
+            
+            print("Date:\(item.fcstDate) Time:\(fcstTime)")
             var group = groupedData[fcstTime] ?? [:]
 
             // category를 키로, fcstValue를 값으로 매핑
