@@ -32,7 +32,7 @@
 		5E47A7BB2AC15D8600F67449 /* ABP_iOSUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E47A7BA2AC15D8600F67449 /* ABP_iOSUITestsLaunchTests.swift */; };
 		5E47A7CD2AC16D1C00F67449 /* RefereeCounterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E47A7CC2AC16D1C00F67449 /* RefereeCounterViewController.swift */; };
 		5E47A7D12AC174BD00F67449 /* StadiumWeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E47A7D02AC174BD00F67449 /* StadiumWeatherViewController.swift */; };
-		5E47A7D32AC174D500F67449 /* StadiumWetherViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E47A7D22AC174D500F67449 /* StadiumWetherViewController.storyboard */; };
+		5E47A7D32AC174D500F67449 /* StadiumWeatherViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E47A7D22AC174D500F67449 /* StadiumWeatherViewController.storyboard */; };
 		5E47A7D52AC174FC00F67449 /* RefereeCounterViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E47A7D42AC174FC00F67449 /* RefereeCounterViewController.storyboard */; };
 		5E47A7D72AC2CE7E00F67449 /* ScoreBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E47A7D62AC2CE7E00F67449 /* ScoreBoard.swift */; };
 		5E7A485D2ACD143C007F3312 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7A485C2ACD143C007F3312 /* Network.swift */; };
@@ -90,7 +90,7 @@
 		5E47A7BA2AC15D8600F67449 /* ABP_iOSUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ABP_iOSUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		5E47A7CC2AC16D1C00F67449 /* RefereeCounterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefereeCounterViewController.swift; sourceTree = "<group>"; };
 		5E47A7D02AC174BD00F67449 /* StadiumWeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StadiumWeatherViewController.swift; sourceTree = "<group>"; };
-		5E47A7D22AC174D500F67449 /* StadiumWetherViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = StadiumWetherViewController.storyboard; sourceTree = "<group>"; };
+		5E47A7D22AC174D500F67449 /* StadiumWeatherViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = StadiumWeatherViewController.storyboard; sourceTree = "<group>"; };
 		5E47A7D42AC174FC00F67449 /* RefereeCounterViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RefereeCounterViewController.storyboard; sourceTree = "<group>"; };
 		5E47A7D62AC2CE7E00F67449 /* ScoreBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreBoard.swift; sourceTree = "<group>"; };
 		5E7A485C2ACD143C007F3312 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
@@ -182,7 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				5E47A7D02AC174BD00F67449 /* StadiumWeatherViewController.swift */,
-				5E47A7D22AC174D500F67449 /* StadiumWetherViewController.storyboard */,
+				5E47A7D22AC174D500F67449 /* StadiumWeatherViewController.storyboard */,
 				32E463432AC8DE59004E7D04 /* SearchStadiumLocationViewController.swift */,
 				32E463472AC8E5F9004E7D04 /* SearchStadiumLocationViewController.storyboard */,
 				32E463492ACA4119004E7D04 /* SearchStadiumCell.swift */,
@@ -477,7 +477,7 @@
 			files = (
 				5E47A7A42AC15D8500F67449 /* LaunchScreen.storyboard in Resources */,
 				5E47A7A12AC15D8500F67449 /* Assets.xcassets in Resources */,
-				5E47A7D32AC174D500F67449 /* StadiumWetherViewController.storyboard in Resources */,
+				5E47A7D32AC174D500F67449 /* StadiumWeatherViewController.storyboard in Resources */,
 				32E463482AC8E5F9004E7D04 /* SearchStadiumLocationViewController.storyboard in Resources */,
 				5E47A7D52AC174FC00F67449 /* RefereeCounterViewController.storyboard in Resources */,
 				3219EA652ACD7CEE00E8C0D2 /* API-KEY.plist in Resources */,
