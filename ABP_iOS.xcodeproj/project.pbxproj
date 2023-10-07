@@ -11,6 +11,7 @@
 		3219EA652ACD7CEE00E8C0D2 /* API-KEY.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3219EA642ACD7CEE00E8C0D2 /* API-KEY.plist */; };
 		32C5BDF12AC79B80007E7D4E /* Bundle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C5BDF02AC79B80007E7D4E /* Bundle+Extensions.swift */; };
 		32C5BDF32AC7B3DB007E7D4E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32C5BDF22AC7B3DB007E7D4E /* CoreLocation.framework */; };
+		32D6DE6C2AD1366B00385C55 /* StadiumWeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D6DE6B2AD1366B00385C55 /* StadiumWeatherCell.swift */; };
 		32D7243F2AC3F2CB005DDBBC /* LineupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D7243E2AC3F2CB005DDBBC /* LineupViewController.swift */; };
 		32D724412AC3F2E7005DDBBC /* LineupViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32D724402AC3F2E7005DDBBC /* LineupViewController.storyboard */; };
 		32D724432AC3F4B8005DDBBC /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D724422AC3F4B8005DDBBC /* TimerViewController.swift */; };
@@ -63,6 +64,7 @@
 		32C5BDEC2AC79AB9007E7D4E /* NMapsMap.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = NMapsMap.xcframework; path = Pods/NMapsMap/framework/NMapsMap.xcframework; sourceTree = "<group>"; };
 		32C5BDF02AC79B80007E7D4E /* Bundle+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extensions.swift"; sourceTree = "<group>"; };
 		32C5BDF22AC7B3DB007E7D4E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		32D6DE6B2AD1366B00385C55 /* StadiumWeatherCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StadiumWeatherCell.swift; sourceTree = "<group>"; };
 		32D7243E2AC3F2CB005DDBBC /* LineupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineupViewController.swift; sourceTree = "<group>"; };
 		32D724402AC3F2E7005DDBBC /* LineupViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LineupViewController.storyboard; sourceTree = "<group>"; };
 		32D724422AC3F4B8005DDBBC /* TimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 				32E463432AC8DE59004E7D04 /* SearchStadiumLocationViewController.swift */,
 				32E463472AC8E5F9004E7D04 /* SearchStadiumLocationViewController.storyboard */,
 				32E463492ACA4119004E7D04 /* SearchStadiumCell.swift */,
+				32D6DE6B2AD1366B00385C55 /* StadiumWeatherCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -619,6 +622,7 @@
 				5E7A485F2ACD1DBC007F3312 /* WetherModel.swift in Sources */,
 				5E47A7D72AC2CE7E00F67449 /* ScoreBoard.swift in Sources */,
 				32D724432AC3F4B8005DDBBC /* TimerViewController.swift in Sources */,
+				32D6DE6C2AD1366B00385C55 /* StadiumWeatherCell.swift in Sources */,
 				5E47A7D12AC174BD00F67449 /* StadiumWeatherViewController.swift in Sources */,
 				32D7243F2AC3F2CB005DDBBC /* LineupViewController.swift in Sources */,
 				32D7244F2AC3FBC1005DDBBC /* UIViewController+Extensions.swift in Sources */,
