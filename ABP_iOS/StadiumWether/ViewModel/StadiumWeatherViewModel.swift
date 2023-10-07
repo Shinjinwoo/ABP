@@ -47,7 +47,7 @@ class StadiumWeatherViewModel {
                             
                             //print("Success - Response Value: \(self.weatherItems!)")
                             
-                            self.printGroupdata(targetBaseDate: self.currentTime.currentDate)
+                            self.publishedWeatherInfo(targetBaseDate: self.currentTime.currentDate)
                             
                         case 400..<500:
                             // 클라이언트 오류 처리
@@ -71,7 +71,7 @@ class StadiumWeatherViewModel {
     
     func getCurrentTimeForWeaterAPI() -> (currentDate: String, currentHour: String) {
         let currentTime = Date()
-         
+        
         let dateFormmatter = DateFormatter()
         dateFormmatter.dateFormat = "yyyyMMdd"
         
@@ -82,7 +82,7 @@ class StadiumWeatherViewModel {
         let currentDate = dateFormmatter.string(from: currentTime)
         
         let calendar = Calendar.current
-
+        
         // Base_time 값을 배열로
         let baseTimes = [
             calendar.date(bySettingHour: 2, minute: 0, second: 0, of: currentTime)!,
@@ -94,7 +94,7 @@ class StadiumWeatherViewModel {
             calendar.date(bySettingHour: 20, minute: 0, second: 0, of: currentTime)!,
             calendar.date(bySettingHour: 23, minute: 0, second: 0, of: currentTime)!
         ]
-
+        
         // 현재 시간과 가장 가까운 Base_time 값을 찾는로직
         var closestBaseTime = baseTimes[0]
         var timeDifference = abs(currentTime.timeIntervalSince(closestBaseTime))
@@ -105,7 +105,7 @@ class StadiumWeatherViewModel {
                 timeDifference = difference
             }
         }
-
+        
         // 찾은 가장 가까운 Base_time 값을 출력하는 로직
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HHmm"
@@ -117,70 +117,101 @@ class StadiumWeatherViewModel {
     }
     
     
-    func printGroupdata(targetBaseDate:String) {
+    func publishedWeatherInfo(targetBaseDate:String) {
         
         var weatherItemModels: [Weather] = []
-
+        
         // WeatherItem 배열을 순회하면서 그룹화
         var groupedData: [String: [String: String]] = [:]
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyyMMdd"
-
+        
         let startDateString:String? = weatherItems[0].baseDate
         guard let startDate = dateFormatter.date(from: startDateString!) else {
             fatalError("Invalid start date format")
         }
         
         // 시작 날짜 설정
-
+        
         var endDateString:String?
         // 시작 날짜에 1일을 더한 날짜가 종료 날짜가 된다.
         if let endDate = Calendar.current.date(byAdding: .day, value: 1, to: startDate) {
-             endDateString = dateFormatter.string(from: endDate)
+            endDateString = dateFormatter.string(from: endDate)
             print("endDate: \(endDateString)")
         } else {
             fatalError("Failed to calculate endDate")
-             endDateString = startDateString
+            endDateString = startDateString
         }
         
         let filteredWeatherItems = weatherItems.filter { item in
             // fcstDate를 문자열에서 날짜로 변환
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyyMMdd"
-
+            
             if let itemDate = dateFormatter.date(from: item.fcstDate), // 옵셔널 바인딩 제거
                let startDateString = startDateString,
                let endDateString = endDateString {
-
+                
                 if let startDate = dateFormatter.date(from: startDateString),
                    let endDate = dateFormatter.date(from: endDateString) {
-
+                    
                     // 시작일 이후이고 종료일 이전인 항목 선택
                     return itemDate >= startDate && itemDate <= endDate
                 }
             }
             return false
         }
-
+        
         for item in filteredWeatherItems {
             let fcstTime = item.fcstTime
             let fcstDate = item.fcstDate
             
             var group = groupedData[fcstTime] ?? [:]
-
+            
             // category를 키로, fcstValue를 값으로 매핑
             group[item.category] = item.fcstValue
-
+            
+            group["fcstDate"] = fcstDate
+            
             // Dictionary 업데이트
             groupedData[fcstTime] = group
         }
-
+        
+        
         for (fcstTime, weatherData) in groupedData {
-            let weatherItemModel = Weather(fcstTime: fcstTime, weatherData: weatherData)
+            
+            let fcstDate = weatherData["fcstDate"] ?? "Unknown"
+            
+            let weatherData = WeatherData(PCP: weatherData["PCP"] ?? "",
+                                          SKY: weatherData["SKY"] ?? "",
+                                          PTY: weatherData["PTY"] ?? "",
+                                          VEC: weatherData["VEC"] ?? "",
+                                          WSD: weatherData["WSD"] ?? "",
+                                          VVV: weatherData["VVV"] ?? "",
+                                          POP: weatherData["POP"] ?? "",
+                                          WAV: weatherData["WAV"] ?? "",
+                                          REH: weatherData["REH"] ?? "",
+                                          SNO: weatherData["SNO"] ?? "",
+                                          UUU: weatherData["UUU"] ?? "",
+                                          TMP: weatherData["TMP"] ?? "")
+            
+            let weatherItemModel = Weather(fcstTime: fcstTime,fcstDate:fcstDate, weatherData: weatherData)
             weatherItemModels.append(weatherItemModel)
         }
         
+        
+        
+        //최종적으로 날짜가 더 빠르고, 시간이 base타임과 가장 비슷한 시각부터 정렬된다
+        weatherItemModels = weatherItemModels.sorted { (weather1, weather2) -> Bool in
+            if weather1.fcstDate != weather2.fcstDate {
+                return weather1.fcstDate < weather2.fcstDate
+            } else {
+                return weather1.fcstTime < weather2.fcstTime
+            }
+        }
+        
+        print(weatherItemModels.first)
         //퍼블리싱
         items = weatherItemModels
     }
