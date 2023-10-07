@@ -92,6 +92,7 @@ class StadiumWeatherViewController: UIViewController {
         // 다음과 같이 뷰가 다 나타난 후에 화면전화를 진행해야한다.
         
         //현재 위치로 카메라 뷰 시작
+        
     }
     
     
@@ -159,7 +160,6 @@ class StadiumWeatherViewController: UIViewController {
         
 
         grantLocationPermission()
-
     }
     
     private func grantLocationPermission() {
@@ -198,6 +198,27 @@ extension StadiumWeatherViewController: CLLocationManagerDelegate {
         if ( isMoveCameraByLocate == true ) {
             mkMapViewCameraFector(latitude: latitude, longitude: longitude)
             viewModel.requestWeatherAPI(latitude: latitude, longitude: longitude)
+        }
+    }
+    
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        switch locationManager.authorizationStatus {
+        case .authorizedWhenInUse, .authorizedAlways:
+            DispatchQueue.global().async {
+                if CLLocationManager.locationServicesEnabled() {
+                    print("위치 서비스 On 상태")
+                    self.locationManager.startUpdatingLocation()
+                    
+                    print(self.locationManager.location?.coordinate.latitude as Any)
+                    print(self.locationManager.location?.coordinate.longitude as Any)
+                }
+            }
+            
+        case .denied, .restricted:
+            print("위치 서비스 Off 상태")
+            // 위치 권한이 거부되었거나 제한되었을 때 처리할 작업을 수행합니다.
+        default:
+            break
         }
     }
 }
