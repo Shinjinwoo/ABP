@@ -28,13 +28,22 @@ class StadiumWeatherViewController: UIViewController {
     let network:Network = Network()
     var tableViewController:SearchStadiumLocationViewController! = nil
     let locationManager = CLLocationManager()
-
+    
     var isMoveCameraByLocate = true
     
     
     private var searchCompleter: MKLocalSearchCompleter?
     private var searchRegion: MKCoordinateRegion = MKCoordinateRegion(MKMapRect.world)
     var completerResults: [MKLocalSearchCompletion]?
+    
+    lazy var activityIndicator: UIActivityIndicatorView = { // indicator가 사용될 때까지 인스턴스를 생성하지 않도록 lazy로 선언
+        let activityIndicator = UIActivityIndicatorView()
+        activityIndicator.frame = collectionView.frame
+        activityIndicator.style = UIActivityIndicatorView.Style.large // indicator의 스타일 설정, large와 medium이 있음
+        activityIndicator.startAnimating() // indicator 실행
+        activityIndicator.isHidden = false
+        return activityIndicator
+    }()
     
     private var places: MKMapItem? {
         didSet {
@@ -60,6 +69,8 @@ class StadiumWeatherViewController: UIViewController {
         requestLocationPermission()
         configureCollectionView()
         
+        
+        
         print("StadiumWetherViewController : viewDidLoad")
     }
     
@@ -69,8 +80,13 @@ class StadiumWeatherViewController: UIViewController {
             .sink { [unowned self] list in
                 if list != nil {
                     self.weatherSectionItems(list!)
+                    self.stopActivityIndicator()
                 }
-        }.store(in: &subscriptions)
+            }.store(in: &subscriptions)
+    }
+    
+    func stopActivityIndicator() {
+        activityIndicator.stopAnimating() // indicator 종료
     }
     
     private func weatherSectionItems(_ items: [Item], to section: Section = .main) {
@@ -104,6 +120,8 @@ class StadiumWeatherViewController: UIViewController {
         
         let searchController = UISearchController(searchResultsController:tableViewController )
         
+        
+        
         searchCompleter = MKLocalSearchCompleter()
         searchCompleter?.delegate = self
         searchCompleter?.resultTypes = .address
@@ -113,6 +131,8 @@ class StadiumWeatherViewController: UIViewController {
         searchController.searchBar.placeholder = "주소 검색"
         searchController.searchResultsUpdater = self
         searchController.searchBar.delegate = self
+        
+        collectionView.addSubview(activityIndicator)
         
         self.navigationItem.searchController = searchController
     }
@@ -141,7 +161,8 @@ class StadiumWeatherViewController: UIViewController {
         
         // Group
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalWidth(0.33))
-        let groupLayout = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: itemLayout, count:   3)
+        //let groupLayout = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: itemLayout, count:   3)
+        let groupLayout = NSCollectionLayoutGroup.horizontal(layoutSize:groupSize, repeatingSubitem:itemLayout,count:3)
         groupLayout.interItemSpacing = .fixed(spacing)
         
         // Section
@@ -158,7 +179,6 @@ class StadiumWeatherViewController: UIViewController {
         locationManager.requestWhenInUseAuthorization()
         locationManager.distanceFilter = 1000
         
-
         grantLocationPermission()
     }
     
@@ -348,6 +368,5 @@ extension StadiumWeatherViewController: UISearchBarDelegate {
             completerResults = nil
         }
         searchCompleter?.queryFragment = keyword
-        
     }
 }
