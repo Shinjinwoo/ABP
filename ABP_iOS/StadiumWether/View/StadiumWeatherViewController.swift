@@ -12,10 +12,8 @@ import Combine
 
 class StadiumWeatherViewController: UIViewController {
     
-    
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet var mkMapView: MKMapView!
-    
     
     typealias Item = Weather
     enum Section {
@@ -29,7 +27,6 @@ class StadiumWeatherViewController: UIViewController {
     
     let network:Network = Network()
     var tableViewController:SearchStadiumLocationViewController! = nil
-    //let storyboarded = UIStoryboard(name: "SearchStadiumLocationViewController", bundle: nil)
     let locationManager = CLLocationManager()
 
     var isMoveCameraByLocate = true
@@ -61,6 +58,7 @@ class StadiumWeatherViewController: UIViewController {
         bind()
         mkMapViewConfigure()
         requestLocationPermission()
+        configureCollectionView()
         
         print("StadiumWetherViewController : viewDidLoad")
     }
@@ -68,9 +66,11 @@ class StadiumWeatherViewController: UIViewController {
     func bind() {
         viewModel.$items
             .receive(on: RunLoop.main)
-            .sink { weathers in
-                self.weatherSectionItems(weathers!)
-            }.store(in: &subscriptions)
+            .sink { [unowned self] list in
+                if list != nil {
+                    self.weatherSectionItems(list!)
+                }
+        }.store(in: &subscriptions)
     }
     
     private func weatherSectionItems(_ items: [Item], to section: Section = .main) {
@@ -103,7 +103,6 @@ class StadiumWeatherViewController: UIViewController {
         
         let searchController = UISearchController(searchResultsController:tableViewController )
         
-        
         searchCompleter = MKLocalSearchCompleter()
         searchCompleter?.delegate = self
         searchCompleter?.resultTypes = .address
@@ -115,6 +114,41 @@ class StadiumWeatherViewController: UIViewController {
         searchController.searchBar.delegate = self
         
         self.navigationItem.searchController = searchController
+    }
+    
+    
+    private func configureCollectionView() {
+        // presentation
+        dataSource = UICollectionViewDiffableDataSource<Section, Item>(collectionView: collectionView, cellProvider: { collectionView, indexPath, item in
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "StadiumWeatherCell", for: indexPath) as? StadiumWeatherCell else {
+                return nil
+            }
+            cell.configure(item)
+            return cell
+        })
+        
+        // layer
+        collectionView.collectionViewLayout = layout()
+        collectionView.delegate = self
+    }
+    
+    private func layout() -> UICollectionViewCompositionalLayout {
+        let spacing: CGFloat = 10
+        // Item
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.33), heightDimension: .fractionalWidth(0.33))
+        let itemLayout = NSCollectionLayoutItem(layoutSize: itemSize)
+        
+        // Group
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalWidth(0.33))
+        let groupLayout = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: itemLayout, count:   3)
+        groupLayout.interItemSpacing = .fixed(spacing)
+        
+        // Section
+        let section = NSCollectionLayoutSection(group: groupLayout)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16)
+        section.interGroupSpacing = spacing
+        
+        return UICollectionViewCompositionalLayout(section: section)
     }
     
     private func requestLocationPermission() {
@@ -147,39 +181,8 @@ class StadiumWeatherViewController: UIViewController {
         }
     }
     
-    private func mkMapViewConfigure() {
-        mkMapView.preferredConfiguration = MKStandardMapConfiguration()
-        // 줌 가능 여부
-        mkMapView.isZoomEnabled = true
-        // 이동 가능 여부
-        mkMapView.isScrollEnabled = true
-        // 각도 조절 가능 여부 (두 손가락으로 위/아래 슬라이드)
-        mkMapView.isPitchEnabled = true
-        // 회전 가능 여부
-        mkMapView.isRotateEnabled = true
-        // 나침판 표시 여부
-        mkMapView.showsCompass = true
-        // 축척 정보 표시 여부
-        mkMapView.showsScale = true
-        // 위치 사용 시 사용자의 현재 위치를 표시
-        mkMapView.showsUserLocation = true
-        
-        mkMapView.delegate = self
-    }
     
-    func mkMapViewCameraFector(latitude: Double,longitude: Double ) {
-        
-        let center = CLLocationCoordinate2D(latitude: latitude,
-                                            longitude: longitude)
-        
-        let region = MKCoordinateRegion(center: center,
-                                        latitudinalMeters: 500,
-                                        longitudinalMeters: 500)
-        
-        mkMapView.setRegion(region, animated: true)
-    }
 }
-
 
 //로케이션 정보 업데이트 시 표시
 extension StadiumWeatherViewController: CLLocationManagerDelegate {
@@ -194,6 +197,12 @@ extension StadiumWeatherViewController: CLLocationManagerDelegate {
             mkMapViewCameraFector(latitude: latitude, longitude: longitude)
             viewModel.requestWeatherAPI(latitude: latitude, longitude: longitude)
         }
+    }
+}
+
+extension StadiumWeatherViewController:UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print(collectionView)
     }
 }
 
@@ -245,6 +254,37 @@ extension StadiumWeatherViewController: UITableViewDelegate {
 
 
 extension StadiumWeatherViewController: MKMapViewDelegate {
+    private func mkMapViewConfigure() {
+        mkMapView.preferredConfiguration = MKStandardMapConfiguration()
+        // 줌 가능 여부
+        mkMapView.isZoomEnabled = true
+        // 이동 가능 여부
+        mkMapView.isScrollEnabled = true
+        // 각도 조절 가능 여부 (두 손가락으로 위/아래 슬라이드)
+        mkMapView.isPitchEnabled = true
+        // 회전 가능 여부
+        mkMapView.isRotateEnabled = true
+        // 나침판 표시 여부
+        mkMapView.showsCompass = true
+        // 축척 정보 표시 여부
+        mkMapView.showsScale = true
+        // 위치 사용 시 사용자의 현재 위치를 표시
+        mkMapView.showsUserLocation = true
+        
+        mkMapView.delegate = self
+    }
+    
+    func mkMapViewCameraFector(latitude: Double,longitude: Double ) {
+        
+        let center = CLLocationCoordinate2D(latitude: latitude,
+                                            longitude: longitude)
+        
+        let region = MKCoordinateRegion(center: center,
+                                        latitudinalMeters: 500,
+                                        longitudinalMeters: 500)
+        
+        mkMapView.setRegion(region, animated: true)
+    }
     
 }
 

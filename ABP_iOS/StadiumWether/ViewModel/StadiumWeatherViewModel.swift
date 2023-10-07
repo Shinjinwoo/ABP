@@ -181,8 +181,7 @@ class StadiumWeatherViewModel {
             weatherItemModels.append(weatherItemModel)
         }
         
-        //print(weatherItemModels)
-        
+        //퍼블리싱
         items = weatherItemModels
     }
     

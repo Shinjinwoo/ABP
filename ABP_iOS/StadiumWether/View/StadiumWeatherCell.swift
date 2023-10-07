@@ -10,5 +10,12 @@ import UIKit
 class StadiumWeatherCell: UICollectionViewCell {
     
     @IBOutlet weak var baseTime: UILabel!
+ 
+    
+    func configure(_ weatherItem: Weather) {
+        baseTime.text = weatherItem.fcstTime
+        
+    }
+    
     
 }
