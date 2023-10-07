@@ -9,4 +9,6 @@ import UIKit
 
 class StadiumWeatherCell: UICollectionViewCell {
     
+    @IBOutlet weak var baseTime: UILabel!
+    
 }

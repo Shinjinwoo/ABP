@@ -45,7 +45,7 @@ struct WeatherItem: Codable {
     let ny: Int
 }
 
-struct WeatherItemModel {
+struct Weather: Hashable {
     let fcstTime: String
     //let fcstDate: String
     let weatherData: [String: String] // category를 키로, fcstValue를 값으로 매핑한 데이터

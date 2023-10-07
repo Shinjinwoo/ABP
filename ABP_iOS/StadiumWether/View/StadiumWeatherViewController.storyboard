@@ -26,26 +26,58 @@
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="333"/>
                                         <standardMapConfiguration key="preferredConfiguration"/>
                                     </mapView>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="bJe-mw-28b">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qRT-DJ-dEg">
                                         <rect key="frame" x="0.0" y="333" width="393" height="333"/>
+                                        <subviews>
+                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="bJe-mw-28b">
+                                                <rect key="frame" x="0.0" y="0.0" width="393" height="313"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="xh4-17-fTd">
+                                                    <size key="itemSize" width="128" height="128"/>
+                                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                </collectionViewFlowLayout>
+                                                <cells>
+                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Ycv-tq-ym0" customClass="StadiumWeatherCell" customModule="ABP_iOS" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="127.99999999999997" height="128"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="kgq-7l-X92">
+                                                            <rect key="frame" x="0.0" y="0.0" width="127.99999999999997" height="128"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tek-ZK-c7s">
+                                                                    <rect key="frame" x="43.333333333333329" y="54.000000000000007" width="41.333333333333329" height="20.333333333333336"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                            <constraints>
+                                                                <constraint firstItem="Tek-ZK-c7s" firstAttribute="centerY" secondItem="kgq-7l-X92" secondAttribute="centerY" id="dLw-rK-DRP"/>
+                                                                <constraint firstItem="Tek-ZK-c7s" firstAttribute="centerX" secondItem="kgq-7l-X92" secondAttribute="centerX" id="sTY-qN-wpM"/>
+                                                            </constraints>
+                                                        </collectionViewCellContentView>
+                                                        <connections>
+                                                            <outlet property="baseTime" destination="Tek-ZK-c7s" id="SbS-RW-Mp1"/>
+                                                        </connections>
+                                                    </collectionViewCell>
+                                                </cells>
+                                            </collectionView>
+                                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="n2x-83-aCd">
+                                                <rect key="frame" x="138.66666666666666" y="287.33333333333337" width="115.66666666666666" height="25.666666666666686"/>
+                                            </pageControl>
+                                        </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="xh4-17-fTd">
-                                            <size key="itemSize" width="128" height="128"/>
-                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        </collectionViewFlowLayout>
-                                        <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Ycv-tq-ym0" customClass="StadiumWeatherCell" customModule="ABP_iOS" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="127.99999999999997" height="128"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="kgq-7l-X92">
-                                                    <rect key="frame" x="0.0" y="0.0" width="127.99999999999997" height="128"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                </collectionViewCellContentView>
-                                            </collectionViewCell>
-                                        </cells>
-                                    </collectionView>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="bJe-mw-28b" secondAttribute="trailing" id="1L9-2H-8KA"/>
+                                            <constraint firstItem="bJe-mw-28b" firstAttribute="top" secondItem="qRT-DJ-dEg" secondAttribute="top" id="Hkc-s8-Ab1"/>
+                                            <constraint firstItem="bJe-mw-28b" firstAttribute="bottom" secondItem="n2x-83-aCd" secondAttribute="bottom" id="Wuz-aX-q1H"/>
+                                            <constraint firstItem="bJe-mw-28b" firstAttribute="leading" secondItem="qRT-DJ-dEg" secondAttribute="leading" id="bXV-Da-6yZ"/>
+                                            <constraint firstAttribute="bottom" secondItem="n2x-83-aCd" secondAttribute="bottom" constant="20" id="dRA-5M-8W7"/>
+                                            <constraint firstItem="n2x-83-aCd" firstAttribute="centerX" secondItem="qRT-DJ-dEg" secondAttribute="centerX" id="wpM-WQ-GCB"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                             </stackView>
                         </subviews>
@@ -62,6 +94,7 @@
                     <navigationItem key="navigationItem" id="5Xq-r4-JkZ"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="collectionView" destination="bJe-mw-28b" id="pfe-1P-6JO"/>
                         <outlet property="mkMapView" destination="Wqc-kH-fwe" id="R8s-qQ-Mpl"/>
                     </connections>
                 </viewController>

@@ -7,10 +7,14 @@
 
 import Foundation
 import Alamofire
+import Combine
 
 class StadiumWeatherViewModel {
     
-    @Published var weatherItems: [WeatherItem]!
+    var weatherItems: [WeatherItem]!
+    
+    @Published var items: [Weather]!
+    //@Published var selectedItem: Weather
     
     var currentTime:(currentDate:String,currentHour:String)!
     
@@ -115,7 +119,7 @@ class StadiumWeatherViewModel {
     
     func printGroupdata(targetBaseDate:String) {
         
-        var weatherItemModels: [WeatherItemModel] = []
+        var weatherItemModels: [Weather] = []
 
         // WeatherItem 배열을 순회하면서 그룹화
         var groupedData: [String: [String: String]] = [:]
@@ -173,11 +177,13 @@ class StadiumWeatherViewModel {
         }
 
         for (fcstTime, weatherData) in groupedData {
-            let weatherItemModel = WeatherItemModel(fcstTime: fcstTime, weatherData: weatherData)
+            let weatherItemModel = Weather(fcstTime: fcstTime, weatherData: weatherData)
             weatherItemModels.append(weatherItemModel)
         }
         
-        print(weatherItemModels)
+        //print(weatherItemModels)
+        
+        items = weatherItemModels
     }
     
     

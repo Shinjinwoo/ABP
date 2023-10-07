@@ -12,13 +12,26 @@ import Combine
 
 class StadiumWeatherViewController: UIViewController {
     
+    
+    @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet var mkMapView: MKMapView!
+    
+    
+    typealias Item = Weather
+    enum Section {
+        case main
+    }
+    
+    var dataSource: UICollectionViewDiffableDataSource<Section, Item>!
+    
+    var subscriptions = Set<AnyCancellable>()
+    var viewModel =  StadiumWeatherViewModel()
+    
     let network:Network = Network()
-    let viewModel = StadiumWeatherViewModel()
     var tableViewController:SearchStadiumLocationViewController! = nil
     //let storyboarded = UIStoryboard(name: "SearchStadiumLocationViewController", bundle: nil)
     let locationManager = CLLocationManager()
-    var subscriptions = Set<AnyCancellable>()
+
     var isMoveCameraByLocate = true
     
     
@@ -45,10 +58,26 @@ class StadiumWeatherViewController: UIViewController {
         super.viewDidLoad()
         
         setUpUI()
+        bind()
         mkMapViewConfigure()
         requestLocationPermission()
         
         print("StadiumWetherViewController : viewDidLoad")
+    }
+    
+    func bind() {
+        viewModel.$items
+            .receive(on: RunLoop.main)
+            .sink { weathers in
+                self.weatherSectionItems(weathers!)
+            }.store(in: &subscriptions)
+    }
+    
+    private func weatherSectionItems(_ items: [Item], to section: Section = .main) {
+        var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
+        snapshot.appendSections([section])
+        snapshot.appendItems(items, toSection: section)
+        dataSource.apply(snapshot)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -100,9 +129,9 @@ class StadiumWeatherViewController: UIViewController {
     }
     
     private func grantLocationPermission() async {
-        
         switch locationManager.authorizationStatus {
         case .authorizedWhenInUse, .authorizedAlways:
+            
             if CLLocationManager.locationServicesEnabled() {
                 print("위치 서비스 On 상태")
                 self.locationManager.startUpdatingLocation()
