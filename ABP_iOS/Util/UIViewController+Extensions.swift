@@ -10,7 +10,6 @@ import UIKit
 
 extension UIViewController {
     
-    
     //MARK: 빈 화면 터치 시 키패드 사라지게 하기
     
     func hideKeyboardWhenTappedAround() {
