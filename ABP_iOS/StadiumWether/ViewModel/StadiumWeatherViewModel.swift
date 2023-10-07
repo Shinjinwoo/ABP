@@ -176,6 +176,7 @@ class StadiumWeatherViewModel {
             let weatherItemModel = WeatherItemModel(fcstTime: fcstTime, weatherData: weatherData)
             weatherItemModels.append(weatherItemModel)
         }
+        
         print(weatherItemModels)
     }
     

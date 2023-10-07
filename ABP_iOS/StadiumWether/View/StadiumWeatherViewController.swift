@@ -94,17 +94,27 @@ class StadiumWeatherViewController: UIViewController {
         locationManager.requestWhenInUseAuthorization()
         locationManager.distanceFilter = 1000
         
-        DispatchQueue.global().async {
+        Task {
+            await grantLocationPermission()
+        }
+    }
+    
+    private func grantLocationPermission() async {
+        
+        switch locationManager.authorizationStatus {
+        case .authorizedWhenInUse, .authorizedAlways:
             if CLLocationManager.locationServicesEnabled() {
                 print("위치 서비스 On 상태")
                 self.locationManager.startUpdatingLocation()
                 
                 print(self.locationManager.location?.coordinate.latitude as Any)
                 print(self.locationManager.location?.coordinate.longitude as Any)
-                
-            } else {
-                print("위치 서비스 Off 상태")
             }
+        case .denied, .restricted:
+            print("위치 서비스 Off 상태")
+            // 위치 권한이 거부되었거나 제한되었을 때 처리할 작업을 수행합니다.
+        default:
+            break
         }
     }
     
