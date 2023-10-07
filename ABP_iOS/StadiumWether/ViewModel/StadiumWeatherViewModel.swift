@@ -200,8 +200,6 @@ class StadiumWeatherViewModel {
             weatherItemModels.append(weatherItemModel)
         }
         
-        
-        
         //최종적으로 날짜가 더 빠르고, 시간이 base타임과 가장 비슷한 시각부터 정렬된다
         weatherItemModels = weatherItemModels.sorted { (weather1, weather2) -> Bool in
             if weather1.fcstDate != weather2.fcstDate {
