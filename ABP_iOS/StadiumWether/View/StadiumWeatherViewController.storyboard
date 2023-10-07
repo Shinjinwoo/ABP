@@ -30,7 +30,7 @@
                                         <rect key="frame" x="0.0" y="333" width="393" height="333"/>
                                         <subviews>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="bJe-mw-28b">
-                                                <rect key="frame" x="0.0" y="0.0" width="393" height="313"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="393" height="333"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="xh4-17-fTd">
                                                     <size key="itemSize" width="128" height="128"/>
@@ -64,18 +64,13 @@
                                                     </collectionViewCell>
                                                 </cells>
                                             </collectionView>
-                                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="n2x-83-aCd">
-                                                <rect key="frame" x="138.66666666666666" y="287.33333333333337" width="115.66666666666666" height="25.666666666666686"/>
-                                            </pageControl>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="bJe-mw-28b" secondAttribute="trailing" id="1L9-2H-8KA"/>
+                                            <constraint firstAttribute="bottom" secondItem="bJe-mw-28b" secondAttribute="bottom" id="Fcp-Uu-VVf"/>
                                             <constraint firstItem="bJe-mw-28b" firstAttribute="top" secondItem="qRT-DJ-dEg" secondAttribute="top" id="Hkc-s8-Ab1"/>
-                                            <constraint firstItem="bJe-mw-28b" firstAttribute="bottom" secondItem="n2x-83-aCd" secondAttribute="bottom" id="Wuz-aX-q1H"/>
                                             <constraint firstItem="bJe-mw-28b" firstAttribute="leading" secondItem="qRT-DJ-dEg" secondAttribute="leading" id="bXV-Da-6yZ"/>
-                                            <constraint firstAttribute="bottom" secondItem="n2x-83-aCd" secondAttribute="bottom" constant="20" id="dRA-5M-8W7"/>
-                                            <constraint firstItem="n2x-83-aCd" firstAttribute="centerX" secondItem="qRT-DJ-dEg" secondAttribute="centerX" id="wpM-WQ-GCB"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -96,11 +91,22 @@
                     <connections>
                         <outlet property="collectionView" destination="bJe-mw-28b" id="pfe-1P-6JO"/>
                         <outlet property="mkMapView" destination="Wqc-kH-fwe" id="R8s-qQ-Mpl"/>
+                        <segue destination="Vob-dH-mbB" kind="show" id="r8K-vw-2Ff"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-63" y="-159"/>
+            <point key="canvasLocation" x="-44" y="-159"/>
+        </scene>
+        <!--SearchStadiumWKWebViewController-->
+        <scene sceneID="HUC-SJ-ybg">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="SearchStadiumWKWebViewController" storyboardName="SearchStadiumWKWebViewController" referencedIdentifier="SearchStadiumWKWebViewController" id="Vob-dH-mbB" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="10m-ys-xYG"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NtP-76-cQl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="705" y="-159"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="IBA-c7-LVG">

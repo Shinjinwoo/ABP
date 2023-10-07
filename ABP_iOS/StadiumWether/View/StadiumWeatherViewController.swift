@@ -8,6 +8,7 @@
 import UIKit
 import CoreLocation
 import MapKit
+import WebKit
 import Combine
 
 class StadiumWeatherViewController: UIViewController {
@@ -118,8 +119,7 @@ class StadiumWeatherViewController: UIViewController {
         tableViewController = (storyboard.instantiateViewController(withIdentifier: "SearchStadiumLocationViewController") as! SearchStadiumLocationViewController)
         tableViewController.tableView.delegate = self
         
-        let searchController = UISearchController(searchResultsController:tableViewController )
-        
+        let searchController = UISearchController(searchResultsController:nil )
         
         
         searchCompleter = MKLocalSearchCompleter()
@@ -156,13 +156,13 @@ class StadiumWeatherViewController: UIViewController {
     private func layout() -> UICollectionViewCompositionalLayout {
         let spacing: CGFloat = 10
         // Item
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.33), heightDimension: .fractionalWidth(0.33))
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), heightDimension: .fractionalWidth(0.5))
         let itemLayout = NSCollectionLayoutItem(layoutSize: itemSize)
         
         // Group
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalWidth(0.33))
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalWidth(0.50))
         //let groupLayout = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: itemLayout, count:   3)
-        let groupLayout = NSCollectionLayoutGroup.horizontal(layoutSize:groupSize, repeatingSubitem:itemLayout,count:3)
+        let groupLayout = NSCollectionLayoutGroup.horizontal(layoutSize:groupSize, repeatingSubitem:itemLayout,count:2)
         groupLayout.interItemSpacing = .fixed(spacing)
         
         // Section
@@ -202,8 +202,6 @@ class StadiumWeatherViewController: UIViewController {
             break
         }
     }
-    
-    
 }
 
 //로케이션 정보 업데이트 시 표시
@@ -352,10 +350,9 @@ extension StadiumWeatherViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         let keyword = searchController.searchBar.text!
         
-        if keyword == "" {
-            completerResults = nil
-        }
-        searchCompleter?.queryFragment = keyword
+//        let storyboard = UIStoryboard(name: "StadiumWeatherViewController", bundle: nil)
+//        let vc = storyboard.instantiateViewController(withIdentifier: "SearchStadiumWKWebViewController") as! SearchStadiumWKWebViewController
+//        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 
@@ -368,5 +365,13 @@ extension StadiumWeatherViewController: UISearchBarDelegate {
             completerResults = nil
         }
         searchCompleter?.queryFragment = keyword
+    }
+    
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+        let storyboard = UIStoryboard(name: "StadiumWeatherViewController", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "SearchStadiumWKWebViewController") as! SearchStadiumWKWebViewController
+        self.navigationController?.pushViewController(vc, animated: true)
+        
+        return true
     }
 }
