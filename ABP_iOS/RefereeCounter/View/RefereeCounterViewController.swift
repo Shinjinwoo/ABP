@@ -243,11 +243,24 @@ class RefereeCounterViewController: UIViewController {
     
     
     @IBAction func resetSBCounteOnTapped(_ sender: UIButton) {
-        viewModel.resetSBCount()
+        
+        let alert = UIAlertController(title: "볼 카운트 리셋", message: "볼카운트를 리셋 하시겠습니까 ?", preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "예", style: .destructive, handler: { _ in self.viewModel.resetSBCount() }))
+        alert.addAction(UIAlertAction(title: "아니오", style: .cancel, handler: { _ in  }))
+
+        present(alert, animated: true)
     }
     
     @IBAction func resetScoreboardOnTapped(_ sender: UIButton) {
-        viewModel.resetScoreBoard()
+        
+        let sheet = UIAlertController(title: "스코어보드 리셋", message: "스코어보드를 리셋 하시겠습니까 ?", preferredStyle: .actionSheet)
+        
+        sheet.addAction(UIAlertAction(title: "예", style: .destructive, handler: { _ in self.viewModel.resetScoreBoard() }))
+        sheet.addAction(UIAlertAction(title: "아니오", style: .cancel, handler: { _ in  }))
+
+        present(sheet, animated: true)
+        
     }
 }
 
