@@ -17,6 +17,8 @@ class StadiumWeatherViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet var mkMapView: MKMapView!
     
+    let colors: [UIColor] = [.systemPurple, .systemOrange, .systemPink, .systemRed, .systemTeal]
+    
     typealias Item = Weather
     enum Section {
         case main
@@ -48,6 +50,12 @@ class StadiumWeatherViewController: UIViewController {
         activityIndicator.isHidden = false
         return activityIndicator
     }()
+    
+    
+    override func loadView() {
+        super.loadView()
+        
+    }
     
     
     
@@ -99,6 +107,7 @@ class StadiumWeatherViewController: UIViewController {
     }
     
     func startActivityIndicator(){
+
         activityIndicator.startAnimating()
     }
     
@@ -119,9 +128,6 @@ class StadiumWeatherViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         // 다음과 같이 뷰가 다 나타난 후에 화면전화를 진행해야한다.
-        
-        //현재 위치로 카메라 뷰 시작
-        
     }
     
     
@@ -140,6 +146,8 @@ class StadiumWeatherViewController: UIViewController {
         
         collectionView.addSubview(activityIndicator)
         
+        
+        
         self.navigationItem.searchController = searchController
     }
     
@@ -150,34 +158,78 @@ class StadiumWeatherViewController: UIViewController {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "StadiumWeatherCell", for: indexPath) as? StadiumWeatherCell else {
                 return nil
             }
+            
             cell.configure(item)
+
+            
+            let randomIndex = Int.random(in: 0..<self.colors.count)
+            cell.backgroundColor = UIColor.gray
+            
             return cell
         })
         
+        
+        let layout = layout()
+        
+        
+        
+        collectionView.collectionViewLayout = layout
         // layer
-        collectionView.collectionViewLayout = layout()
+        
+        
         collectionView.delegate = self
+        
+
+        
+        
+        
     }
     
     private func layout() -> UICollectionViewCompositionalLayout {
-        let spacing: CGFloat = 10
-        // Item
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), heightDimension: .fractionalWidth(0.5))
-        let itemLayout = NSCollectionLayoutItem(layoutSize: itemSize)
+//        let spacing: CGFloat = 10
+//        // Item
+//        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), heightDimension: .fractionalWidth(0.5))
+//        let itemLayout = NSCollectionLayoutItem(layoutSize: itemSize)
+//        
+//        // Group
+//        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalWidth(0.50))
+//        //let groupLayout = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: itemLayout, count:   3)
+//        let groupLayout = NSCollectionLayoutGroup.horizontal(layoutSize:groupSize, repeatingSubitem:itemLayout,count:2)
+//        groupLayout.interItemSpacing = .fixed(spacing)
+//        
+//        // Section
+//        let section = NSCollectionLayoutSection(group: groupLayout)
+//        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16)
+//        section.interGroupSpacing = spacing
+//        
+//        return UICollectionViewCompositionalLayout(section: section)
         
-        // Group
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalWidth(0.50))
-        //let groupLayout = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: itemLayout, count:   3)
-        let groupLayout = NSCollectionLayoutGroup.horizontal(layoutSize:groupSize, repeatingSubitem:itemLayout,count:2)
-        groupLayout.interItemSpacing = .fixed(spacing)
         
-        // Section
-        let section = NSCollectionLayoutSection(group: groupLayout)
-        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16)
-        section.interGroupSpacing = spacing
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), heightDimension: .fractionalHeight(1.0))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
-        return UICollectionViewCompositionalLayout(section: section)
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.8), heightDimension: .fractionalHeight(0.8))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        
+        
+        let spacing = CGFloat(10)
+        group.interItemSpacing = .fixed(spacing)
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.orthogonalScrollingBehavior = .groupPagingCentered
+        section.interGroupSpacing = 20
+
+        
+        section.visibleItemsInvalidationHandler = { (items, offset, env) in
+            let index = Int((offset.x / env.container.contentSize.width).rounded(.up))
+            print("--> \(index)")
+        }
+
+        let layout = UICollectionViewCompositionalLayout(section: section)
+        return layout
     }
+    
+    
     
     private func requestLocationPermission() {
         locationManager.delegate = self

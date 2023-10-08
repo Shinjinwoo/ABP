@@ -11,11 +11,31 @@ class StadiumWeatherCell: UICollectionViewCell {
     
     @IBOutlet weak var baseTime: UILabel!
  
-    
-    func configure(_ weatherItem: Weather) {
-        baseTime.text = weatherItem.fcstTime
-        
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        self.layer.cornerRadius = 16
     }
     
+    
+    func configure(_ weatherItem: Weather) {
+        baseTime.text = convertTimeForKor(formatHHmmTime: weatherItem.fcstTime)
+
+    }
+    
+    
+    func convertTimeForKor(formatHHmmTime:String) ->String {
+        let inputFormatter = DateFormatter()
+        inputFormatter.dateFormat = "HHmm" // 입력 문자열의 포맷
+        let date = inputFormatter.date(from: formatHHmmTime)
+            // 출력 형식 지정
+        let outputFormatter = DateFormatter()
+        outputFormatter.dateFormat = "a h시"  // 원하는 출력 포맷 (AM/PM)
+        outputFormatter.locale = Locale(identifier: "ko_KR")
+            // Date를 문자열로 변환
+        let formattedTimeString = outputFormatter.string(from: date!)
+        
+        
+        return formattedTimeString
+    }
     
 }
