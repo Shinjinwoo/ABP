@@ -17,26 +17,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zr4-Ci-gUl">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Wc-J7-JUx">
                                 <rect key="frame" x="0.0" y="59" width="393" height="759"/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <wkWebViewConfiguration key="configuration">
-                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
-                                    <wkPreferences key="preferences"/>
-                                </wkWebViewConfiguration>
-                            </wkWebView>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Zr4-Ci-gUl" secondAttribute="trailing" id="NuL-Q8-Klh"/>
-                            <constraint firstItem="Zr4-Ci-gUl" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="Vf9-4c-rFc"/>
-                            <constraint firstItem="Zr4-Ci-gUl" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="gfJ-2T-bL7"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="Zr4-Ci-gUl" secondAttribute="bottom" id="ioR-in-Od3"/>
+                            <constraint firstItem="7Wc-J7-JUx" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="6NS-Ng-71p"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="7Wc-J7-JUx" secondAttribute="bottom" id="WYb-ji-Ltz"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="7Wc-J7-JUx" secondAttribute="trailing" id="iem-Al-5ME"/>
+                            <constraint firstItem="7Wc-J7-JUx" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="onS-lD-HVv"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="webView" destination="Zr4-Ci-gUl" id="Ijc-eL-wVa"/>
+                        <outlet property="wrapView" destination="7Wc-J7-JUx" id="tFB-Ta-9Vr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

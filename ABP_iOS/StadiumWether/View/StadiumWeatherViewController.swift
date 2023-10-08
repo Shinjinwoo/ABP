@@ -11,10 +11,13 @@ import MapKit
 import WebKit
 import Combine
 
+
 class StadiumWeatherViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet var mkMapView: MKMapView!
+    
+    @Published var serachContorllerPlaceholder:String!
     
     typealias Item = Weather
     enum Section {
@@ -24,6 +27,7 @@ class StadiumWeatherViewController: UIViewController {
     var dataSource: UICollectionViewDiffableDataSource<Section, Item>!
     
     var subscriptions = Set<AnyCancellable>()
+    var subscriptions2 = Set<AnyCancellable>()
     var viewModel =  StadiumWeatherViewModel()
     
     let network:Network = Network()
@@ -84,6 +88,14 @@ class StadiumWeatherViewController: UIViewController {
                     self.stopActivityIndicator()
                 }
             }.store(in: &subscriptions)
+        
+        $serachContorllerPlaceholder
+            .receive(on: RunLoop.main)
+            .sink { value in
+                print(value)
+                self.navigationItem.searchController?.searchBar.placeholder = value
+            }.store(in: &subscriptions2)
+        
     }
     
     func stopActivityIndicator() {
@@ -127,10 +139,12 @@ class StadiumWeatherViewController: UIViewController {
         searchCompleter?.resultTypes = .address
         searchCompleter?.region = searchRegion
         
-        searchController.hidesNavigationBarDuringPresentation = false
         searchController.searchBar.placeholder = "주소 검색"
+        searchController.hidesNavigationBarDuringPresentation = false
         searchController.searchResultsUpdater = self
         searchController.searchBar.delegate = self
+        serachContorllerPlaceholder = "주소 검색"
+        
         
         collectionView.addSubview(activityIndicator)
         
@@ -368,10 +382,14 @@ extension StadiumWeatherViewController: UISearchBarDelegate {
     }
     
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+        
         let storyboard = UIStoryboard(name: "StadiumWeatherViewController", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "SearchStadiumWKWebViewController") as! SearchStadiumWKWebViewController
+        
         self.navigationController?.pushViewController(vc, animated: true)
         
         return true
     }
 }
+
+

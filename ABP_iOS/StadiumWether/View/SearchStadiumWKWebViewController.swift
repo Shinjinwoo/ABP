@@ -10,7 +10,13 @@ import WebKit
 
 class SearchStadiumWKWebViewController: UIViewController {
     
-    @IBOutlet weak var webView: WKWebView!
+    
+    var webView: WKWebView!
+    
+    override func loadView() {
+        super.loadView()
+    }
+    @IBOutlet weak var wrapView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,22 +26,51 @@ class SearchStadiumWKWebViewController: UIViewController {
     
     
     private func setWebView() {
+        
+        let preferences = WKPreferences()
+        preferences.javaScriptCanOpenWindowsAutomatically = true
+        
+        let contentController = WKUserContentController()
+        contentController.add(self, name: "callBackHandler")
+        
+        let configuration = WKWebViewConfiguration()
+        configuration.preferences = preferences
+        configuration.userContentController = contentController
+        
+        if #available(iOS 14.0, *) {
+            configuration.defaultWebpagePreferences.allowsContentJavaScript = true
+        } else {
+            configuration.preferences.javaScriptEnabled = true
+        }
+        
+        webView =  WKWebView(frame: wrapView.bounds, configuration: configuration)
+        
+        
+        if #available(iOS 16.4, *) {
+            webView.isInspectable = true
+        }
         webView.navigationDelegate = self
         webView.uiDelegate = self
         
+        
+        wrapView.addSubview(webView)
         loadURL()
     }
     
     
     private func loadURL() {
-        let urlString = "https://searchaddress-eb99b.web.app/"
+        
+        //운영
+        //let urlString = "https://searchaddress-eb99b.web.app/"
+        
+        
+        //개발
+        let urlString = "http://192.168.45.95:8080/examples/"
+        
         guard let url = URL(string: urlString) else { return }
         let request = URLRequest(url: url)
         webView.load(request)
     }
-    
-    
-    
 }
 
 extension SearchStadiumWKWebViewController: WKNavigationDelegate {
@@ -49,15 +84,18 @@ extension SearchStadiumWKWebViewController: WKNavigationDelegate {
 }
 
 extension SearchStadiumWKWebViewController: WKUIDelegate {
-    
-    
     func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
+        
+        if navigationAction.targetFrame == nil {
+            webView.load(navigationAction.request)
+            return nil
+        }
         
         let preferences = WKPreferences()
         preferences.javaScriptCanOpenWindowsAutomatically = true
         
         let contentController = WKUserContentController()
-        contentController.add(self, name: "testId")
+        contentController.add(self, name: "callBackHandler")
         
         let configuration = WKWebViewConfiguration()
         configuration.preferences = preferences
@@ -69,7 +107,13 @@ extension SearchStadiumWKWebViewController: WKUIDelegate {
             configuration.preferences.javaScriptEnabled = true
         }
         
-        return WKWebView(frame: webView.frame, configuration: configuration)
+        let newWkWebView = WKWebView(frame: wrapView.bounds, configuration: configuration)
+        
+        if #available(iOS 16.4, *) {
+            newWkWebView.isInspectable = false
+        }
+        
+        return newWkWebView
     }
     
     public func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping () -> Void) {
@@ -81,8 +125,16 @@ extension SearchStadiumWKWebViewController: WKScriptMessageHandler {
     
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         
+        if let rootViewController = navigationController?.viewControllers.first as? StadiumWeatherViewController {
+            rootViewController.serachContorllerPlaceholder = "호출ㅎㅎㅎ"
+        }
+        
+        self.navigationController?.popToRootViewController(animated: true)
+        
         print(message.name)
+        print(message.body)
     }
 }
+
 
 
