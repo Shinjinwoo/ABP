@@ -10,37 +10,31 @@ import WebKit
 
 class SearchStadiumWKWebViewController: UIViewController {
     
-    
     @IBOutlet weak var webView: WKWebView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setWebView()
         
-        let preferences = WKPreferences()
-        /** javaScript 사용 설정 */
-        preferences.javaScriptEnabled = true
-        /** 자동으로 javaScript를 통해 새 창 열기 설정 */
-        preferences.javaScriptCanOpenWindowsAutomatically = true
-        
-        
-        let configuration = WKWebViewConfiguration()
-        /** preference, contentController 설정 */
-        configuration.preferences = preferences
-        
-        
-        let url = "https://searchaddress-eb99b.web.app/"
-        
-        var components = URLComponents(string: url)!
-        let request = URLRequest(url: components.url!)
-        
-        
-        webView.uiDelegate = self
-        webView.navigationDelegate = self
-        
-        webView.load(request)
-        
-        // Do any additional setup after loading the view.
     }
+    
+    
+    private func setWebView() {
+        webView.navigationDelegate = self
+        webView.uiDelegate = self
+        
+        loadURL()
+    }
+    
+    
+    private func loadURL() {
+        let urlString = "https://searchaddress-eb99b.web.app/"
+        guard let url = URL(string: urlString) else { return }
+        let request = URLRequest(url: url)
+        webView.load(request)
+    }
+    
+    
     
 }
 
@@ -55,6 +49,28 @@ extension SearchStadiumWKWebViewController: WKNavigationDelegate {
 }
 
 extension SearchStadiumWKWebViewController: WKUIDelegate {
+    
+    
+    func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
+        
+        let preferences = WKPreferences()
+        preferences.javaScriptCanOpenWindowsAutomatically = true
+        
+        let contentController = WKUserContentController()
+        contentController.add(self, name: "testId")
+        
+        let configuration = WKWebViewConfiguration()
+        configuration.preferences = preferences
+        configuration.userContentController = contentController
+        
+        if #available(iOS 14.0, *) {
+            configuration.defaultWebpagePreferences.allowsContentJavaScript = true
+        } else {
+            configuration.preferences.javaScriptEnabled = true
+        }
+        
+        return WKWebView(frame: webView.frame, configuration: configuration)
+    }
     
     public func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping () -> Void) {
         
