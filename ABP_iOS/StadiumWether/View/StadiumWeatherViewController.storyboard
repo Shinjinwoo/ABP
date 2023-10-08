@@ -136,6 +136,7 @@
                     <connections>
                         <outlet property="collectionView" destination="bJe-mw-28b" id="pfe-1P-6JO"/>
                         <outlet property="mkMapView" destination="Wqc-kH-fwe" id="R8s-qQ-Mpl"/>
+                        <outlet property="pageControl" destination="leh-T5-pnz" id="EX9-Ui-jZa"/>
                         <segue destination="Vob-dH-mbB" kind="show" id="r8K-vw-2Ff"/>
                     </connections>
                 </viewController>

@@ -16,6 +16,8 @@ class StadiumWeatherViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet var mkMapView: MKMapView!
+    @IBOutlet weak var pageControl: UIPageControl!
+    
     
     let colors: [UIColor] = [.systemPurple, .systemOrange, .systemPink, .systemRed, .systemTeal]
     
@@ -146,7 +148,7 @@ class StadiumWeatherViewController: UIViewController {
         
         collectionView.addSubview(activityIndicator)
         
-        
+        pageControl.numberOfPages = 4
         
         self.navigationItem.searchController = searchController
     }
@@ -186,25 +188,7 @@ class StadiumWeatherViewController: UIViewController {
     }
     
     private func layout() -> UICollectionViewCompositionalLayout {
-//        let spacing: CGFloat = 10
-//        // Item
-//        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), heightDimension: .fractionalWidth(0.5))
-//        let itemLayout = NSCollectionLayoutItem(layoutSize: itemSize)
-//        
-//        // Group
-//        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalWidth(0.50))
-//        //let groupLayout = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: itemLayout, count:   3)
-//        let groupLayout = NSCollectionLayoutGroup.horizontal(layoutSize:groupSize, repeatingSubitem:itemLayout,count:2)
-//        groupLayout.interItemSpacing = .fixed(spacing)
-//        
-//        // Section
-//        let section = NSCollectionLayoutSection(group: groupLayout)
-//        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16)
-//        section.interGroupSpacing = spacing
-//        
-//        return UICollectionViewCompositionalLayout(section: section)
-        
-        
+
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
@@ -222,7 +206,8 @@ class StadiumWeatherViewController: UIViewController {
         
         section.visibleItemsInvalidationHandler = { (items, offset, env) in
             let index = Int((offset.x / env.container.contentSize.width).rounded(.up))
-            print("--> \(index)")
+            //print("--> \(index)")
+            self.pageControl.currentPage = index
         }
 
         let layout = UICollectionViewCompositionalLayout(section: section)

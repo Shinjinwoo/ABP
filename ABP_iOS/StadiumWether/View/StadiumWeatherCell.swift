@@ -20,7 +20,6 @@ class StadiumWeatherCell: UICollectionViewCell {
         self.layer.cornerRadius = 16
     }
     
-    
     func configure(_ weatherItem: Weather) {
         baseTime.text = weatherItem.fcstTime
         temperatures.text = "기온 : \(weatherItem.weatherData.TMP)°C"

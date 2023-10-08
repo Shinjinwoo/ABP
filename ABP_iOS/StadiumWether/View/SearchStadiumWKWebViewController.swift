@@ -29,6 +29,9 @@ class SearchStadiumWKWebViewController: UIViewController {
     
     private func setWebView() {
         
+        
+        self.navigationController?.navigationBar.topItem?.title = "뒤로가기"
+       
         let preferences = WKPreferences()
         preferences.javaScriptCanOpenWindowsAutomatically = true
         
@@ -63,11 +66,11 @@ class SearchStadiumWKWebViewController: UIViewController {
     private func loadURL() {
         
         //운영
-        //let urlString = "https://searchaddress-eb99b.web.app/"
+        let urlString = "https://searchaddress-eb99b.web.app/"
         
         
         //개발
-        let urlString = "http://192.168.45.95:8080/examples/"
+        //let urlString = "http://192.168.45.95:8080/examples/"
         
         guard let url = URL(string: urlString) else { return }
         let request = URLRequest(url: url)
