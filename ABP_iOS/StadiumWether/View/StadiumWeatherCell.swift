@@ -10,7 +10,11 @@ import UIKit
 class StadiumWeatherCell: UICollectionViewCell {
     
     @IBOutlet weak var baseTime: UILabel!
- 
+    
+    @IBOutlet weak var weatherImage: UIImageView!
+    
+    @IBOutlet weak var temperatures: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         self.layer.cornerRadius = 16
@@ -19,7 +23,7 @@ class StadiumWeatherCell: UICollectionViewCell {
     
     func configure(_ weatherItem: Weather) {
         baseTime.text = convertTimeForKor(formatHHmmTime: weatherItem.fcstTime)
-
+        temperatures.text = "기온 : \(weatherItem.weatherData.TMP)°C"
     }
     
     

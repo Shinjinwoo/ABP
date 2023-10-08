@@ -98,6 +98,8 @@
                                                         <size key="customSize" width="160" height="288"/>
                                                         <connections>
                                                             <outlet property="baseTime" destination="Tek-ZK-c7s" id="SbS-RW-Mp1"/>
+                                                            <outlet property="temperatures" destination="dCf-ab-rY5" id="efA-4x-kPD"/>
+                                                            <outlet property="weatherImage" destination="fCH-uC-i1F" id="4vf-6T-WLX"/>
                                                         </connections>
                                                     </collectionViewCell>
                                                 </cells>
