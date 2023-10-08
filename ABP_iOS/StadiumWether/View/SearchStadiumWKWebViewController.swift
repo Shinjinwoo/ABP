@@ -11,6 +11,8 @@ import WebKit
 class SearchStadiumWKWebViewController: UIViewController {
     
     
+    let viewModel =  StadiumAddressViewModel()
+    
     var webView: WKWebView!
     
     override func loadView() {
@@ -126,13 +128,14 @@ extension SearchStadiumWKWebViewController: WKScriptMessageHandler {
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         
         if let rootViewController = navigationController?.viewControllers.first as? StadiumWeatherViewController {
-            rootViewController.serachContorllerPlaceholder = "호출ㅎㅎㅎ"
+            
+            guard let body = message.body as? [String: Any] else {
+                return
+            }
+            rootViewController.addressViewModel.setAddress(body: body)
         }
         
         self.navigationController?.popToRootViewController(animated: true)
-        
-        print(message.name)
-        print(message.body)
     }
 }
 

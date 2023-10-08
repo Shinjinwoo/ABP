@@ -14,6 +14,7 @@ class StadiumWeatherViewModel {
     var weatherItems: [WeatherItem]!
     
     @Published var items: [Weather]!
+    
     //@Published var selectedItem: Weather
     
     var currentTime:(currentDate:String,currentHour:String)!

@@ -28,7 +28,9 @@ class StadiumWeatherViewController: UIViewController {
     
     var subscriptions = Set<AnyCancellable>()
     var subscriptions2 = Set<AnyCancellable>()
-    var viewModel =  StadiumWeatherViewModel()
+    
+    let weatherViewModel =  StadiumWeatherViewModel()
+    let addressViewModel =  StadiumAddressViewModel()
     
     let network:Network = Network()
     var tableViewController:SearchStadiumLocationViewController! = nil
@@ -80,7 +82,7 @@ class StadiumWeatherViewController: UIViewController {
     }
     
     func bind() {
-        viewModel.$items
+        weatherViewModel.$items
             .receive(on: RunLoop.main)
             .sink { [unowned self] list in
                 if list != nil {
@@ -89,11 +91,18 @@ class StadiumWeatherViewController: UIViewController {
                 }
             }.store(in: &subscriptions)
         
-        $serachContorllerPlaceholder
+//        $serachContorllerPlaceholder
+//            .receive(on: RunLoop.main)
+//            .sink { value in
+//                print(value)
+//                //self.navigationItem.searchController?.searchBar.placeholder = value
+//            }.store(in: &subscriptions2)
+        
+        addressViewModel.$item
             .receive(on: RunLoop.main)
             .sink { value in
-                print(value)
-                self.navigationItem.searchController?.searchBar.placeholder = value
+                print(value?.jibunAddress)
+                self.navigationItem.searchController?.searchBar.placeholder = value?.jibunAddress
             }.store(in: &subscriptions2)
         
     }
@@ -229,7 +238,7 @@ extension StadiumWeatherViewController: CLLocationManagerDelegate {
         
         if ( isMoveCameraByLocate == true ) {
             mkMapViewCameraFector(latitude: latitude, longitude: longitude)
-            viewModel.requestWeatherAPI(latitude: latitude, longitude: longitude)
+            weatherViewModel.requestWeatherAPI(latitude: latitude, longitude: longitude)
         }
     }
     
@@ -301,7 +310,7 @@ extension StadiumWeatherViewController: UITableViewDelegate {
             
             isMoveCameraByLocate = false
             mkMapViewCameraFector(latitude: latitude, longitude: longitude)
-            viewModel.requestWeatherAPI(latitude: latitude, longitude: longitude)
+            weatherViewModel.requestWeatherAPI(latitude: latitude, longitude: longitude)
         }
     }
 }

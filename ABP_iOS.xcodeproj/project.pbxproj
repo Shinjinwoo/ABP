@@ -15,6 +15,8 @@
 		32D6DE6E2AD1B4A100385C55 /* SearchStadiumWKWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D6DE6D2AD1B4A100385C55 /* SearchStadiumWKWebViewController.swift */; };
 		32D6DE702AD1B4B400385C55 /* SearchStadiumWKWebViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32D6DE6F2AD1B4B400385C55 /* SearchStadiumWKWebViewController.storyboard */; };
 		32D6DE722AD2848100385C55 /* SendDataDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D6DE712AD2848100385C55 /* SendDataDelegate.swift */; };
+		32D6DE742AD28CC200385C55 /* AddressModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D6DE732AD28CC200385C55 /* AddressModel.swift */; };
+		32D6DE762AD28DD300385C55 /* StadiumAddressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D6DE752AD28DD300385C55 /* StadiumAddressViewModel.swift */; };
 		32D7243F2AC3F2CB005DDBBC /* LineupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D7243E2AC3F2CB005DDBBC /* LineupViewController.swift */; };
 		32D724412AC3F2E7005DDBBC /* LineupViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32D724402AC3F2E7005DDBBC /* LineupViewController.storyboard */; };
 		32D724432AC3F4B8005DDBBC /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D724422AC3F4B8005DDBBC /* TimerViewController.swift */; };
@@ -71,6 +73,8 @@
 		32D6DE6D2AD1B4A100385C55 /* SearchStadiumWKWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchStadiumWKWebViewController.swift; sourceTree = "<group>"; };
 		32D6DE6F2AD1B4B400385C55 /* SearchStadiumWKWebViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SearchStadiumWKWebViewController.storyboard; sourceTree = "<group>"; };
 		32D6DE712AD2848100385C55 /* SendDataDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendDataDelegate.swift; sourceTree = "<group>"; };
+		32D6DE732AD28CC200385C55 /* AddressModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressModel.swift; sourceTree = "<group>"; };
+		32D6DE752AD28DD300385C55 /* StadiumAddressViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StadiumAddressViewModel.swift; sourceTree = "<group>"; };
 		32D7243E2AC3F2CB005DDBBC /* LineupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineupViewController.swift; sourceTree = "<group>"; };
 		32D724402AC3F2E7005DDBBC /* LineupViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LineupViewController.storyboard; sourceTree = "<group>"; };
 		32D724422AC3F4B8005DDBBC /* TimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
@@ -341,6 +345,7 @@
 			isa = PBXGroup;
 			children = (
 				5E7A485E2ACD1DBC007F3312 /* WetherModel.swift */,
+				32D6DE732AD28CC200385C55 /* AddressModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -349,6 +354,7 @@
 			isa = PBXGroup;
 			children = (
 				5EC6CB352ACD61D20037F381 /* StadiumWeatherViewModel.swift */,
+				32D6DE752AD28DD300385C55 /* StadiumAddressViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -628,11 +634,13 @@
 				32E463442AC8DE59004E7D04 /* SearchStadiumLocationViewController.swift in Sources */,
 				5E47A79F2AC15D8400F67449 /* ABP_iOS.xcdatamodeld in Sources */,
 				5E47A7952AC15D8400F67449 /* AppDelegate.swift in Sources */,
+				32D6DE742AD28CC200385C55 /* AddressModel.swift in Sources */,
 				5E47A7CD2AC16D1C00F67449 /* RefereeCounterViewController.swift in Sources */,
 				5E7A485F2ACD1DBC007F3312 /* WetherModel.swift in Sources */,
 				5E47A7D72AC2CE7E00F67449 /* ScoreBoard.swift in Sources */,
 				32D724432AC3F4B8005DDBBC /* TimerViewController.swift in Sources */,
 				32D6DE6C2AD1366B00385C55 /* StadiumWeatherCell.swift in Sources */,
+				32D6DE762AD28DD300385C55 /* StadiumAddressViewModel.swift in Sources */,
 				32D6DE722AD2848100385C55 /* SendDataDelegate.swift in Sources */,
 				5E47A7D12AC174BD00F67449 /* StadiumWeatherViewController.swift in Sources */,
 				32D7243F2AC3F2CB005DDBBC /* LineupViewController.swift in Sources */,
