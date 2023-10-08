@@ -210,9 +210,29 @@ class StadiumWeatherViewModel {
             }
         }
         
+        for index in 0..<weatherItemModels.count {
+            weatherItemModels[index].fcstTime = convertToTimeForKor(formatHHmmTime: weatherItemModels[index].fcstTime) // 새로운 fcstTime 값으로 변경
+        }
+        
         print(weatherItemModels.first)
         //퍼블리싱
         items = weatherItemModels
+    }
+    
+    
+    func convertToTimeForKor(formatHHmmTime:String) ->String {
+        let inputFormatter = DateFormatter()
+        inputFormatter.dateFormat = "HHmm" // 입력 문자열의 포맷
+        let date = inputFormatter.date(from: formatHHmmTime)
+            // 출력 형식 지정
+        let outputFormatter = DateFormatter()
+        outputFormatter.dateFormat = "a h시"  // 원하는 출력 포맷 (AM/PM)
+        outputFormatter.locale = Locale(identifier: "ko_KR")
+            // Date를 문자열로 변환
+        let formattedTimeString = outputFormatter.string(from: date!)
+        
+        
+        return formattedTimeString
     }
     
     

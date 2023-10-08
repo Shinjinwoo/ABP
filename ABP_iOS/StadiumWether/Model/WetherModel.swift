@@ -46,7 +46,7 @@ struct WeatherItem: Codable {
 }
 
 struct Weather: Hashable,Codable {
-    let fcstTime: String
+    var fcstTime: String
     let fcstDate: String
     let weatherData: WeatherData
     //let fcstDate: String
