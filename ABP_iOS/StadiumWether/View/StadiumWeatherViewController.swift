@@ -8,17 +8,35 @@
 import UIKit
 import CoreLocation
 import MapKit
+import WebKit
 import Combine
+
 
 class StadiumWeatherViewController: UIViewController {
     
+    @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet var mkMapView: MKMapView!
-    let network:Network = Network()
-    let viewModel = StadiumWeatherViewModel()
-    var tableViewController:SearchStadiumLocationViewController! = nil
-    //let storyboarded = UIStoryboard(name: "SearchStadiumLocationViewController", bundle: nil)
-    let locationManager = CLLocationManager()
+    @IBOutlet weak var pageControl: UIPageControl!
+    
+    
+    let colors: [UIColor] = [.systemPurple, .systemOrange, .systemPink, .systemRed, .systemTeal]
+    
+    typealias Item = Weather
+    enum Section {
+        case main
+    }
+    
+    var dataSource: UICollectionViewDiffableDataSource<Section, Item>!
+    
     var subscriptions = Set<AnyCancellable>()
+    var subscriptions2 = Set<AnyCancellable>()
+    
+    let weatherViewModel =  StadiumWeatherViewModel()
+    let addressViewModel =  StadiumAddressViewModel()
+    
+    let network:Network = Network()
+    let locationManager = CLLocationManager()
+    
     var isMoveCameraByLocate = true
     
     
@@ -26,29 +44,80 @@ class StadiumWeatherViewController: UIViewController {
     private var searchRegion: MKCoordinateRegion = MKCoordinateRegion(MKMapRect.world)
     var completerResults: [MKLocalSearchCompletion]?
     
-    private var places: MKMapItem? {
-        didSet {
-            tableViewController.tableView.reloadData()
-        }
+    lazy var activityIndicator: UIActivityIndicatorView = { // indicator가 사용될 때까지 인스턴스를 생성하지 않도록 lazy로 선언
+        let activityIndicator = UIActivityIndicatorView()
+        activityIndicator.frame = collectionView.frame
+        activityIndicator.style = UIActivityIndicatorView.Style.large // indicator의 스타일 설정, large와 medium이 있음
+        activityIndicator.startAnimating() // indicator 실행
+        activityIndicator.isHidden = false
+        return activityIndicator
+    }()
+    
+    
+    override func loadView() {
+        super.loadView()
+        
     }
     
-    private var localSearch: MKLocalSearch? {
-        willSet {
-            // Clear the results and cancel the currently running local search before starting a new search.
-            places = nil
-            localSearch?.cancel()
-        }
-    }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setUpUI()
+        bind()
         mkMapViewConfigure()
         requestLocationPermission()
+        configureCollectionView()
+        
+        
         
         print("StadiumWetherViewController : viewDidLoad")
+    }
+    
+    func bind() {
+        weatherViewModel.$items
+            .receive(on: RunLoop.main)
+            .sink { [unowned self] list in
+                if list != nil {
+                    self.weatherSectionItems(list!)
+                    self.stopActivityIndicator()
+                }
+            }.store(in: &subscriptions)
+        
+//        $serachContorllerPlaceholder
+//            .receive(on: RunLoop.main)
+//            .sink { value in
+//                print(value)
+//                //self.navigationItem.searchController?.searchBar.placeholder = value
+//            }.store(in: &subscriptions2)
+        
+        addressViewModel.$item
+            .receive(on: RunLoop.main)
+            .sink { [unowned self] value in
+                if value != nil {
+                    self.navigationItem.searchController?.searchBar.placeholder = value!.jibunAddress
+                    self.mkMapViewCameraFector(latitude: value!.latitude, longitude: value!.longitude)
+                    weatherViewModel.requestWeatherAPI(latitude: value!.latitude, longitude: value!.longitude)
+                    self.startActivityIndicator()
+                }
+            }.store(in: &subscriptions2)
+    }
+    
+    func stopActivityIndicator() {
+        activityIndicator.stopAnimating() // indicator 종료
+    }
+    
+    func startActivityIndicator(){
+
+        activityIndicator.startAnimating()
+    }
+    
+    private func weatherSectionItems(_ items: [Item], to section: Section = .main) {
+        var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
+        snapshot.appendSections([section])
+        snapshot.appendItems(items, toSection: section)
+        dataSource.apply(snapshot)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -61,32 +130,91 @@ class StadiumWeatherViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         // 다음과 같이 뷰가 다 나타난 후에 화면전화를 진행해야한다.
-        
-        //현재 위치로 카메라 뷰 시작
     }
     
     
     private func setUpUI() {
         //self.navigationItem.title = "경기장 날씨검색"
-        let storyboard = UIStoryboard(name: "SearchStadiumLocationViewController", bundle: nil)
-        tableViewController = (storyboard.instantiateViewController(withIdentifier: "SearchStadiumLocationViewController") as! SearchStadiumLocationViewController)
-        tableViewController.tableView.delegate = self
         
-        let searchController = UISearchController(searchResultsController:tableViewController )
-        
+        let searchController = UISearchController(searchResultsController:nil )
         
         searchCompleter = MKLocalSearchCompleter()
-        searchCompleter?.delegate = self
         searchCompleter?.resultTypes = .address
         searchCompleter?.region = searchRegion
         
-        searchController.hidesNavigationBarDuringPresentation = false
         searchController.searchBar.placeholder = "주소 검색"
-        searchController.searchResultsUpdater = self
+        searchController.hidesNavigationBarDuringPresentation = false
         searchController.searchBar.delegate = self
+        
+        collectionView.addSubview(activityIndicator)
+        
+        pageControl.numberOfPages = 4
         
         self.navigationItem.searchController = searchController
     }
+    
+    
+    private func configureCollectionView() {
+        // presentation
+        dataSource = UICollectionViewDiffableDataSource<Section, Item>(collectionView: collectionView, cellProvider: { collectionView, indexPath, item in
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "StadiumWeatherCell", for: indexPath) as? StadiumWeatherCell else {
+                return nil
+            }
+            
+            cell.configure(item)
+
+            
+            let randomIndex = Int.random(in: 0..<self.colors.count)
+            cell.backgroundColor = UIColor.gray
+            
+            return cell
+        })
+        
+        
+        let layout = layout()
+        
+        
+        
+        collectionView.collectionViewLayout = layout
+        // layer
+        
+        
+        collectionView.delegate = self
+        
+
+        
+        
+        
+    }
+    
+    private func layout() -> UICollectionViewCompositionalLayout {
+
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), heightDimension: .fractionalHeight(1.0))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.8), heightDimension: .fractionalHeight(0.8))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        
+        
+        let spacing = CGFloat(10)
+        group.interItemSpacing = .fixed(spacing)
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.orthogonalScrollingBehavior = .groupPagingCentered
+        section.interGroupSpacing = 20
+
+        
+        section.visibleItemsInvalidationHandler = { (items, offset, env) in
+            let index = Int((offset.x / env.container.contentSize.width).rounded(.up))
+            //print("--> \(index)")
+            self.pageControl.currentPage = index
+        }
+
+        let layout = UICollectionViewCompositionalLayout(section: section)
+        return layout
+    }
+    
+    
     
     private func requestLocationPermission() {
         locationManager.delegate = self
@@ -94,20 +222,76 @@ class StadiumWeatherViewController: UIViewController {
         locationManager.requestWhenInUseAuthorization()
         locationManager.distanceFilter = 1000
         
-        DispatchQueue.global().async {
-            if CLLocationManager.locationServicesEnabled() {
-                print("위치 서비스 On 상태")
-                self.locationManager.startUpdatingLocation()
-                
-                print(self.locationManager.location?.coordinate.latitude as Any)
-                print(self.locationManager.location?.coordinate.longitude as Any)
-                
-            } else {
-                print("위치 서비스 Off 상태")
+        grantLocationPermission()
+    }
+    
+    private func grantLocationPermission() {
+        switch locationManager.authorizationStatus {
+        case .authorizedWhenInUse, .authorizedAlways:
+            DispatchQueue.global().async {
+                if CLLocationManager.locationServicesEnabled() {
+                    print("위치 서비스 On 상태")
+                    self.locationManager.startUpdatingLocation()
+                    
+                    print("latitude : \(self.locationManager.location?.coordinate.latitude as Any)")
+                    print("longitude : \(self.locationManager.location?.coordinate.longitude as Any)")
+                    
+                }
             }
+            
+        case .denied, .restricted:
+            print("위치 서비스 Off 상태")
+            // 위치 권한이 거부되었거나 제한되었을 때 처리할 작업을 수행합니다.
+        default:
+            break
+        }
+    }
+}
+
+//로케이션 정보 업데이트 시 표시
+extension StadiumWeatherViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        // the most recent location update is at the end of the array.
+        let location: CLLocation = locations[locations.count - 1]
+        let longitude: CLLocationDegrees = location.coordinate.longitude
+        let latitude:CLLocationDegrees = location.coordinate.latitude
+        
+        if ( isMoveCameraByLocate == true ) {
+            mkMapViewCameraFector(latitude: latitude, longitude: longitude)
+            weatherViewModel.requestWeatherAPI(latitude: latitude, longitude: longitude)
         }
     }
     
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        switch locationManager.authorizationStatus {
+        case .authorizedWhenInUse, .authorizedAlways:
+            DispatchQueue.global().async {
+                if CLLocationManager.locationServicesEnabled() {
+                    print("위치 서비스 On 상태")
+                    self.locationManager.startUpdatingLocation()
+                    
+                    print(self.locationManager.location?.coordinate.latitude as Any)
+                    print(self.locationManager.location?.coordinate.longitude as Any)
+                }
+            }
+            
+        case .denied, .restricted:
+            print("위치 서비스 Off 상태")
+            // 위치 권한이 거부되었거나 제한되었을 때 처리할 작업을 수행합니다.
+        default:
+            break
+        }
+    }
+}
+
+extension StadiumWeatherViewController:UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print(collectionView)
+    }
+}
+
+extension StadiumWeatherViewController: MKMapViewDelegate {
     private func mkMapViewConfigure() {
         mkMapView.preferredConfiguration = MKStandardMapConfiguration()
         // 줌 가능 여부
@@ -139,103 +323,9 @@ class StadiumWeatherViewController: UIViewController {
         
         mkMapView.setRegion(region, animated: true)
     }
-}
-
-
-//로케이션 정보 업데이트 시 표시
-extension StadiumWeatherViewController: CLLocationManagerDelegate {
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
-        // the most recent location update is at the end of the array.
-        let location: CLLocation = locations[locations.count - 1]
-        let longitude: CLLocationDegrees = location.coordinate.longitude
-        let latitude:CLLocationDegrees = location.coordinate.latitude
-        
-        if ( isMoveCameraByLocate == true ) {
-            mkMapViewCameraFector(latitude: latitude, longitude: longitude)
-            viewModel.requestWeatherAPI(latitude: latitude, longitude: longitude)
-        }
-    }
-}
-
-
-extension StadiumWeatherViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let suggestion = completerResults?[indexPath.row] {
-            search(for: suggestion)
-            
-            navigationItem.searchController?.searchBar.placeholder = suggestion.title
-        }
-    }
-    
-    private func search(for suggestedCompletion: MKLocalSearchCompletion) {
-        let searchRequest = MKLocalSearch.Request(completion: suggestedCompletion)
-        search(using: searchRequest)
-    }
-    
-    private func search(using searchRequest: MKLocalSearch.Request) {
-        // 검색 지역 설정
-        searchRequest.region = searchRegion
-        
-        // 검색 유형 설정
-        searchRequest.resultTypes = .pointOfInterest
-        // MKLocalSearch 생성
-        localSearch = MKLocalSearch(request: searchRequest)
-        // 비동기로 검색 실행
-        localSearch?.start { [unowned self] (response, error) in
-            guard error == nil else {
-                return
-            }
-            // 검색한 결과 : reponse의 mapItems 값을 가져온다.
-            self.places = response?.mapItems[0]
-            
-            print(places?.placemark.coordinate) // 위경도 가져옴
-            
-            let latitude: Double = Double((places?.placemark.coordinate.latitude)!)
-            let longitude: Double = Double((places?.placemark.coordinate.longitude)!)
-            
-            navigationItem.searchController?.isActive = false
-            
-            isMoveCameraByLocate = false
-            mkMapViewCameraFector(latitude: latitude, longitude: longitude)
-            viewModel.requestWeatherAPI(latitude: latitude, longitude: longitude)
-        }
-    }
-}
-
-
-
-extension StadiumWeatherViewController: MKMapViewDelegate {
     
 }
 
-extension StadiumWeatherViewController: MKLocalSearchCompleterDelegate {
-    func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
-        completerResults = completer.results
-        
-        print(completerResults)
-        
-        tableViewController.completerResults = completerResults
-        tableViewController.tableView.reloadData()
-    }
-    
-    func completer(_ completer: MKLocalSearchCompleter, didFailWithError error: Error) {
-        if let error = error as NSError? {
-            print("MKLocalSearchCompleter encountered an error: \(error.localizedDescription). The query fragment is: \"\(completer.queryFragment)\"")
-        }
-    }
-}
-
-extension StadiumWeatherViewController: UISearchResultsUpdating {
-    func updateSearchResults(for searchController: UISearchController) {
-        let keyword = searchController.searchBar.text!
-        
-        if keyword == "" {
-            completerResults = nil
-        }
-        searchCompleter?.queryFragment = keyword
-    }
-}
 
 extension StadiumWeatherViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -246,6 +336,17 @@ extension StadiumWeatherViewController: UISearchBarDelegate {
             completerResults = nil
         }
         searchCompleter?.queryFragment = keyword
+    }
+    
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
         
+        let storyboard = UIStoryboard(name: "StadiumWeatherViewController", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "SearchStadiumWKWebViewController") as! SearchStadiumWKWebViewController
+        
+        self.navigationController?.pushViewController(vc, animated: true)
+        
+        return true
     }
 }
+
+
