@@ -181,8 +181,6 @@
 		32C5BDD32AC64099007E7D4E /* StadiumWether */ = {
 			isa = PBXGroup;
 			children = (
-				5E9C6E782AD52AF400B8621A /* DetailStadiumWether */,
-				5E9C6E732AD52A1800B8621A /* SearchStadium */,
 				5EC6CB342ACD61B80037F381 /* ViewModel */,
 				32C5BDD62AC640C8007E7D4E /* View */,
 				5E7A48602ACD32D6007F3312 /* Model */,
@@ -193,9 +191,13 @@
 		32C5BDD62AC640C8007E7D4E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				32D6DE6D2AD1B4A100385C55 /* SearchStadiumWKWebViewController.swift */,
+				32D6DE6F2AD1B4B400385C55 /* SearchStadiumWKWebViewController.storyboard */,
 				5E47A7D02AC174BD00F67449 /* StadiumWeatherViewController.swift */,
 				5E47A7D22AC174D500F67449 /* StadiumWeatherViewController.storyboard */,
 				32D6DE6B2AD1366B00385C55 /* StadiumWeatherCell.swift */,
+				5E9C6E792AD52B4E00B8621A /* DetailStadiumWetherViewController.swift */,
+				5E9C6E7C2AD52B8000B8621A /* DetailStadiumWetherViewController.swift.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -339,66 +341,16 @@
 		5E7A48602ACD32D6007F3312 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				32D6DE732AD28CC200385C55 /* AddressModel.swift */,
 				5E7A485E2ACD1DBC007F3312 /* WetherModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
 		};
-		5E9C6E732AD52A1800B8621A /* SearchStadium */ = {
-			isa = PBXGroup;
-			children = (
-				5E9C6E742AD52A4600B8621A /* ViewModel */,
-				5E9C6E752AD52A5000B8621A /* View */,
-				5E9C6E772AD52ABF00B8621A /* Model */,
-			);
-			path = SearchStadium;
-			sourceTree = "<group>";
-		};
-		5E9C6E742AD52A4600B8621A /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				32D6DE752AD28DD300385C55 /* StadiumAddressViewModel.swift */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		5E9C6E752AD52A5000B8621A /* View */ = {
-			isa = PBXGroup;
-			children = (
-				32D6DE6D2AD1B4A100385C55 /* SearchStadiumWKWebViewController.swift */,
-				32D6DE6F2AD1B4B400385C55 /* SearchStadiumWKWebViewController.storyboard */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		5E9C6E772AD52ABF00B8621A /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				32D6DE732AD28CC200385C55 /* AddressModel.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		5E9C6E782AD52AF400B8621A /* DetailStadiumWether */ = {
-			isa = PBXGroup;
-			children = (
-				5E9C6E7B2AD52B6700B8621A /* View */,
-			);
-			path = DetailStadiumWether;
-			sourceTree = "<group>";
-		};
-		5E9C6E7B2AD52B6700B8621A /* View */ = {
-			isa = PBXGroup;
-			children = (
-				5E9C6E792AD52B4E00B8621A /* DetailStadiumWetherViewController.swift */,
-				5E9C6E7C2AD52B8000B8621A /* DetailStadiumWetherViewController.swift.storyboard */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		5EC6CB342ACD61B80037F381 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				32D6DE752AD28DD300385C55 /* StadiumAddressViewModel.swift */,
 				5EC6CB352ACD61D20037F381 /* StadiumWeatherViewModel.swift */,
 			);
 			path = ViewModel;
