@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Map view configurations" minToolsVersion="14.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -30,7 +31,7 @@
                                         <rect key="frame" x="0.0" y="333" width="393" height="333"/>
                                         <subviews>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="bJe-mw-28b">
-                                                <rect key="frame" x="0.0" y="5" width="393" height="292.33333333333331"/>
+                                                <rect key="frame" x="0.0" y="20" width="393" height="280.33333333333331"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="xh4-17-fTd">
                                                     <size key="itemSize" width="160" height="288"/>
@@ -53,13 +54,7 @@
                                                                         <constraint firstAttribute="height" constant="30" id="kMG-Ke-1Jm"/>
                                                                     </constraints>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                    <nil key="textColor"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="상세보기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H2y-1D-oVG">
-                                                                    <rect key="frame" x="50.666666666666657" y="247.66666666666666" width="59" height="20.333333333333343"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                    <nil key="textColor"/>
+                                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="맑음" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mFJ-X4-ns3">
@@ -68,23 +63,30 @@
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cloud.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="fCH-uC-i1F">
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fCH-uC-i1F">
                                                                     <rect key="frame" x="42.666666666666657" y="32.666666666666657" width="75" height="70"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="75" id="7aS-qk-X5Z"/>
                                                                         <constraint firstAttribute="width" constant="75" id="NoJ-XX-QNi"/>
                                                                     </constraints>
+                                                                    <imageReference key="image" image="cloud.fill" catalog="system" renderingMode="original"/>
                                                                 </imageView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="기온" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dCf-ab-rY5">
-                                                                    <rect key="frame" x="65.333333333333329" y="145.33333333333334" width="29.666666666666671" height="20.333333333333343"/>
+                                                                    <rect key="frame" x="61" y="145.33333333333334" width="38.333333333333343" height="26.333333333333343"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                                    <color key="textColor" systemColor="systemRedColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="상세보기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H2y-1D-oVG">
+                                                                    <rect key="frame" x="50.666666666666657" y="257.66666666666669" width="59" height="20.333333333333314"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                    <nil key="textColor"/>
+                                                                    <color key="textColor" systemColor="linkColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                             </subviews>
                                                             <constraints>
                                                                 <constraint firstItem="dCf-ab-rY5" firstAttribute="centerX" secondItem="kgq-7l-X92" secondAttribute="centerX" id="8Xh-pa-qWp"/>
-                                                                <constraint firstAttribute="bottom" secondItem="H2y-1D-oVG" secondAttribute="bottom" constant="20" id="Ciw-zW-Z9I"/>
+                                                                <constraint firstAttribute="bottom" secondItem="H2y-1D-oVG" secondAttribute="bottom" constant="10" id="Ciw-zW-Z9I"/>
                                                                 <constraint firstItem="Tek-ZK-c7s" firstAttribute="top" secondItem="kgq-7l-X92" secondAttribute="top" id="Gb0-dY-jJm"/>
                                                                 <constraint firstItem="Tek-ZK-c7s" firstAttribute="centerX" secondItem="kgq-7l-X92" secondAttribute="centerX" id="LP2-6W-ysN"/>
                                                                 <constraint firstItem="H2y-1D-oVG" firstAttribute="centerX" secondItem="kgq-7l-X92" secondAttribute="centerX" id="Y9N-UX-cc5"/>
@@ -97,8 +99,9 @@
                                                         </collectionViewCellContentView>
                                                         <size key="customSize" width="160" height="288"/>
                                                         <connections>
-                                                            <outlet property="baseTime" destination="Tek-ZK-c7s" id="SbS-RW-Mp1"/>
-                                                            <outlet property="temperatures" destination="dCf-ab-rY5" id="efA-4x-kPD"/>
+                                                            <outlet property="baseTimeLabel" destination="Tek-ZK-c7s" id="SbS-RW-Mp1"/>
+                                                            <outlet property="summaryLabel" destination="mFJ-X4-ns3" id="N7i-B4-2xm"/>
+                                                            <outlet property="temperaturesLabel" destination="dCf-ab-rY5" id="efA-4x-kPD"/>
                                                             <outlet property="weatherImage" destination="fCH-uC-i1F" id="4vf-6T-WLX"/>
                                                         </connections>
                                                     </collectionViewCell>
@@ -112,8 +115,8 @@
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="bJe-mw-28b" secondAttribute="trailing" id="1L9-2H-8KA"/>
                                             <constraint firstItem="leh-T5-pnz" firstAttribute="centerX" secondItem="qRT-DJ-dEg" secondAttribute="centerX" id="D77-We-5iP"/>
-                                            <constraint firstItem="bJe-mw-28b" firstAttribute="bottom" secondItem="leh-T5-pnz" secondAttribute="top" constant="5" id="F8u-xW-Czj"/>
-                                            <constraint firstItem="bJe-mw-28b" firstAttribute="top" secondItem="qRT-DJ-dEg" secondAttribute="top" constant="5" id="Hkc-s8-Ab1"/>
+                                            <constraint firstItem="bJe-mw-28b" firstAttribute="bottom" secondItem="leh-T5-pnz" secondAttribute="top" constant="8" symbolic="YES" id="F8u-xW-Czj"/>
+                                            <constraint firstItem="bJe-mw-28b" firstAttribute="top" secondItem="qRT-DJ-dEg" secondAttribute="top" constant="20" id="Hkc-s8-Ab1"/>
                                             <constraint firstItem="bJe-mw-28b" firstAttribute="leading" secondItem="qRT-DJ-dEg" secondAttribute="leading" id="bXV-Da-6yZ"/>
                                             <constraint firstAttribute="bottom" secondItem="leh-T5-pnz" secondAttribute="bottom" constant="15" id="im2-Oz-Cls"/>
                                         </constraints>
@@ -174,8 +177,14 @@
     <resources>
         <image name="cloud" catalog="system" width="128" height="87"/>
         <image name="cloud.fill" catalog="system" width="128" height="87"/>
+        <systemColor name="linkColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

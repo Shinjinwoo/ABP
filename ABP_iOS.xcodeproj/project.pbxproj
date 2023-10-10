@@ -66,7 +66,7 @@
 		32C5BDEC2AC79AB9007E7D4E /* NMapsMap.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = NMapsMap.xcframework; path = Pods/NMapsMap/framework/NMapsMap.xcframework; sourceTree = "<group>"; };
 		32C5BDF02AC79B80007E7D4E /* Bundle+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extensions.swift"; sourceTree = "<group>"; };
 		32C5BDF22AC7B3DB007E7D4E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		32D6DE6B2AD1366B00385C55 /* StadiumWeatherCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StadiumWeatherCell.swift; sourceTree = "<group>"; };
+		32D6DE6B2AD1366B00385C55 /* StadiumWeatherCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StadiumWeatherCell.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		32D6DE6D2AD1B4A100385C55 /* SearchStadiumWKWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchStadiumWKWebViewController.swift; sourceTree = "<group>"; };
 		32D6DE6F2AD1B4B400385C55 /* SearchStadiumWKWebViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SearchStadiumWKWebViewController.storyboard; sourceTree = "<group>"; };
 		32D6DE712AD2848100385C55 /* SendDataDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendDataDelegate.swift; sourceTree = "<group>"; };

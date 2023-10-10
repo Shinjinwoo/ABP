@@ -163,8 +163,6 @@ class StadiumWeatherViewController: UIViewController {
             
             cell.configure(item)
 
-            
-            let randomIndex = Int.random(in: 0..<self.colors.count)
             cell.backgroundColor = UIColor.gray
             
             return cell
