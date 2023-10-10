@@ -4,30 +4,31 @@
 <dict>
 	<key>NSAppTransportSecurity</key>
 	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
 		<key>NSExceptionDomains</key>
 		<dict>
 			<key>https://apis.data.go.kr</key>
 			<dict>
+				<key>NSExceptionAllowInsecureHTTPLoads</key>
+				<true/>
 				<key>NSIncludesSubdomains</key>
 				<true/>
-				<key>NSExceptionAllowInsecureHTTPLoads</key>
+			</dict>
+			<key>https://searchaddress-eb99b.web.app</key>
+			<dict>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+				<key>NSIncludesSubdomains</key>
 				<true/>
 			</dict>
 		</dict>
-		<key>NSAllowsArbitraryLoads</key>
-		<true/>
 	</dict>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>위치정보 권한 요청</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>위치정보 권한 요청</string>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>위치정보 권한 요청</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
-		<key>UIApplicationSupportsTabbedSceneCollection</key>
-		<false/>
 		<key>UIApplicationSupportsMultipleScenes</key>
+		<false/>
+		<key>UIApplicationSupportsTabbedSceneCollection</key>
 		<false/>
 		<key>UISceneConfigurations</key>
 		<dict>
