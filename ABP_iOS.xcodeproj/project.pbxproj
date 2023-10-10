@@ -12,7 +12,7 @@
 		32C5BDF12AC79B80007E7D4E /* Bundle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C5BDF02AC79B80007E7D4E /* Bundle+Extensions.swift */; };
 		32C5BDF32AC7B3DB007E7D4E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32C5BDF22AC7B3DB007E7D4E /* CoreLocation.framework */; };
 		32D6DE6C2AD1366B00385C55 /* StadiumWeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D6DE6B2AD1366B00385C55 /* StadiumWeatherCell.swift */; };
-		32D6DE6E2AD1B4A100385C55 /* SearchStadiumWKWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D6DE6D2AD1B4A100385C55 /* SearchStadiumWKWebViewController.swift */; };
+		32D6DE6E2AD1B4A100385C55 /* SearchAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D6DE6D2AD1B4A100385C55 /* SearchAddressViewController.swift */; };
 		32D6DE702AD1B4B400385C55 /* SearchStadiumWKWebViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32D6DE6F2AD1B4B400385C55 /* SearchStadiumWKWebViewController.storyboard */; };
 		32D6DE722AD2848100385C55 /* SendDataDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D6DE712AD2848100385C55 /* SendDataDelegate.swift */; };
 		32D6DE742AD28CC200385C55 /* AddressModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D6DE732AD28CC200385C55 /* AddressModel.swift */; };
@@ -69,7 +69,7 @@
 		32C5BDF02AC79B80007E7D4E /* Bundle+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extensions.swift"; sourceTree = "<group>"; };
 		32C5BDF22AC7B3DB007E7D4E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		32D6DE6B2AD1366B00385C55 /* StadiumWeatherCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StadiumWeatherCell.swift; sourceTree = "<group>"; wrapsLines = 0; };
-		32D6DE6D2AD1B4A100385C55 /* SearchStadiumWKWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchStadiumWKWebViewController.swift; sourceTree = "<group>"; };
+		32D6DE6D2AD1B4A100385C55 /* SearchAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAddressViewController.swift; sourceTree = "<group>"; };
 		32D6DE6F2AD1B4B400385C55 /* SearchStadiumWKWebViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SearchStadiumWKWebViewController.storyboard; sourceTree = "<group>"; };
 		32D6DE712AD2848100385C55 /* SendDataDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendDataDelegate.swift; sourceTree = "<group>"; };
 		32D6DE732AD28CC200385C55 /* AddressModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressModel.swift; sourceTree = "<group>"; };
@@ -191,7 +191,7 @@
 		32C5BDD62AC640C8007E7D4E /* View */ = {
 			isa = PBXGroup;
 			children = (
-				32D6DE6D2AD1B4A100385C55 /* SearchStadiumWKWebViewController.swift */,
+				32D6DE6D2AD1B4A100385C55 /* SearchAddressViewController.swift */,
 				32D6DE6F2AD1B4B400385C55 /* SearchStadiumWKWebViewController.storyboard */,
 				5E47A7D02AC174BD00F67449 /* StadiumWeatherViewController.swift */,
 				5E47A7D22AC174D500F67449 /* StadiumWeatherViewController.storyboard */,
@@ -643,7 +643,7 @@
 				32D7244F2AC3FBC1005DDBBC /* UIViewController+Extensions.swift in Sources */,
 				5E9C6E7A2AD52B4E00B8621A /* DetailStadiumWetherViewController.swift in Sources */,
 				5EC6CB362ACD61D20037F381 /* StadiumWeatherViewModel.swift in Sources */,
-				32D6DE6E2AD1B4A100385C55 /* SearchStadiumWKWebViewController.swift in Sources */,
+				32D6DE6E2AD1B4A100385C55 /* SearchAddressViewController.swift in Sources */,
 				5E47A7972AC15D8400F67449 /* SceneDelegate.swift in Sources */,
 				5E7A485D2ACD143C007F3312 /* Network.swift in Sources */,
 				32C5BDF12AC79B80007E7D4E /* Bundle+Extensions.swift in Sources */,

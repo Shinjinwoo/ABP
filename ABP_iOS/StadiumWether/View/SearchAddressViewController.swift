@@ -8,7 +8,7 @@
 import UIKit
 import WebKit
 
-class SearchStadiumWKWebViewController: UIViewController {
+class SearchAddressViewController: UIViewController {
     
     
     let viewModel =  StadiumAddressViewModel()
@@ -78,7 +78,7 @@ class SearchStadiumWKWebViewController: UIViewController {
     }
 }
 
-extension SearchStadiumWKWebViewController: WKNavigationDelegate {
+extension SearchAddressViewController: WKNavigationDelegate {
     
     public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         
@@ -88,7 +88,7 @@ extension SearchStadiumWKWebViewController: WKNavigationDelegate {
     }
 }
 
-extension SearchStadiumWKWebViewController: WKUIDelegate {
+extension SearchAddressViewController: WKUIDelegate {
     func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
         
         if navigationAction.targetFrame == nil {
@@ -126,7 +126,7 @@ extension SearchStadiumWKWebViewController: WKUIDelegate {
     }
 }
 
-extension SearchStadiumWKWebViewController: WKScriptMessageHandler {
+extension SearchAddressViewController: WKScriptMessageHandler {
     
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         
