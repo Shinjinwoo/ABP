@@ -71,7 +71,6 @@ class StadiumWeatherViewController: UIViewController {
         configureCollectionView()
         
         
-        
         print("StadiumWetherViewController : viewDidLoad")
     }
     
@@ -85,21 +84,23 @@ class StadiumWeatherViewController: UIViewController {
                 }
             }.store(in: &subscriptions)
         
-//        $serachContorllerPlaceholder
-//            .receive(on: RunLoop.main)
-//            .sink { value in
-//                print(value)
-//                //self.navigationItem.searchController?.searchBar.placeholder = value
-//            }.store(in: &subscriptions2)
+        weatherViewModel.$errorFlag
+            .receive(on: RunLoop.main)
+            .sink { weatherItem in
+                if weatherItem != nil {
+                    
+                    let alert = UIAlertController(title: "기상 API 통신에러", message: "통신 에러입니다.", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "확인", style: .cancel, handler: { _ in  }))
+                    
+                    self.present(alert, animated: true)
+                    self.stopActivityIndicator()
+                }
+            }.store(in: &subscriptions)
         
         weatherViewModel.$selectedItem
             .receive(on: RunLoop.main)
             .sink { weatherItem in
                 if weatherItem != nil {
-//                    let sb = UIStoryboard(name: "Detail", bundle: nil)
-//                    let vc = sb.instantiateViewController(withIdentifier: "FrameworkDetailViewController") as! FrameworkDetailViewController
-//                    vc.viewModel = FrameworkDetailViewModel(framework: framework)
-//                    self.present(vc, animated: true)
                     
                     let storyboard = UIStoryboard(name: "StadiumWeatherViewController", bundle: nil)
                     let vc = storyboard.instantiateViewController(withIdentifier: "SearchStadiumWKWebViewController") as! SearchStadiumWKWebViewController

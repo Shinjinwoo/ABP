@@ -15,6 +15,7 @@ class StadiumWeatherViewModel {
     
     @Published var items: [Weather]!
     @Published var selectedItem: Weather!
+    @Published var errorFlag: Error!
     
     var currentTime:(currentDate:String,currentHour:String)!
     
@@ -23,11 +24,11 @@ class StadiumWeatherViewModel {
         let grid = convertToWeatherGrid(latitude: latitude, longitude: longitude)
         self.currentTime = getCurrentTimeForWeaterAPI()
         
-        let baseUrl = "https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst"
+        let baseUrl = "https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst111"
         let parameters =  [
             "serviceKey": Bundle.main.WEATER_API_KEY,
             "pageNo": "1",
-            "numOfRows": "150",
+            "numOfRows": "120",
             "dataType": "JSON",
             "base_date": self.currentTime.currentDate,
             "base_time": self.currentTime.currentHour,
@@ -43,10 +44,8 @@ class StadiumWeatherViewModel {
                         switch statusCode {
                         case 200..<300 :
                             print("Success - Status Code: \(statusCode)")
+                            
                             self.weatherItems = value.response.body.items.item
-                            
-                            //print("Success - Response Value: \(self.weatherItems!)")
-                            
                             self.publishedWeatherInfo(targetBaseDate: self.currentTime.currentDate)
                             
                         case 400..<500:
@@ -63,7 +62,8 @@ class StadiumWeatherViewModel {
                         }
                     }
                 case .failure(let error):
-                    print("요청 실패: \(error)")
+                    print("요청 실패: \(error.localizedDescription)")
+                    self.errorFlag = error
                 }
             }
     }
@@ -72,8 +72,7 @@ class StadiumWeatherViewModel {
         let item = items[indexPath.item]
         selectedItem = item
         
-        
-        print(selectedItem)
+        print(selectedItem!)
     }
     
     
