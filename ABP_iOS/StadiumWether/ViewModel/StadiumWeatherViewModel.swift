@@ -24,7 +24,7 @@ class StadiumWeatherViewModel {
         let grid = convertToWeatherGrid(latitude: latitude, longitude: longitude)
         self.currentTime = getCurrentTimeForWeaterAPI()
         
-        let baseUrl = "https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst111"
+        let baseUrl = "https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst"
         let parameters =  [
             "serviceKey": Bundle.main.WEATER_API_KEY,
             "pageNo": "1",

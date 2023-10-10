@@ -13,7 +13,7 @@
 		32C5BDF32AC7B3DB007E7D4E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32C5BDF22AC7B3DB007E7D4E /* CoreLocation.framework */; };
 		32D6DE6C2AD1366B00385C55 /* StadiumWeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D6DE6B2AD1366B00385C55 /* StadiumWeatherCell.swift */; };
 		32D6DE6E2AD1B4A100385C55 /* SearchAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D6DE6D2AD1B4A100385C55 /* SearchAddressViewController.swift */; };
-		32D6DE702AD1B4B400385C55 /* SearchStadiumWKWebViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32D6DE6F2AD1B4B400385C55 /* SearchStadiumWKWebViewController.storyboard */; };
+		32D6DE702AD1B4B400385C55 /* SearchAddressViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32D6DE6F2AD1B4B400385C55 /* SearchAddressViewController.storyboard */; };
 		32D6DE722AD2848100385C55 /* SendDataDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D6DE712AD2848100385C55 /* SendDataDelegate.swift */; };
 		32D6DE742AD28CC200385C55 /* AddressModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D6DE732AD28CC200385C55 /* AddressModel.swift */; };
 		32D6DE762AD28DD300385C55 /* StadiumAddressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D6DE752AD28DD300385C55 /* StadiumAddressViewModel.swift */; };
@@ -70,7 +70,7 @@
 		32C5BDF22AC7B3DB007E7D4E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		32D6DE6B2AD1366B00385C55 /* StadiumWeatherCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StadiumWeatherCell.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		32D6DE6D2AD1B4A100385C55 /* SearchAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAddressViewController.swift; sourceTree = "<group>"; };
-		32D6DE6F2AD1B4B400385C55 /* SearchStadiumWKWebViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SearchStadiumWKWebViewController.storyboard; sourceTree = "<group>"; };
+		32D6DE6F2AD1B4B400385C55 /* SearchAddressViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SearchAddressViewController.storyboard; sourceTree = "<group>"; };
 		32D6DE712AD2848100385C55 /* SendDataDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendDataDelegate.swift; sourceTree = "<group>"; };
 		32D6DE732AD28CC200385C55 /* AddressModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressModel.swift; sourceTree = "<group>"; };
 		32D6DE752AD28DD300385C55 /* StadiumAddressViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StadiumAddressViewModel.swift; sourceTree = "<group>"; };
@@ -192,7 +192,7 @@
 			isa = PBXGroup;
 			children = (
 				32D6DE6D2AD1B4A100385C55 /* SearchAddressViewController.swift */,
-				32D6DE6F2AD1B4B400385C55 /* SearchStadiumWKWebViewController.storyboard */,
+				32D6DE6F2AD1B4B400385C55 /* SearchAddressViewController.storyboard */,
 				5E47A7D02AC174BD00F67449 /* StadiumWeatherViewController.swift */,
 				5E47A7D22AC174D500F67449 /* StadiumWeatherViewController.storyboard */,
 				32D6DE6B2AD1366B00385C55 /* StadiumWeatherCell.swift */,
@@ -495,7 +495,7 @@
 				5E47A7D32AC174D500F67449 /* StadiumWeatherViewController.storyboard in Resources */,
 				5E47A7D52AC174FC00F67449 /* RefereeCounterViewController.storyboard in Resources */,
 				3219EA652ACD7CEE00E8C0D2 /* API-KEY.plist in Resources */,
-				32D6DE702AD1B4B400385C55 /* SearchStadiumWKWebViewController.storyboard in Resources */,
+				32D6DE702AD1B4B400385C55 /* SearchAddressViewController.storyboard in Resources */,
 				5E9C6E7D2AD52B8000B8621A /* DetailStadiumWetherViewController.swift.storyboard in Resources */,
 				32D724452AC3F4C6005DDBBC /* TimerViewController.storyboard in Resources */,
 				32D724412AC3F2E7005DDBBC /* LineupViewController.storyboard in Resources */,

@@ -102,8 +102,8 @@ class StadiumWeatherViewController: UIViewController {
             .sink { weatherItem in
                 if weatherItem != nil {
                     
-                    let storyboard = UIStoryboard(name: "StadiumWeatherViewController", bundle: nil)
-                    let vc = storyboard.instantiateViewController(withIdentifier: "SearchStadiumWKWebViewController") as! SearchAddressViewController
+                    let storyboard = UIStoryboard(name: "DetailStadiumWetherViewController", bundle: nil)
+                    let vc = storyboard.instantiateViewController(withIdentifier: "DetailStadiumWetherViewController") as! DetailStadiumWetherViewController
                     
                     //self.navigationController?.pushViewController(vc, animated: true)
                     self.present(vc, animated: true)
@@ -341,8 +341,8 @@ extension StadiumWeatherViewController: UISearchBarDelegate {
     
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
         
-        let storyboard = UIStoryboard(name: "StadiumWeatherViewController", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "SearchStadiumWKWebViewController") as! SearchAddressViewController
+        let storyboard = UIStoryboard(name: "SearchAddressViewController", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "SearchAddressViewController") as! SearchAddressViewController
         
         self.navigationController?.pushViewController(vc, animated: true)
         
