@@ -92,6 +92,23 @@ class StadiumWeatherViewController: UIViewController {
 //                //self.navigationItem.searchController?.searchBar.placeholder = value
 //            }.store(in: &subscriptions2)
         
+        weatherViewModel.$selectedItem
+            .receive(on: RunLoop.main)
+            .sink { weatherItem in
+                if weatherItem != nil {
+//                    let sb = UIStoryboard(name: "Detail", bundle: nil)
+//                    let vc = sb.instantiateViewController(withIdentifier: "FrameworkDetailViewController") as! FrameworkDetailViewController
+//                    vc.viewModel = FrameworkDetailViewModel(framework: framework)
+//                    self.present(vc, animated: true)
+                    
+                    let storyboard = UIStoryboard(name: "StadiumWeatherViewController", bundle: nil)
+                    let vc = storyboard.instantiateViewController(withIdentifier: "SearchStadiumWKWebViewController") as! SearchStadiumWKWebViewController
+                    
+                    //self.navigationController?.pushViewController(vc, animated: true)
+                    self.present(vc, animated: true)
+                }
+            }.store(in: &subscriptions)
+        
         addressViewModel.$item
             .receive(on: RunLoop.main)
             .sink { [unowned self] value in
@@ -170,19 +187,9 @@ class StadiumWeatherViewController: UIViewController {
         
         
         let layout = layout()
-        
-        
-        
         collectionView.collectionViewLayout = layout
         // layer
-        
-        
         collectionView.delegate = self
-        
-
-        
-        
-        
     }
     
     private func layout() -> UICollectionViewCompositionalLayout {
@@ -285,7 +292,8 @@ extension StadiumWeatherViewController: CLLocationManagerDelegate {
 
 extension StadiumWeatherViewController:UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(collectionView)
+        
+        weatherViewModel.didSelect(at: indexPath)
     }
 }
 
@@ -327,13 +335,7 @@ extension StadiumWeatherViewController: MKMapViewDelegate {
 
 extension StadiumWeatherViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        guard let keyword = searchBar.text, !keyword.isEmpty else { return }
-        print(keyword)
-        
-        if keyword == "" {
-            completerResults = nil
-        }
-        searchCompleter?.queryFragment = keyword
+
     }
     
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {

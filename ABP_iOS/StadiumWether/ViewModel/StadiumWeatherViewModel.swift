@@ -14,8 +14,7 @@ class StadiumWeatherViewModel {
     var weatherItems: [WeatherItem]!
     
     @Published var items: [Weather]!
-    
-    //@Published var selectedItem: Weather
+    @Published var selectedItem: Weather!
     
     var currentTime:(currentDate:String,currentHour:String)!
     
@@ -28,7 +27,7 @@ class StadiumWeatherViewModel {
         let parameters =  [
             "serviceKey": Bundle.main.WEATER_API_KEY,
             "pageNo": "1",
-            "numOfRows": "100",
+            "numOfRows": "150",
             "dataType": "JSON",
             "base_date": self.currentTime.currentDate,
             "base_time": self.currentTime.currentHour,
@@ -67,6 +66,14 @@ class StadiumWeatherViewModel {
                     print("요청 실패: \(error)")
                 }
             }
+    }
+    
+    func didSelect(at indexPath: IndexPath) {
+        let item = items[indexPath.item]
+        selectedItem = item
+        
+        
+        print(selectedItem)
     }
     
     
@@ -214,7 +221,7 @@ class StadiumWeatherViewModel {
             weatherItemModels[index].fcstTime = convertToTimeForKor(formatHHmmTime: weatherItemModels[index].fcstTime) // 새로운 fcstTime 값으로 변경
         }
         
-        print(weatherItemModels.first)
+        print(weatherItemModels.last)
         //퍼블리싱
         items = weatherItemModels
     }
