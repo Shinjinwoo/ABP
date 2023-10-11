@@ -199,9 +199,9 @@ class StadiumWeatherViewController: UIViewController {
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.8), heightDimension: .fractionalHeight(0.8))
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, repeatingSubitem: item, count: 2)
         
-        
+    
         let spacing = CGFloat(10)
         group.interItemSpacing = .fixed(spacing)
         
@@ -209,7 +209,6 @@ class StadiumWeatherViewController: UIViewController {
         section.orthogonalScrollingBehavior = .groupPagingCentered
         section.interGroupSpacing = 20
 
-        
         section.visibleItemsInvalidationHandler = { (items, offset, env) in
             let index = Int((offset.x / env.container.contentSize.width).rounded(.up))
             //print("--> \(index)")
