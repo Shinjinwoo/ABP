@@ -103,7 +103,12 @@ class StadiumWeatherViewController: UIViewController {
                 if weatherItem != nil {
                     
                     let storyboard = UIStoryboard(name: "DetailStadiumWetherViewController", bundle: nil)
-                    let vc = storyboard.instantiateViewController(withIdentifier: "DetailStadiumWetherViewController") as! DetailStadiumWetherViewController
+                    
+                    //let vc = storyboard.instantiateViewController(withIdentifier: "DetailStadiumWetherViewController") as! DetailStadiumWetherViewController
+                    let vc = storyboard.instantiateViewController(identifier: "DetailStadiumWetherViewController",creator: { creator in
+                        let viewController = DetailStadiumWetherViewController(weatherData: weatherItem!, coder: creator)
+                        return viewController
+                    })
                     
                     //self.navigationController?.pushViewController(vc, animated: true)
                     self.present(vc, animated: true)
