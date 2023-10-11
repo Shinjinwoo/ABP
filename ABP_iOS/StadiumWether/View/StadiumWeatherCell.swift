@@ -50,7 +50,7 @@ class StadiumWeatherCell: UICollectionViewCell {
         if SKY == Sky.Sunny.rawValue && PTY == Pty.Sunny.rawValue{
             summaryLabel.text = "맑음(눈,비 소식없음)"
             self.contentView.backgroundColor = .systemOrange
-            return (UIImage(systemName: "sun.horizon.fill")?.withRenderingMode(.alwaysOriginal))!
+            return (UIImage(systemName: "sun.max.fill")?.withRenderingMode(.alwaysOriginal))!
         }
         if SKY == Sky.Foggy.rawValue || SKY == Sky.Cloudy.rawValue {
             switch PTY {
