@@ -164,7 +164,31 @@ class StadiumWeatherViewController: UIViewController {
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.searchBar.delegate = self
         
+        
+        
         collectionView.addSubview(activityIndicator)
+        
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        
+        let centerXConstraint = NSLayoutConstraint(item: activityIndicator,
+                                                   attribute: .centerX,
+                                                   relatedBy: .equal,
+                                                   toItem: collectionView,
+                                                   attribute: .centerX,
+                                                   multiplier: 1.0,
+                                                   constant: 0.0)
+        collectionView.addConstraint(centerXConstraint)
+
+        // 수직 중앙 정렬
+        let centerYConstraint = NSLayoutConstraint(item: activityIndicator,
+                                                   attribute: .centerY,
+                                                   relatedBy: .equal,
+                                                   toItem: collectionView,
+                                                   attribute: .centerY,
+                                                   multiplier: 1.0,
+                                                   constant: 0.0)
+        
+        collectionView.addConstraint(centerYConstraint)
         
         pageControl.numberOfPages = 5
         
