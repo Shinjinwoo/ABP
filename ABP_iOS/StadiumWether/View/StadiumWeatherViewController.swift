@@ -166,7 +166,7 @@ class StadiumWeatherViewController: UIViewController {
         
         collectionView.addSubview(activityIndicator)
         
-        pageControl.numberOfPages = 4
+        pageControl.numberOfPages = 5
         
         self.navigationItem.searchController = searchController
     }

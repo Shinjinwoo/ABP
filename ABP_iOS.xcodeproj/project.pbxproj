@@ -41,7 +41,7 @@
 		5E7A485D2ACD143C007F3312 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7A485C2ACD143C007F3312 /* Network.swift */; };
 		5E7A485F2ACD1DBC007F3312 /* WetherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7A485E2ACD1DBC007F3312 /* WetherModel.swift */; };
 		5E9C6E7A2AD52B4E00B8621A /* DetailStadiumWetherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9C6E792AD52B4E00B8621A /* DetailStadiumWetherViewController.swift */; };
-		5E9C6E7D2AD52B8000B8621A /* DetailStadiumWetherViewController.swift.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E9C6E7C2AD52B8000B8621A /* DetailStadiumWetherViewController.swift.storyboard */; };
+		5E9C6E7D2AD52B8000B8621A /* DetailStadiumWetherViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E9C6E7C2AD52B8000B8621A /* DetailStadiumWetherViewController.storyboard */; };
 		5EC6CB362ACD61D20037F381 /* StadiumWeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC6CB352ACD61D20037F381 /* StadiumWeatherViewModel.swift */; };
 		DE5BB5A4ADB4D443708E39E1 /* Pods_ABP_iOS_ABP_iOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40E817283591A08FC3A28969 /* Pods_ABP_iOS_ABP_iOSUITests.framework */; };
 /* End PBXBuildFile section */
@@ -104,7 +104,7 @@
 		5E7A485C2ACD143C007F3312 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		5E7A485E2ACD1DBC007F3312 /* WetherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WetherModel.swift; path = ABP_iOS/StadiumWether/Model/WetherModel.swift; sourceTree = SOURCE_ROOT; };
 		5E9C6E792AD52B4E00B8621A /* DetailStadiumWetherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailStadiumWetherViewController.swift; sourceTree = "<group>"; };
-		5E9C6E7C2AD52B8000B8621A /* DetailStadiumWetherViewController.swift.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DetailStadiumWetherViewController.swift.storyboard; sourceTree = "<group>"; };
+		5E9C6E7C2AD52B8000B8621A /* DetailStadiumWetherViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DetailStadiumWetherViewController.storyboard; sourceTree = "<group>"; };
 		5EC6CB352ACD61D20037F381 /* StadiumWeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StadiumWeatherViewModel.swift; sourceTree = "<group>"; };
 		805651B29C5A76BFAB920F6F /* Pods-ABP_iOS-ABP_iOSUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ABP_iOS-ABP_iOSUITests.debug.xcconfig"; path = "Target Support Files/Pods-ABP_iOS-ABP_iOSUITests/Pods-ABP_iOS-ABP_iOSUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		996E183406A6E18C351C77AD /* Pods-ABP_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ABP_iOS.release.xcconfig"; path = "Target Support Files/Pods-ABP_iOS/Pods-ABP_iOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -197,7 +197,7 @@
 				5E47A7D22AC174D500F67449 /* StadiumWeatherViewController.storyboard */,
 				32D6DE6B2AD1366B00385C55 /* StadiumWeatherCell.swift */,
 				5E9C6E792AD52B4E00B8621A /* DetailStadiumWetherViewController.swift */,
-				5E9C6E7C2AD52B8000B8621A /* DetailStadiumWetherViewController.swift.storyboard */,
+				5E9C6E7C2AD52B8000B8621A /* DetailStadiumWetherViewController.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -496,7 +496,7 @@
 				5E47A7D52AC174FC00F67449 /* RefereeCounterViewController.storyboard in Resources */,
 				3219EA652ACD7CEE00E8C0D2 /* API-KEY.plist in Resources */,
 				32D6DE702AD1B4B400385C55 /* SearchAddressViewController.storyboard in Resources */,
-				5E9C6E7D2AD52B8000B8621A /* DetailStadiumWetherViewController.swift.storyboard in Resources */,
+				5E9C6E7D2AD52B8000B8621A /* DetailStadiumWetherViewController.storyboard in Resources */,
 				32D724452AC3F4C6005DDBBC /* TimerViewController.storyboard in Resources */,
 				32D724412AC3F2E7005DDBBC /* LineupViewController.storyboard in Resources */,
 				5E47A79C2AC15D8400F67449 /* Main.storyboard in Resources */,
