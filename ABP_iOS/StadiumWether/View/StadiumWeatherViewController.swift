@@ -40,8 +40,8 @@ class StadiumWeatherViewController: UIViewController {
     var isMoveCameraByLocate = true
     
     
-    private var searchCompleter: MKLocalSearchCompleter?
     private var searchRegion: MKCoordinateRegion = MKCoordinateRegion(MKMapRect.world)
+    
     var completerResults: [MKLocalSearchCompletion]?
     
     lazy var activityIndicator: UIActivityIndicatorView = { // indicator가 사용될 때까지 인스턴스를 생성하지 않도록 lazy로 선언
@@ -86,8 +86,8 @@ class StadiumWeatherViewController: UIViewController {
         
         weatherViewModel.$errorFlag
             .receive(on: RunLoop.main)
-            .sink { weatherItem in
-                if weatherItem != nil {
+            .sink { errorFlag in
+                if errorFlag != nil {
                     
                     let alert = UIAlertController(title: "기상 API 통신에러", message: "통신 에러입니다.", preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "확인", style: .cancel, handler: { _ in  }))
@@ -146,8 +146,6 @@ class StadiumWeatherViewController: UIViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
-        // searchCompleter는 강한 참조이므로
-        searchCompleter = nil
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -160,10 +158,6 @@ class StadiumWeatherViewController: UIViewController {
         //self.navigationItem.title = "경기장 날씨검색"
         
         let searchController = UISearchController(searchResultsController:nil )
-        
-        searchCompleter = MKLocalSearchCompleter()
-        searchCompleter?.resultTypes = .address
-        searchCompleter?.region = searchRegion
         
         searchController.searchBar.placeholder = "주소 검색"
         searchController.hidesNavigationBarDuringPresentation = false

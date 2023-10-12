@@ -31,7 +31,7 @@ class SearchAddressViewController: UIViewController {
         
         
         self.navigationController?.navigationBar.topItem?.title = "뒤로가기"
-       
+        
         let preferences = WKPreferences()
         preferences.javaScriptCanOpenWindowsAutomatically = true
         
@@ -51,9 +51,12 @@ class SearchAddressViewController: UIViewController {
         webView =  WKWebView(frame: wrapView.bounds, configuration: configuration)
         
         
+#if DEBUG
         if #available(iOS 16.4, *) {
             webView.isInspectable = true
-        }
+        } 
+#endif
+        
         webView.navigationDelegate = self
         webView.uiDelegate = self
         
@@ -105,6 +108,7 @@ extension SearchAddressViewController: WKUIDelegate {
         let configuration = WKWebViewConfiguration()
         configuration.preferences = preferences
         configuration.userContentController = contentController
+        
         
         if #available(iOS 14.0, *) {
             configuration.defaultWebpagePreferences.allowsContentJavaScript = true
