@@ -14,51 +14,32 @@
             <objects>
                 <viewController restorationIdentifier="DetailStadiumWetherViewController" storyboardIdentifier="DetailStadiumWetherViewController" id="Y6W-OH-hqX" customClass="DetailStadiumWetherViewController" customModule="ABP_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="1338"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rsS-D7-aYw">
-                                <rect key="frame" x="0.0" y="20" width="393" height="1318"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="하늘상태" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nct-rw-L0s">
-                                        <rect key="frame" x="46" y="60" width="70" height="24"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nvi-Hs-0I3">
-                                        <rect key="frame" x="46" y="92" width="299" height="187"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" systemColor="systemCyanColor"/>
-                                    </view>
-                                </subviews>
-                                <viewLayoutGuide key="contentLayoutGuide" id="ukV-Dt-fZQ"/>
-                                <viewLayoutGuide key="frameLayoutGuide" id="Qls-em-Nyp"/>
-                            </scrollView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YyB-FC-reW">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="rsS-D7-aYw" secondAttribute="bottom" id="0aM-NB-LAt"/>
-                            <constraint firstItem="rsS-D7-aYw" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="5Mw-MG-86M"/>
-                            <constraint firstItem="rsS-D7-aYw" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="GJ3-2K-Y7R"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="rsS-D7-aYw" secondAttribute="trailing" id="kJN-ng-V7e"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="YyB-FC-reW" secondAttribute="bottom" id="5Yd-ds-Xtd"/>
+                            <constraint firstItem="YyB-FC-reW" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="5gk-Qr-dWL"/>
+                            <constraint firstItem="YyB-FC-reW" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="DaH-ra-Y15"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="YyB-FC-reW" secondAttribute="trailing" id="nPl-CL-F41"/>
                         </constraints>
                     </view>
-                    <size key="freeformSize" width="393" height="1338"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="10.4" y="-35.082458770614693"/>
+            <point key="canvasLocation" x="10.4" y="-35.532233883058474"/>
         </scene>
     </scenes>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemCyanColor">
-            <color red="0.1960784314" green="0.67843137249999996" blue="0.90196078430000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

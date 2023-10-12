@@ -110,8 +110,9 @@ class StadiumWeatherViewController: UIViewController {
                         return viewController
                     })
                     
-                    //self.navigationController?.pushViewController(vc, animated: true)
-                    self.present(vc, animated: true)
+                    
+                    self.navigationController?.pushViewController(vc, animated: true)
+                    //self.present(vc, animated: true)
                 }
             }.store(in: &subscriptions)
         
