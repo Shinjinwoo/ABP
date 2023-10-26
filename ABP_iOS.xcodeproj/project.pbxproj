@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2D6A4A4E0B1BF01A93DC31F5 /* Pods_ABP_iOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 507670C5AB295F2F7D71B345 /* Pods_ABP_iOSTests.framework */; };
-		3219EA652ACD7CEE00E8C0D2 /* API-KEY.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3219EA642ACD7CEE00E8C0D2 /* API-KEY.plist */; };
+		325199B12AEA8ADD00AF588E /* API-KEY.plist in Resources */ = {isa = PBXBuildFile; fileRef = 325199B02AEA8ADD00AF588E /* API-KEY.plist */; };
 		32C5BDF12AC79B80007E7D4E /* Bundle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C5BDF02AC79B80007E7D4E /* Bundle+Extensions.swift */; };
 		32C5BDF32AC7B3DB007E7D4E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32C5BDF22AC7B3DB007E7D4E /* CoreLocation.framework */; };
 		32D6DE6C2AD1366B00385C55 /* StadiumWeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D6DE6B2AD1366B00385C55 /* StadiumWeatherCell.swift */; };
@@ -23,6 +23,7 @@
 		32D724452AC3F4C6005DDBBC /* TimerViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32D724442AC3F4C6005DDBBC /* TimerViewController.storyboard */; };
 		32D7244A2AC3F834005DDBBC /* RefereeCounterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D724492AC3F834005DDBBC /* RefereeCounterViewModel.swift */; };
 		32D7244F2AC3FBC1005DDBBC /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D7244E2AC3FBC1005DDBBC /* UIViewController+Extensions.swift */; };
+		32E703922AEA8B7A007AD19F /* WetherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E703912AEA8B7A007AD19F /* WetherModel.swift */; };
 		55C0CDF7789F3EF23EB46AA8 /* Pods_ABP_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F911E06C5521A2F662FF6F18 /* Pods_ABP_iOS.framework */; };
 		5E1E413A2AE9EDB1001AFE59 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E1E41392AE9EDB1001AFE59 /* APIService.swift */; };
 		5E47A7952AC15D8400F67449 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E47A7942AC15D8400F67449 /* AppDelegate.swift */; };
@@ -39,7 +40,6 @@
 		5E47A7D32AC174D500F67449 /* StadiumWeatherViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E47A7D22AC174D500F67449 /* StadiumWeatherViewController.storyboard */; };
 		5E47A7D52AC174FC00F67449 /* RefereeCounterViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E47A7D42AC174FC00F67449 /* RefereeCounterViewController.storyboard */; };
 		5E47A7D72AC2CE7E00F67449 /* ScoreBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E47A7D62AC2CE7E00F67449 /* ScoreBoard.swift */; };
-		5E7A485F2ACD1DBC007F3312 /* WetherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7A485E2ACD1DBC007F3312 /* WetherModel.swift */; };
 		5E9C6E7A2AD52B4E00B8621A /* DetailStadiumWetherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9C6E792AD52B4E00B8621A /* DetailStadiumWetherViewController.swift */; };
 		5E9C6E7D2AD52B8000B8621A /* DetailStadiumWetherViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E9C6E7C2AD52B8000B8621A /* DetailStadiumWetherViewController.storyboard */; };
 		5EC6CB362ACD61D20037F381 /* StadiumWeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC6CB352ACD61D20037F381 /* StadiumWeatherViewModel.swift */; };
@@ -64,7 +64,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		3219EA642ACD7CEE00E8C0D2 /* API-KEY.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "API-KEY.plist"; sourceTree = "<group>"; };
+		325199B02AEA8ADD00AF588E /* API-KEY.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "API-KEY.plist"; sourceTree = "<group>"; };
 		32C5BDEC2AC79AB9007E7D4E /* NMapsMap.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = NMapsMap.xcframework; path = Pods/NMapsMap/framework/NMapsMap.xcframework; sourceTree = "<group>"; };
 		32C5BDF02AC79B80007E7D4E /* Bundle+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extensions.swift"; sourceTree = "<group>"; };
 		32C5BDF22AC7B3DB007E7D4E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -80,6 +80,7 @@
 		32D724442AC3F4C6005DDBBC /* TimerViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TimerViewController.storyboard; sourceTree = "<group>"; };
 		32D724492AC3F834005DDBBC /* RefereeCounterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefereeCounterViewModel.swift; sourceTree = "<group>"; };
 		32D7244E2AC3FBC1005DDBBC /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
+		32E703912AEA8B7A007AD19F /* WetherModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WetherModel.swift; sourceTree = "<group>"; };
 		40E817283591A08FC3A28969 /* Pods_ABP_iOS_ABP_iOSUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ABP_iOS_ABP_iOSUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AA15919D2C79FB844CFF8C7 /* Pods-ABP_iOS-ABP_iOSUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ABP_iOS-ABP_iOSUITests.release.xcconfig"; path = "Target Support Files/Pods-ABP_iOS-ABP_iOSUITests/Pods-ABP_iOS-ABP_iOSUITests.release.xcconfig"; sourceTree = "<group>"; };
 		507670C5AB295F2F7D71B345 /* Pods_ABP_iOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ABP_iOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -102,7 +103,6 @@
 		5E47A7D22AC174D500F67449 /* StadiumWeatherViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = StadiumWeatherViewController.storyboard; sourceTree = "<group>"; };
 		5E47A7D42AC174FC00F67449 /* RefereeCounterViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RefereeCounterViewController.storyboard; sourceTree = "<group>"; };
 		5E47A7D62AC2CE7E00F67449 /* ScoreBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreBoard.swift; sourceTree = "<group>"; };
-		5E7A485E2ACD1DBC007F3312 /* WetherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WetherModel.swift; path = ABP_iOS/StadiumWether/Model/WetherModel.swift; sourceTree = SOURCE_ROOT; };
 		5E9C6E792AD52B4E00B8621A /* DetailStadiumWetherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailStadiumWetherViewController.swift; sourceTree = "<group>"; };
 		5E9C6E7C2AD52B8000B8621A /* DetailStadiumWetherViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DetailStadiumWetherViewController.storyboard; sourceTree = "<group>"; };
 		5EC6CB352ACD61D20037F381 /* StadiumWeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StadiumWeatherViewModel.swift; sourceTree = "<group>"; };
@@ -293,8 +293,8 @@
 			isa = PBXGroup;
 			children = (
 				5E47A7A02AC15D8500F67449 /* Assets.xcassets */,
-				3219EA642ACD7CEE00E8C0D2 /* API-KEY.plist */,
 				32D7244B2AC3FB33005DDBBC /* Util */,
+				325199B02AEA8ADD00AF588E /* API-KEY.plist */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -366,7 +366,7 @@
 			isa = PBXGroup;
 			children = (
 				32D6DE732AD28CC200385C55 /* AddressModel.swift */,
-				5E7A485E2ACD1DBC007F3312 /* WetherModel.swift */,
+				32E703912AEA8B7A007AD19F /* WetherModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -518,10 +518,10 @@
 				5E47A7A12AC15D8500F67449 /* Assets.xcassets in Resources */,
 				5E47A7D32AC174D500F67449 /* StadiumWeatherViewController.storyboard in Resources */,
 				5E47A7D52AC174FC00F67449 /* RefereeCounterViewController.storyboard in Resources */,
-				3219EA652ACD7CEE00E8C0D2 /* API-KEY.plist in Resources */,
 				32D6DE702AD1B4B400385C55 /* SearchAddressViewController.storyboard in Resources */,
 				5E9C6E7D2AD52B8000B8621A /* DetailStadiumWetherViewController.storyboard in Resources */,
 				32D724452AC3F4C6005DDBBC /* TimerViewController.storyboard in Resources */,
+				325199B12AEA8ADD00AF588E /* API-KEY.plist in Resources */,
 				32D724412AC3F2E7005DDBBC /* LineupViewController.storyboard in Resources */,
 				5E47A79C2AC15D8400F67449 /* Main.storyboard in Resources */,
 			);
@@ -656,7 +656,6 @@
 				5E47A7952AC15D8400F67449 /* AppDelegate.swift in Sources */,
 				32D6DE742AD28CC200385C55 /* AddressModel.swift in Sources */,
 				5E47A7CD2AC16D1C00F67449 /* RefereeCounterViewController.swift in Sources */,
-				5E7A485F2ACD1DBC007F3312 /* WetherModel.swift in Sources */,
 				5E1E413A2AE9EDB1001AFE59 /* APIService.swift in Sources */,
 				5E47A7D72AC2CE7E00F67449 /* ScoreBoard.swift in Sources */,
 				32D724432AC3F4B8005DDBBC /* TimerViewController.swift in Sources */,
@@ -665,6 +664,7 @@
 				32D6DE722AD2848100385C55 /* SendDataDelegate.swift in Sources */,
 				5E47A7D12AC174BD00F67449 /* StadiumWeatherViewController.swift in Sources */,
 				32D7243F2AC3F2CB005DDBBC /* LineupViewController.swift in Sources */,
+				32E703922AEA8B7A007AD19F /* WetherModel.swift in Sources */,
 				32D7244F2AC3FBC1005DDBBC /* UIViewController+Extensions.swift in Sources */,
 				5E9C6E7A2AD52B4E00B8621A /* DetailStadiumWetherViewController.swift in Sources */,
 				5EC6CB362ACD61D20037F381 /* StadiumWeatherViewModel.swift in Sources */,

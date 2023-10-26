@@ -34,7 +34,6 @@ class StadiumWeatherViewController: UIViewController {
     let weatherViewModel =  StadiumWeatherViewModel()
     let addressViewModel =  StadiumAddressViewModel()
     
-    let network:Network = Network()
     let locationManager = CLLocationManager()
     
     var isMoveCameraByLocate = true
@@ -122,7 +121,8 @@ class StadiumWeatherViewController: UIViewController {
                 if value != nil {
                     self.navigationItem.searchController?.searchBar.placeholder = value!.jibunAddress
                     self.mkMapViewCameraFector(latitude: value!.latitude, longitude: value!.longitude)
-                    weatherViewModel.requestWeatherAPI(latitude: value!.latitude, longitude: value!.longitude)
+                    //weatherViewModel.requestWeatherAPI(latitude: value!.latitude, longitude: value!.longitude)
+                    weatherViewModel.fetchWeatherAPI(latitude: value!.latitude, longitude: value!.longitude)
                     self.startActivityIndicator()
                 }
             }.store(in: &subscriptions2)
@@ -288,7 +288,8 @@ extension StadiumWeatherViewController: CLLocationManagerDelegate {
         
         if ( isMoveCameraByLocate == true ) {
             mkMapViewCameraFector(latitude: latitude, longitude: longitude)
-            weatherViewModel.requestWeatherAPI(latitude: latitude, longitude: longitude)
+            //weatherViewModel.requestWeatherAPI(latitude: latitude, longitude: longitude)
+            weatherViewModel.fetchWeatherAPI(latitude: latitude, longitude: longitude)
         }
     }
     

@@ -8,42 +8,79 @@
 import Foundation
 
 
-struct WeatherResponse: Codable {
+struct WeatherInfo: Codable {
     let response: Response
-
-    struct Response: Codable {
-        let header: Header
-        let body: Body
-
-        struct Header: Codable {
-            let resultCode: String
-            let resultMsg: String
-        }
-
-        struct Body: Codable {
-            let dataType: String
-            let items: Items
-            let pageNo: Int
-            let numOfRows: Int
-            let totalCount: Int
-
-            struct Items: Codable {
-                let item: [WeatherItem]
-            }
-        }
-    }
 }
 
+// MARK: - Response
+struct Response: Codable {
+    let header: Header
+    let body: Body?
+}
+
+// MARK: - Body
+struct Body: Codable {
+    let dataType: String
+    let items: Items
+    let pageNo, numOfRows, totalCount: Int
+}
+
+// MARK: - Items
+struct Items: Codable {
+    let item: [WeatherItem]
+}
+
+// MARK: - Item
 struct WeatherItem: Codable {
-    let baseDate: String
-    let baseTime: String
-    let category: String
-    let fcstDate: String
-    let fcstTime: String
-    let fcstValue: String
-    let nx: Int
-    let ny: Int
+    let baseDate, baseTime, category, fcstDate: String
+    let fcstTime, fcstValue: String
+    let nx, ny: Int
 }
+
+// MARK: - Header
+struct Header: Codable {
+    let resultCode, resultMsg: String
+}
+
+
+
+//struct WeatherResponse: Codable {
+//    let response: Response
+//
+//    struct Response: Codable {
+//        let header: Header
+//        let body: Body
+//
+//        struct Header: Codable {
+//            let resultCode: String
+//            let resultMsg: String
+//        }
+//
+//        struct Body: Codable {
+//            let dataType: String
+//            let items: Items
+//            let pageNo: Int
+//            let numOfRows: Int
+//            let totalCount: Int
+//
+//            struct Items: Codable {
+//                let item: [WeatherItem]
+//            }
+//        }
+//    }
+//}
+//
+//struct WeatherItem: Codable {
+//    let baseDate: String
+//    let baseTime: String
+//    let category: String
+//    let fcstDate: String
+//    let fcstTime: String
+//    let fcstValue: String
+//    let nx: Int
+//    let ny: Int
+//}
+//
 
 struct Weather: Hashable,Codable {
     var fcstTime: String

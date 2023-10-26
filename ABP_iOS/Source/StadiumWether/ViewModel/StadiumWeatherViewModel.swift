@@ -11,62 +11,108 @@ import Combine
 
 class StadiumWeatherViewModel {
     
-    var weatherItems: [WeatherItem]!
+    
     
     @Published var items: [Weather]!
     @Published var selectedItem: Weather!
     @Published var errorFlag: Error!
     
     var currentTime:(currentDate:String,currentHour:String)!
+    var weatherItems: [WeatherItem]!
     
-    func requestWeatherAPI(latitude:Double,longitude:Double) {
+    
+    private var subcriptions = Set<AnyCancellable>()
+    
+    //    func fectSignUpUserAPI(snsType: String, nickname: String, character: Int) {
+    //        APIService.fetchSignUpUserData(snsType: snsType, nickname: nickname, character: character)
+    //            .sink { completion in
+    //                switch completion {
+    //                case .failure(let err):
+    //                    print("ViewModel - fectSignUpUserInfo: err: \(err)")
+    //                    self.apiError = err
+    //                case .finished:
+    //                    print("ViewModel - fectSignUpUserInfo: finished")
+    //                }
+    //            }  receiveValue: { value in
+    //                print( value.data)
+    //                self.userData = value.data
+    //            }.store(in: &subcriptions)
+    //    }
+    
+    func fetchWeatherAPI(latitude:Double,longitude:Double) {
         
-        let grid = convertToWeatherGrid(latitude: latitude, longitude: longitude)
-        self.currentTime = getCurrentTimeForWeaterAPI()
-        
-        let baseUrl = "https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst"
-        let parameters =  [
-            "serviceKey": Bundle.main.WEATER_API_KEY,
-            "pageNo": "1",
-            "numOfRows": "120",
-            "dataType": "JSON",
-            "base_date": self.currentTime.currentDate,
-            "base_time": self.currentTime.currentHour,
-            "nx": grid.x,
-            "ny": grid.y ]
-        
-        AF.request(baseUrl, parameters: parameters)
-            .validate(contentType:["application/json"])
-            .responseDecodable(of:WeatherResponse.self) { response in
-                switch response.result {
-                case .success(let value) :
-                    if let statusCode = response.response?.statusCode {
-                        switch statusCode {
-                        case 200..<300 :
-                            print("Success - Status Code: \(statusCode)")
-                            
-                            self.weatherItems = value.response.body.items.item
-                            self.publishedWeatherInfo(targetBaseDate: self.currentTime.currentDate)
-                            
-                        case 400..<500:
-                            // 클라이언트 오류 처리
-                            print("Client Error - Status Code: \(statusCode)")
-                            
-                        case 500..<600:
-                            // 서버 오류 처리
-                            print("Server Error - Status Code: \(statusCode)")
-                            
-                        default:
-                            // 그 외의 상태 코드 처리
-                            print("Unknown Status Code: \(statusCode)")
-                        }
-                    }
-                case .failure(let error):
-                    print("요청 실패: \(error.localizedDescription)")
-                    self.errorFlag = error
-                }
+        APIService.fetchShortTiemWeatherStateAPI(
+            grid: convertToWeatherGrid(latitude: latitude, longitude: longitude),
+            currentTime: getCurrentTimeForWeaterAPI())
+        .sink {
+            completion in
+            switch completion {
+            case .failure(let err):
+                print("ViewModel - fetchShortTiemWeatherStateAPI: err: \(err)")
+                //self.apiError = err
+            case .finished:
+                print("ViewModel - fetchShortTiemWeatherStateAPI: finished")
             }
+        }  receiveValue: { value in
+            
+            if value.response.body != nil {
+                self.items = self.publishedWeatherInfo(targetBaseDate: self.currentTime.currentDate,weatherItems: value.response.body!.items.item)
+            } else {
+                print(value)
+            }
+            
+            
+        }.store(in: &subcriptions)
     }
+    
+//    func requestWeatherAPI(latitude:Double,longitude:Double) {
+//        
+//        let grid = convertToWeatherGrid(latitude: latitude, longitude: longitude)
+//        self.currentTime = getCurrentTimeForWeaterAPI()
+//        
+//        let baseUrl = "https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst"
+//        let parameters =  [
+//            "serviceKey": Bundle.main.WEATER_API_KEY,
+//            "pageNo": "1",
+//            "numOfRows": "120",
+//            "dataType": "JSON",
+//            "base_date": self.currentTime.currentDate,
+//            "base_time": self.currentTime.currentHour,
+//            "nx": grid.x,
+//            "ny": grid.y ]
+//        
+//        AF.request(baseUrl, parameters: parameters)
+//            .validate(contentType:["application/json"])
+//            .responseDecodable(of:WeatherResponse.self) { response in
+//                switch response.result {
+//                case .success(let value) :
+//                    if let statusCode = response.response?.statusCode {
+//                        switch statusCode {
+//                        case 200..<300 :
+//                            print("Success - Status Code: \(statusCode)")
+//                            
+//                            self.weatherItems = value.response.body.items.item
+//                            self.publishedWeatherInfo(targetBaseDate: self.currentTime.currentDate)
+//                            
+//                        case 400..<500:
+//                            // 클라이언트 오류 처리
+//                            print("Client Error - Status Code: \(statusCode)")
+//                            
+//                        case 500..<600:
+//                            // 서버 오류 처리
+//                            print("Server Error - Status Code: \(statusCode)")
+//                            
+//                        default:
+//                            // 그 외의 상태 코드 처리
+//                            print("Unknown Status Code: \(statusCode)")
+//                        }
+//                    }
+//                case .failure(let error):
+//                    print("요청 실패: \(error.localizedDescription)")
+//                    self.errorFlag = error
+//                }
+//            }
+//    }
     
     func didSelect(at indexPath: IndexPath) {
         let item = items[indexPath.item]
@@ -124,7 +170,7 @@ class StadiumWeatherViewModel {
     }
     
     
-    func publishedWeatherInfo(targetBaseDate:String) {
+    func publishedWeatherInfo(targetBaseDate:String,weatherItems : [WeatherItem]) -> [Weather] {
         
         var weatherItemModels: [Weather] = []
         
@@ -222,7 +268,7 @@ class StadiumWeatherViewModel {
         
         print(weatherItemModels.last)
         //퍼블리싱
-        items = weatherItemModels
+        return weatherItemModels
     }
     
     
@@ -230,11 +276,11 @@ class StadiumWeatherViewModel {
         let inputFormatter = DateFormatter()
         inputFormatter.dateFormat = "HHmm" // 입력 문자열의 포맷
         let date = inputFormatter.date(from: formatHHmmTime)
-            // 출력 형식 지정
+        // 출력 형식 지정
         let outputFormatter = DateFormatter()
         outputFormatter.dateFormat = "a h시"  // 원하는 출력 포맷 (AM/PM)
         outputFormatter.locale = Locale(identifier: "ko_KR")
-            // Date를 문자열로 변환
+        // Date를 문자열로 변환
         let formattedTimeString = outputFormatter.string(from: date!)
         
         
