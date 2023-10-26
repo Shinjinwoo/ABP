@@ -21,8 +21,8 @@ enum API {
 }
 
 enum APIService {
-    func fetchWeatherAPI(latitude:Double,longitude:Double) {
-        let grid = convertToWeatherGrid(latitude: latitude, longitude: longitude)
+    func fetchWeatherAPI(latitude:Double,longitude:Double, currentTime: (String, String)) {
+//        let grid = convertToWeatherGrid(latitude: latitude, longitude: longitude)
         self.currentTime = getCurrentTimeForWeaterAPI()
         
         let baseUrl = "https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst"
@@ -35,6 +35,14 @@ enum APIService {
             "base_time": self.currentTime.currentHour,
             "nx": grid.x,
             "ny": grid.y ]
+        
+        return AF.request(API.fetchWeatherAPI.url,
+                          method: .get,
+                          parameters: parameters,
+                          encoding:JSONEncoding.default )
+            .publishDecodable(type: SignUpUserResult.self)
+            .value()
+            .eraseToAnyPublisher()
         
         AF.request(baseUrl, parameters: parameters)
             .validate(contentType:["application/json"])
