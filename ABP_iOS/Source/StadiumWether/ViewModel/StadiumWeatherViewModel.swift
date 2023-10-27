@@ -30,7 +30,7 @@ class StadiumWeatherViewModel {
         if nextTime == nil {
             mCurrentTime = getCurrentTimeForWeaterAPI()
         } else {
-            mCurrentTime.currentDate = self.subtractOneHourAndConvertToMidnightFormat(timeStr: self.mCurrentTime.currentDate)!
+            mCurrentTime.currentHour = self.subtractOneHourAndConvertToMidnightFormat(timeStr: self.mCurrentTime.currentHour)!
         }
 
         
@@ -50,7 +50,7 @@ class StadiumWeatherViewModel {
         }  receiveValue: { value in
             if value.response.header.resultMsg == "NO_DATA" {
                 if self.shouldRetryAPI() {
-                    self.fetchWeatherAPI(latitude: latitude, longitude: longitude)
+                    self.fetchWeatherAPI(latitude: latitude, longitude: longitude, nextTime: self.mCurrentTime.currentHour)
                 } else {
                     self.statusMsg = value.response.header
                 }
