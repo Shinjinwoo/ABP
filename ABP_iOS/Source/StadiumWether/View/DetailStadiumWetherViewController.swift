@@ -17,6 +17,13 @@ class DetailStadiumWetherViewController: UIViewController {
     
     @IBOutlet weak var skyLabel: UILabel!
     
+    @IBOutlet weak var oneHourRainFall: UILabel!
+    
+    //@IBOutlet weak var oneHourSnowFall: UILabel!
+    
+    @IBOutlet weak var POPLable: UILabel!
+    
+    @IBOutlet weak var rainImageView: UIImageView!
     let weatherData:Weather
     
     
@@ -42,6 +49,22 @@ class DetailStadiumWetherViewController: UIViewController {
         firstView.layer.cornerRadius = 16
         secondView.layer.cornerRadius = 16
         thirdView.layer.cornerRadius = 16
+        rainImageView.layer.cornerRadius = 16
+        
+        var skyState = ""
+        
+        switch weatherData.weatherData.PTY {
+        case Pty.Sunny.rawValue : skyState = Pty.Sunny.state
+        case Pty.Snowy.rawValue : skyState = Pty.Snowy.state
+        case Pty.RainyAndSnowy.rawValue : skyState = Pty.RainyAndSnowy.state
+        case Pty.Snowy.rawValue : skyState = Pty.Snowy.state
+        case Pty.Shower.rawValue : skyState = Pty.Shower.state
+        default: break
+        }
+        
+        skyLabel.text = skyState
+        POPLable.text = "\(weatherData.weatherData.POP)% 확률"
+        oneHourRainFall.text = "\(weatherData.weatherData.PCP)"
         
         
         // TODO : 하기 데이터 기반으로 화면 구성하기
@@ -51,23 +74,23 @@ class DetailStadiumWetherViewController: UIViewController {
          SKY : 하늘상태
          
          강수확률 {
-            POP : 강수확률
-            PTY : 강수형태
-
-            PCP : 1시간 강수량
-            SNO : 1시간 신적설
+         POP : 강수확률
+         PTY : 강수형태
+         
+         PCP : 1시간 강수량
+         SNO : 1시간 신적설
          }
          
          기온 {
-            TMP : 1시간 기온,
-            TMN : 일 최저 기온,
-            TMX : 일 최고 기온
+         TMP : 1시간 기온,
+         TMN : 일 최저 기온,
+         TMX : 일 최고 기온
          }
          
          홈런 {
-            VEC : 풍향,
-            WSD : 풍속,
-            REH : 습도
+         VEC : 풍향,
+         WSD : 풍속,
+         REH : 습도
          }
          */
     }

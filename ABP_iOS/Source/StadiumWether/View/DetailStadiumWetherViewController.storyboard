@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -34,7 +35,46 @@
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gcy-AB-2ZO">
                                         <rect key="frame" x="37.5" y="70" width="300" height="129.5"/>
-                                        <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="강수확률" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tcA-MC-vQ5">
+                                                <rect key="frame" x="24" y="24" width="62.5" height="21.5"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ros-Aq-LXy">
+                                                <rect key="frame" x="134" y="13.5" width="150" height="101.5"/>
+                                                <color key="backgroundColor" systemColor="systemIndigoColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="100" id="In0-DL-AEP"/>
+                                                    <constraint firstAttribute="width" constant="150" id="eV8-9L-Tsv"/>
+                                                </constraints>
+                                                <imageReference key="image" image="cloud.rain.fill" catalog="system" renderingMode="original"/>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9U4-E4-HuO">
+                                                <rect key="frame" x="34.5" y="53.5" width="42" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MYB-QQ-ss0">
+                                                <rect key="frame" x="34.5" y="81" width="42" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.72148378582202111" green="0.82352941176470584" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="ros-Aq-LXy" firstAttribute="centerY" secondItem="gcy-AB-2ZO" secondAttribute="centerY" id="EzX-Sj-Qew"/>
+                                            <constraint firstItem="9U4-E4-HuO" firstAttribute="centerX" secondItem="tcA-MC-vQ5" secondAttribute="centerX" id="TUA-nk-eWa"/>
+                                            <constraint firstItem="tcA-MC-vQ5" firstAttribute="top" secondItem="gcy-AB-2ZO" secondAttribute="top" constant="24" id="VaG-UI-WLV"/>
+                                            <constraint firstItem="MYB-QQ-ss0" firstAttribute="centerX" secondItem="tcA-MC-vQ5" secondAttribute="centerX" id="WAN-TA-Dy1"/>
+                                            <constraint firstItem="MYB-QQ-ss0" firstAttribute="top" secondItem="9U4-E4-HuO" secondAttribute="bottom" constant="6.5" id="gfx-Wv-PNb"/>
+                                            <constraint firstAttribute="trailing" secondItem="ros-Aq-LXy" secondAttribute="trailing" constant="16" id="iZg-U6-8tp"/>
+                                            <constraint firstItem="9U4-E4-HuO" firstAttribute="top" secondItem="tcA-MC-vQ5" secondAttribute="bottom" constant="8" id="kWZ-wZ-6hq"/>
+                                            <constraint firstItem="tcA-MC-vQ5" firstAttribute="leading" secondItem="gcy-AB-2ZO" secondAttribute="leading" constant="24" id="uQx-io-zsz"/>
+                                        </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0NK-Eq-5Ej" userLabel="View1">
                                         <rect key="frame" x="37.5" y="219.5" width="300" height="129.5"/>
@@ -76,7 +116,10 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="POPLable" destination="9U4-E4-HuO" id="Ubb-6n-SFD"/>
                         <outlet property="firstView" destination="gcy-AB-2ZO" id="bgU-gB-GD3"/>
+                        <outlet property="oneHourRainFall" destination="MYB-QQ-ss0" id="YXz-qE-XLo"/>
+                        <outlet property="rainImageView" destination="ros-Aq-LXy" id="teN-Kf-7nO"/>
                         <outlet property="secondView" destination="0NK-Eq-5Ej" id="dTk-4L-WDX"/>
                         <outlet property="skyLabel" destination="3Va-OU-Zhc" id="jqh-nz-tIR"/>
                         <outlet property="thirdView" destination="C0X-SO-9CK" id="YtJ-cz-IwN"/>
@@ -88,8 +131,12 @@
         </scene>
     </scenes>
     <resources>
+        <image name="cloud.rain.fill" catalog="system" width="126" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemIndigoColor">
+            <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemOrangeColor">
             <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
