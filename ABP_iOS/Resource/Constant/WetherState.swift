@@ -35,11 +35,11 @@ enum Pty:String {
     
     var state: String {
         switch self {
-        case .Sunny : return "0"
-        case .Raniy : return "1"
-        case .RainyAndSnowy : return "2"
-        case .Snowy : return "3"
-        case .Shower : return "4"
+        case .Sunny : return "맑음"
+        case .Raniy : return "비옴"
+        case .RainyAndSnowy : return "눈 & 비"
+        case .Snowy : return "눈"
+        case .Shower : return "소나기"
         }
     }
 }
