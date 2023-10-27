@@ -258,7 +258,6 @@ class StadiumWeatherViewController: UIViewController {
     }
     
     
-    
     private func requestLocationPermission() {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest

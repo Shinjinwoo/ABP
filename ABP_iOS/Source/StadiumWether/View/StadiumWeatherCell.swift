@@ -10,28 +10,11 @@ import UIKit
 class StadiumWeatherCell: UICollectionViewCell {
     
     @IBOutlet weak var baseTimeLabel: UILabel!
-    
     @IBOutlet weak var weatherImage: UIImageView!
-    
     @IBOutlet weak var temperaturesLabel: UILabel!
-    
     @IBOutlet weak var summaryLabel: UILabel!
     
     
-    enum Sky:String {
-        case Sunny = "1"
-        case Foggy = "3"
-        case Cloudy = "4"
-    }
-    
-    
-    enum Pty:String {
-        case Sunny = "0"
-        case Raniy = "1"
-        case RainyAndSnowy = "2"
-        case Snowy = "3"
-        case Shower = "4"
-    }
     override func awakeFromNib() {
         super.awakeFromNib()
         self.layer.cornerRadius = 16
