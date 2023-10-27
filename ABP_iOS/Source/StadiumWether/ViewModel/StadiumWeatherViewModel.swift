@@ -16,34 +16,27 @@ class StadiumWeatherViewModel {
     @Published var items: [Weather]!
     @Published var selectedItem: Weather!
     @Published var errorFlag: Error!
+    @Published var statusMsg: Header!
     
-    var currentTime:(currentDate:String,currentHour:String)!
+    var mCurrentTime: (currentDate:String,currentHour:String)!
     var weatherItems: [WeatherItem]!
+    var retrycount: Int = 0
     
     
     private var subcriptions = Set<AnyCancellable>()
     
-    //    func fectSignUpUserAPI(snsType: String, nickname: String, character: Int) {
-    //        APIService.fetchSignUpUserData(snsType: snsType, nickname: nickname, character: character)
-    //            .sink { completion in
-    //                switch completion {
-    //                case .failure(let err):
-    //                    print("ViewModel - fectSignUpUserInfo: err: \(err)")
-    //                    self.apiError = err
-    //                case .finished:
-    //                    print("ViewModel - fectSignUpUserInfo: finished")
-    //                }
-    //            }  receiveValue: { value in
-    //                print( value.data)
-    //                self.userData = value.data
-    //            }.store(in: &subcriptions)
-    //    }
-    
-    func fetchWeatherAPI(latitude:Double,longitude:Double) {
+    func fetchWeatherAPI(latitude:Double,longitude:Double,nextTime:String? = nil) {
+                
+        if nextTime == nil {
+            mCurrentTime = getCurrentTimeForWeaterAPI()
+        } else {
+            mCurrentTime.currentDate = self.subtractOneHourAndConvertToMidnightFormat(timeStr: self.mCurrentTime.currentDate)!
+        }
+
         
         APIService.fetchShortTiemWeatherStateAPI(
             grid: convertToWeatherGrid(latitude: latitude, longitude: longitude),
-            currentTime: getCurrentTimeForWeaterAPI())
+            currentTime: mCurrentTime)
         .sink {
             completion in
             switch completion {
@@ -52,67 +45,36 @@ class StadiumWeatherViewModel {
                 //self.apiError = err
             case .finished:
                 print("ViewModel - fetchShortTiemWeatherStateAPI: finished")
+                
             }
         }  receiveValue: { value in
-            
-            if value.response.body != nil {
-                self.items = self.publishedWeatherInfo(targetBaseDate: self.currentTime.currentDate,weatherItems: value.response.body!.items.item)
+            if value.response.header.resultMsg == "NO_DATA" {
+                if self.shouldRetryAPI() {
+                    self.fetchWeatherAPI(latitude: latitude, longitude: longitude)
+                } else {
+                    self.statusMsg = value.response.header
+                }
             } else {
-                print(value)
+                if value.response.body != nil {
+                    self.items = self.publishedWeatherInfo(targetBaseDate: self.mCurrentTime.currentDate,weatherItems: value.response.body!.items.item)
+                } else {
+                    print(value)
+                }
             }
+            
             
             
         }.store(in: &subcriptions)
     }
     
-//    func requestWeatherAPI(latitude:Double,longitude:Double) {
-//        
-//        let grid = convertToWeatherGrid(latitude: latitude, longitude: longitude)
-//        self.currentTime = getCurrentTimeForWeaterAPI()
-//        
-//        let baseUrl = "https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst"
-//        let parameters =  [
-//            "serviceKey": Bundle.main.WEATER_API_KEY,
-//            "pageNo": "1",
-//            "numOfRows": "120",
-//            "dataType": "JSON",
-//            "base_date": self.currentTime.currentDate,
-//            "base_time": self.currentTime.currentHour,
-//            "nx": grid.x,
-//            "ny": grid.y ]
-//        
-//        AF.request(baseUrl, parameters: parameters)
-//            .validate(contentType:["application/json"])
-//            .responseDecodable(of:WeatherResponse.self) { response in
-//                switch response.result {
-//                case .success(let value) :
-//                    if let statusCode = response.response?.statusCode {
-//                        switch statusCode {
-//                        case 200..<300 :
-//                            print("Success - Status Code: \(statusCode)")
-//                            
-//                            self.weatherItems = value.response.body.items.item
-//                            self.publishedWeatherInfo(targetBaseDate: self.currentTime.currentDate)
-//                            
-//                        case 400..<500:
-//                            // 클라이언트 오류 처리
-//                            print("Client Error - Status Code: \(statusCode)")
-//                            
-//                        case 500..<600:
-//                            // 서버 오류 처리
-//                            print("Server Error - Status Code: \(statusCode)")
-//                            
-//                        default:
-//                            // 그 외의 상태 코드 처리
-//                            print("Unknown Status Code: \(statusCode)")
-//                        }
-//                    }
-//                case .failure(let error):
-//                    print("요청 실패: \(error.localizedDescription)")
-//                    self.errorFlag = error
-//                }
-//            }
-//    }
+    func shouldRetryAPI() -> Bool {
+        if retrycount <= 10 {
+            retrycount += 1
+            return true
+        }
+        return false // 재호출하지 않을 경우
+    }
+    
     
     func didSelect(at indexPath: IndexPath) {
         let item = items[indexPath.item]
@@ -167,6 +129,32 @@ class StadiumWeatherViewModel {
         print("가장 가까운 Base_time: \(currentHour)")
         
         return (currentDate ,currentHour)
+    }
+    
+    
+    func subtractOneHourAndConvertToMidnightFormat(timeStr: String) -> String? {
+        if timeStr == "2400" {
+            return "0000"
+        } else if let timeInt = Int(timeStr) {
+            // 시간과 분 추출
+            let hour = timeInt / 100
+            let minute = timeInt % 100
+            
+            // 1시간 빼기
+            var newHour = hour - 1
+            
+            // 시간이 음수가 되면 23으로 설정
+            if newHour < 0 {
+                newHour = 23
+            }
+            
+            // 시간과 분을 다시 문자열로 변환
+            let result = String(format: "%02d%02d", newHour, minute)
+            
+            return result
+        } else {
+            return nil
+        }
     }
     
     

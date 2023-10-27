@@ -83,6 +83,20 @@ class StadiumWeatherViewController: UIViewController {
                 }
             }.store(in: &subscriptions)
         
+        weatherViewModel.$statusMsg
+            .receive(on: RunLoop.main)
+            .sink { statusMsg in
+                if statusMsg != nil {
+                    let alert = UIAlertController(title: "기상 API 통신에러",
+                                                  message: "통신 에러입니다.\n에러코드 : \(statusMsg!.resultCode)\n 서버 에러메시지 :\(statusMsg!.resultMsg)",
+                                                  preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "확인", style: .cancel, handler: { _ in  }))
+                    
+                    self.present(alert, animated: true)
+                    self.stopActivityIndicator()
+                }
+            }.store(in: &subscriptions)
+        
         weatherViewModel.$errorFlag
             .receive(on: RunLoop.main)
             .sink { errorFlag in
