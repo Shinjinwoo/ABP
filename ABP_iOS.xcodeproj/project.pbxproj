@@ -40,6 +40,7 @@
 		5E47A7D32AC174D500F67449 /* StadiumWeatherViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E47A7D22AC174D500F67449 /* StadiumWeatherViewController.storyboard */; };
 		5E47A7D52AC174FC00F67449 /* RefereeCounterViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E47A7D42AC174FC00F67449 /* RefereeCounterViewController.storyboard */; };
 		5E47A7D72AC2CE7E00F67449 /* ScoreBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E47A7D62AC2CE7E00F67449 /* ScoreBoard.swift */; };
+		5E8B1BAE2AEB70DD008E25DC /* WetherState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8B1BAD2AEB70DD008E25DC /* WetherState.swift */; };
 		5E9C6E7A2AD52B4E00B8621A /* DetailStadiumWetherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9C6E792AD52B4E00B8621A /* DetailStadiumWetherViewController.swift */; };
 		5E9C6E7D2AD52B8000B8621A /* DetailStadiumWetherViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E9C6E7C2AD52B8000B8621A /* DetailStadiumWetherViewController.storyboard */; };
 		5EC6CB362ACD61D20037F381 /* StadiumWeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC6CB352ACD61D20037F381 /* StadiumWeatherViewModel.swift */; };
@@ -103,6 +104,7 @@
 		5E47A7D22AC174D500F67449 /* StadiumWeatherViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = StadiumWeatherViewController.storyboard; sourceTree = "<group>"; };
 		5E47A7D42AC174FC00F67449 /* RefereeCounterViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RefereeCounterViewController.storyboard; sourceTree = "<group>"; };
 		5E47A7D62AC2CE7E00F67449 /* ScoreBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreBoard.swift; sourceTree = "<group>"; };
+		5E8B1BAD2AEB70DD008E25DC /* WetherState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WetherState.swift; sourceTree = "<group>"; };
 		5E9C6E792AD52B4E00B8621A /* DetailStadiumWetherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailStadiumWetherViewController.swift; sourceTree = "<group>"; };
 		5E9C6E7C2AD52B8000B8621A /* DetailStadiumWetherViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DetailStadiumWetherViewController.storyboard; sourceTree = "<group>"; };
 		5EC6CB352ACD61D20037F381 /* StadiumWeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StadiumWeatherViewModel.swift; sourceTree = "<group>"; };
@@ -292,6 +294,7 @@
 		5E1E41372AE9EBC6001AFE59 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				5E8B1BAC2AEB70C0008E25DC /* Constant */,
 				5E47A7A02AC15D8500F67449 /* Assets.xcassets */,
 				32D7244B2AC3FB33005DDBBC /* Util */,
 				325199B02AEA8ADD00AF588E /* API-KEY.plist */,
@@ -369,6 +372,14 @@
 				32E703912AEA8B7A007AD19F /* WetherModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		5E8B1BAC2AEB70C0008E25DC /* Constant */ = {
+			isa = PBXGroup;
+			children = (
+				5E8B1BAD2AEB70DD008E25DC /* WetherState.swift */,
+			);
+			path = Constant;
 			sourceTree = "<group>";
 		};
 		5EC6CB342ACD61B80037F381 /* ViewModel */ = {
@@ -669,6 +680,7 @@
 				5E9C6E7A2AD52B4E00B8621A /* DetailStadiumWetherViewController.swift in Sources */,
 				5EC6CB362ACD61D20037F381 /* StadiumWeatherViewModel.swift in Sources */,
 				32D6DE6E2AD1B4A100385C55 /* SearchAddressViewController.swift in Sources */,
+				5E8B1BAE2AEB70DD008E25DC /* WetherState.swift in Sources */,
 				5E47A7972AC15D8400F67449 /* SceneDelegate.swift in Sources */,
 				32C5BDF12AC79B80007E7D4E /* Bundle+Extensions.swift in Sources */,
 			);
