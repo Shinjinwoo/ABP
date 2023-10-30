@@ -17,9 +17,9 @@ enum Sky:String {
     
     var state: String {
         switch self {
-        case .Sunny : return "1"
-        case .Foggy : return "3"
-        case .Cloudy : return "4"
+        case .Sunny : return "맑음"
+        case .Foggy : return "흐림"
+        case .Cloudy : return "흐림"
         }
     }
 }
