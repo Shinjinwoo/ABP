@@ -9,20 +9,18 @@ import UIKit
 
 class DetailStadiumWetherViewController: UIViewController {
     
+    @IBOutlet weak var timeView: UIView!
+    
+    @IBOutlet weak var selectDate: UILabel!
+    @IBOutlet weak var selectHour: UILabel!
+    
     @IBOutlet weak var firstView: UIView!
-    
     @IBOutlet weak var secondView: UIView!
-    
     @IBOutlet weak var thirdView: UIView!
-    
     @IBOutlet weak var skyLabel: UILabel!
-    
     @IBOutlet weak var oneHourRainFall: UILabel!
-    
     //@IBOutlet weak var oneHourSnowFall: UILabel!
-    
     @IBOutlet weak var POPLable: UILabel!
-    
     @IBOutlet weak var rainImageView: UIImageView!
     let weatherData:Weather
     
@@ -50,21 +48,25 @@ class DetailStadiumWetherViewController: UIViewController {
         secondView.layer.cornerRadius = 16
         thirdView.layer.cornerRadius = 16
         rainImageView.layer.cornerRadius = 16
+        timeView.layer.cornerRadius = 16
+        
+        
+        selectDate.text = weatherData.fcstDate
+        selectHour.text = weatherData.fcstTime
         
         var skyState = ""
         
-        switch weatherData.weatherData.PTY {
-        case Pty.Sunny.rawValue : skyState = Pty.Sunny.state
-        case Pty.Snowy.rawValue : skyState = Pty.Snowy.state
-        case Pty.RainyAndSnowy.rawValue : skyState = Pty.RainyAndSnowy.state
-        case Pty.Snowy.rawValue : skyState = Pty.Snowy.state
-        case Pty.Shower.rawValue : skyState = Pty.Shower.state
+        switch weatherData.weatherData.SKY {
+        case Sky.Sunny.rawValue : skyState = Sky.Sunny.state
+        case Sky.Foggy.rawValue : skyState = Sky.Foggy.state
+        case Sky.Cloudy.rawValue : skyState = Sky.Cloudy.state
         default: break
         }
         
         skyLabel.text = skyState
         POPLable.text = "\(weatherData.weatherData.POP)% 확률"
         oneHourRainFall.text = "\(weatherData.weatherData.PCP)"
+        
         
         
         // TODO : 하기 데이터 기반으로 화면 구성하기
