@@ -123,7 +123,6 @@ class StadiumWeatherViewController: UIViewController {
                         return viewController
                     })
                     
-                    
                     //self.navigationController?.pushViewController(vc, animated: true)
                     self.present(vc, animated: true)
                 }
@@ -133,10 +132,12 @@ class StadiumWeatherViewController: UIViewController {
             .receive(on: RunLoop.main)
             .sink { [unowned self] value in
                 if value != nil {
-                    self.navigationItem.searchController?.searchBar.placeholder = value!.jibunAddress
-                    self.mkMapViewCameraFector(latitude: value!.latitude, longitude: value!.longitude)
-                    //weatherViewModel.requestWeatherAPI(latitude: value!.latitude, longitude: value!.longitude)
-                    weatherViewModel.fetchWeatherAPI(latitude: value!.latitude, longitude: value!.longitude)
+                    let locateInfo = value!
+                    
+                    self.navigationItem.searchController?.searchBar.placeholder = locateInfo.jibunAddress
+                    self.mkMapViewCameraFector(latitude: locateInfo.latitude, longitude: locateInfo.longitude)
+                    self.addAnnotationToMapView(longitudeValue: locateInfo.longitude, latitudeValue: locateInfo.latitude,title: locateInfo.jibunAddress,subTitle: locateInfo.roadAddress)
+                    weatherViewModel.fetchWeatherAPI(latitude: locateInfo.latitude, longitude: locateInfo.longitude)
                     self.startActivityIndicator()
                 }
             }.store(in: &subscriptions2)
@@ -304,6 +305,15 @@ extension StadiumWeatherViewController: CLLocationManagerDelegate {
             //weatherViewModel.requestWeatherAPI(latitude: latitude, longitude: longitude)
             weatherViewModel.fetchWeatherAPI(latitude: latitude, longitude: longitude)
         }
+    }
+    
+    func addAnnotationToMapView(longitudeValue: Double,latitudeValue: Double,title: String, subTitle: String = "") {
+        mkMapView.removeAnnotations(mkMapView.annotations)
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = CLLocationCoordinate2D(latitude: latitudeValue, longitude: longitudeValue) // 위도, 경도 설정
+        annotation.title = title // 제목 설정
+        annotation.subtitle = subTitle // 부제목 설정
+        mkMapView.addAnnotation(annotation) // 맵뷰에 어노테이션 추가
     }
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
