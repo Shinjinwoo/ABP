@@ -38,9 +38,7 @@ class DetailStadiumWetherViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print(weatherData)
-        
         setupUI()
-        
     }
     
     func setupUI() {
@@ -66,8 +64,6 @@ class DetailStadiumWetherViewController: UIViewController {
         skyLabel.text = skyState
         POPLable.text = "\(weatherData.weatherData.POP)% 확률"
         oneHourRainFall.text = "\(weatherData.weatherData.PCP)"
-        
-        
         
         // TODO : 하기 데이터 기반으로 화면 구성하기
         

@@ -183,9 +183,8 @@
 		32C5BDD32AC64099007E7D4E /* StadiumWether */ = {
 			isa = PBXGroup;
 			children = (
-				5EC6CB342ACD61B80037F381 /* ViewModel */,
-				32C5BDD62AC640C8007E7D4E /* View */,
-				5E7A48602ACD32D6007F3312 /* Model */,
+				5E4148F72B0AF412007A0757 /* StadiumWeather */,
+				5E4148F22B0AF3C4007A0757 /* SearchAddress */,
 			);
 			path = StadiumWether;
 			sourceTree = "<group>";
@@ -193,8 +192,6 @@
 		32C5BDD62AC640C8007E7D4E /* View */ = {
 			isa = PBXGroup;
 			children = (
-				32D6DE6D2AD1B4A100385C55 /* SearchAddressViewController.swift */,
-				32D6DE6F2AD1B4B400385C55 /* SearchAddressViewController.storyboard */,
 				5E47A7D02AC174BD00F67449 /* StadiumWeatherViewController.swift */,
 				5E47A7D22AC174D500F67449 /* StadiumWeatherViewController.storyboard */,
 				32D6DE6B2AD1366B00385C55 /* StadiumWeatherCell.swift */,
@@ -280,7 +277,7 @@
 			path = Util;
 			sourceTree = "<group>";
 		};
-		5E1E41362AE9EBBC001AFE59 /* Source */ = {
+		5E1E41362AE9EBBC001AFE59 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
 				32C5BDD82AC64101007E7D4E /* Lineup */,
@@ -288,10 +285,10 @@
 				32C5BDD32AC64099007E7D4E /* StadiumWether */,
 				32C5BDDC2AC6413C007E7D4E /* Timer */,
 			);
-			path = Source;
+			path = Sources;
 			sourceTree = "<group>";
 		};
-		5E1E41372AE9EBC6001AFE59 /* Resource */ = {
+		5E1E41372AE9EBC6001AFE59 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
 				5E8B1BAC2AEB70C0008E25DC /* Constant */,
@@ -299,7 +296,7 @@
 				32D7244B2AC3FB33005DDBBC /* Util */,
 				325199B02AEA8ADD00AF588E /* API-KEY.plist */,
 			);
-			path = Resource;
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		5E1E41382AE9ED05001AFE59 /* Newtork */ = {
@@ -308,6 +305,51 @@
 				5E1E41392AE9EDB1001AFE59 /* APIService.swift */,
 			);
 			path = Newtork;
+			sourceTree = "<group>";
+		};
+		5E4148F22B0AF3C4007A0757 /* SearchAddress */ = {
+			isa = PBXGroup;
+			children = (
+				5E4148F62B0AF3FA007A0757 /* ViewModel */,
+				5E4148F52B0AF3EC007A0757 /* View */,
+				5E4148F32B0AF3CE007A0757 /* Model */,
+			);
+			path = SearchAddress;
+			sourceTree = "<group>";
+		};
+		5E4148F32B0AF3CE007A0757 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				32D6DE732AD28CC200385C55 /* AddressModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		5E4148F52B0AF3EC007A0757 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				32D6DE6D2AD1B4A100385C55 /* SearchAddressViewController.swift */,
+				32D6DE6F2AD1B4B400385C55 /* SearchAddressViewController.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		5E4148F62B0AF3FA007A0757 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				32D6DE752AD28DD300385C55 /* StadiumAddressViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		5E4148F72B0AF412007A0757 /* StadiumWeather */ = {
+			isa = PBXGroup;
+			children = (
+				5EC6CB342ACD61B80037F381 /* ViewModel */,
+				32C5BDD62AC640C8007E7D4E /* View */,
+				5E7A48602ACD32D6007F3312 /* Model */,
+			);
+			path = StadiumWeather;
 			sourceTree = "<group>";
 		};
 		5E47A7882AC15D8400F67449 = {
@@ -336,8 +378,8 @@
 			isa = PBXGroup;
 			children = (
 				5E1E41382AE9ED05001AFE59 /* Newtork */,
-				5E1E41372AE9EBC6001AFE59 /* Resource */,
-				5E1E41362AE9EBBC001AFE59 /* Source */,
+				5E1E41372AE9EBC6001AFE59 /* Resources */,
+				5E1E41362AE9EBBC001AFE59 /* Sources */,
 				5E47A7A52AC15D8500F67449 /* Info.plist */,
 				5E47A7942AC15D8400F67449 /* AppDelegate.swift */,
 				5E47A7962AC15D8400F67449 /* SceneDelegate.swift */,
@@ -368,7 +410,6 @@
 		5E7A48602ACD32D6007F3312 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				32D6DE732AD28CC200385C55 /* AddressModel.swift */,
 				32E703912AEA8B7A007AD19F /* WetherModel.swift */,
 			);
 			path = Model;
@@ -385,7 +426,6 @@
 		5EC6CB342ACD61B80037F381 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				32D6DE752AD28DD300385C55 /* StadiumAddressViewModel.swift */,
 				5EC6CB352ACD61D20037F381 /* StadiumWeatherViewModel.swift */,
 			);
 			path = ViewModel;

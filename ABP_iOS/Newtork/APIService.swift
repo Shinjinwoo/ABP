@@ -23,6 +23,9 @@ enum API {
 enum APIService {
     
     static func fetchShortTiemWeatherStateAPI(grid:(x: String, y: String), currentTime: ( currentDate:String, currentHour:String)) ->AnyPublisher<WeatherInfo,AFError>{
+        
+        
+        print(currentTime.currentHour)
         let parameters =  [
             "serviceKey": Bundle.main.WEATER_API_KEY,
             "pageNo": "1",
