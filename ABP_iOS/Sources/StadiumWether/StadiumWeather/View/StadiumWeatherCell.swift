@@ -25,7 +25,18 @@ class StadiumWeatherCell: UICollectionViewCell {
         let weatherData = weatherItem.weatherData
         
         baseTimeLabel.text = weatherItem.fcstTime
-        temperaturesLabel.text = "\(weatherData.TMP)°C"
+        
+        
+        if let temperature  = Int(weatherData.TMP) {
+            if temperature >= 0 {
+                temperaturesLabel.text = "\(temperature)°C"
+            } else {
+                temperaturesLabel.textColor = UIColor.systemBlue
+                temperaturesLabel.text = "\(temperature)°C"
+            }
+        } else {
+            temperaturesLabel.text = "\(weatherData.TMP)°C"
+        }
         weatherImage.image = configureWeatherImageWithSummaryLabel(SKY: weatherData.SKY, PTY: weatherData.PTY )
     }
     
