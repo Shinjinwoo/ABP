@@ -72,6 +72,7 @@ replay_pid*
 ## DrivedData
 build/
 DerivedData/
+.DS_Store
 
 ## User settings
 xcuserdata/
