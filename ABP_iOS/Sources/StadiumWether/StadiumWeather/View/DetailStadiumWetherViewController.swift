@@ -70,7 +70,13 @@ class DetailStadiumWetherViewController: UIViewController {
         
         skyLabel.text = skyState
         POPLable.text = "\(weatherData.weatherData.POP)% 확률"
-        oneHourRainFallLabel.text = "\(weatherData.weatherData.PCP)"
+        
+        
+        if weatherData.weatherData.PCP == "강수없음" {
+            oneHourRainFallLabel.text = "0.0mm"
+        } else {
+            oneHourRainFallLabel.text = "\(weatherData.weatherData.PCP)mm"
+        }
         
         temperaturesLabel.text = "\(weatherData.weatherData.TMP)℃"
         
