@@ -37,15 +37,23 @@ class StadiumWeatherCell: UICollectionViewCell {
         } else {
             temperaturesLabel.text = "\(weatherData.TMP)°C"
         }
-        weatherImage.image = configureWeatherImageWithSummaryLabel(SKY: weatherData.SKY, PTY: weatherData.PTY )
+    
+        weatherImage.image = configureWeatherImageWithSummaryLabel(SKY: weatherData.SKY, PTY: weatherData.PTY, fcstDate: weatherItem.fcstDate )
     }
     
-    func configureWeatherImageWithSummaryLabel(SKY:String, PTY:String) -> UIImage {
+    func configureWeatherImageWithSummaryLabel(SKY: String, PTY: String, fcstDate: String) -> UIImage {
         if SKY == Sky.Sunny.rawValue && PTY == Pty.Sunny.rawValue{
-            summaryLabel.text = "맑음(눈,비 소식없음)"
-            self.contentView.backgroundColor = .systemOrange
-            return (UIImage(systemName: "sun.max.fill")?.withRenderingMode(.alwaysOriginal))!
+            if  fcstDate >= "0600" || fcstDate <= "1800" {
+                summaryLabel.text = "맑음(눈,비 소식없음)"
+                self.contentView.backgroundColor = .systemOrange
+                return (UIImage(systemName: "sun.max.fill")?.withRenderingMode(.alwaysOriginal))!
+            } else {
+                summaryLabel.text = "맑음(눈,비 소식없음)"
+                self.contentView.backgroundColor = .systemOrange
+                return (UIImage(systemName: "moon.fill")?.withRenderingMode(.alwaysOriginal).withTintColor(UIColor.yellow))!
+            }
         }
+        
         if SKY == Sky.Foggy.rawValue || SKY == Sky.Cloudy.rawValue {
             switch PTY {
             case Pty.Sunny.rawValue :
