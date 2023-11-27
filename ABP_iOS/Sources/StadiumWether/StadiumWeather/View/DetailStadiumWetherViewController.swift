@@ -85,14 +85,22 @@ class DetailStadiumWetherViewController: UIViewController {
         skyLabel.text = skyState
         POPLable.text = "\(weatherData.weatherData.POP)% 확률"
         
-        
         if weatherData.weatherData.PCP == "강수없음" {
             oneHourRainFallLabel.text = "0.0mm"
         } else {
             oneHourRainFallLabel.text = "\(weatherData.weatherData.PCP)mm"
         }
         
-        temperaturesLabel.text = "\(weatherData.weatherData.TMP)℃"
+        
+        if let temperature = Int(weatherData.weatherData.TMP) {
+            switch temperature {
+            case 0...50 : temperaturesLabel.textColor = UIColor.red
+            default : temperaturesLabel.textColor = UIColor.systemBlue
+            }
+            
+            temperaturesLabel.text = "\(temperature)℃"
+        }
+        
         
         
         // TODO : 하기 데이터 기반으로 화면 구성하기
