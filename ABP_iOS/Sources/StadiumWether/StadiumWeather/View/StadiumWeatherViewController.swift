@@ -119,7 +119,7 @@ class StadiumWeatherViewController: UIViewController {
                     
                     //let vc = storyboard.instantiateViewController(withIdentifier: "DetailStadiumWetherViewController") as! DetailStadiumWetherViewController
                     let vc = storyboard.instantiateViewController(identifier: "DetailStadiumWetherViewController",creator: { creator in
-                        let viewController = DetailStadiumWetherViewController(weatherData: weatherItem!, coder: creator)
+                        let viewController = DetailStadiumWetherViewController(weatherItem: weatherItem!, coder: creator)
                         return viewController
                     })
                     

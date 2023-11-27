@@ -28,11 +28,11 @@ class DetailStadiumWetherViewController: UIViewController {
     @IBOutlet weak var temperaturesLabel: UILabel!
     
     
-    let weatherData:Weather
+    let weatherItem:Weather
     
     
-    init?(weatherData: Weather,coder:NSCoder) {
-        self.weatherData = weatherData
+    init?(weatherItem: Weather,coder:NSCoder) {
+        self.weatherItem = weatherItem
         super.init(coder: coder)
     }
     
@@ -85,20 +85,22 @@ class DetailStadiumWetherViewController: UIViewController {
         skyLabel.text = skyState
         POPLable.text = "\(weatherData.weatherData.POP)% 확률"
         
-        if weatherData.weatherData.PCP == "강수없음" {
+        if weatherItem.weatherData.PCP == "강수없음" {
             oneHourRainFallLabel.text = "0.0mm"
         } else {
-            oneHourRainFallLabel.text = "\(weatherData.weatherData.PCP)mm"
+            oneHourRainFallLabel.text = "강수량 \(weatherItem.weatherData.PCP)mm"
         }
         
         
-        if let temperature = Int(weatherData.weatherData.TMP) {
+        if let temperature = Int(weatherItem.weatherData.TMP) {
             switch temperature {
-            case 0...50 : temperaturesLabel.textColor = UIColor.red
-            default : temperaturesLabel.textColor = UIColor.systemBlue
+            case 0...50 : 
+                temperaturesLabel.textColor = UIColor.red
+                temperaturesLabel.text = "영상 \(temperature)℃"
+            default : 
+                temperaturesLabel.textColor = UIColor.systemBlue
+                temperaturesLabel.text = "영하 \(temperature)℃"
             }
-            
-            temperaturesLabel.text = "\(temperature)℃"
         }
         
         
