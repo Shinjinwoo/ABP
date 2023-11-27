@@ -55,8 +55,22 @@ class DetailStadiumWetherViewController: UIViewController {
         temperaturesImage.layer.cornerRadius = 16
         timeView.layer.cornerRadius = 16
         
+            
+        let dateFormatterInput = DateFormatter()
+        dateFormatterInput.dateFormat = "yyyyMMdd"
+
+        if let date = dateFormatterInput.date(from: weatherData.fcstDate) {
+            let dateFormatterOutput = DateFormatter()
+            dateFormatterOutput.dateFormat = "yyyy년 MM월 dd일"
+            let formattedDate = dateFormatterOutput.string(from: date)
+            
+            selectDate.text = "일자 : \(formattedDate)"
+            
+        } else {
+            print("날짜를 변환할 수 없습니다.")
+        }
         
-        selectDate.text = "일자 : \(weatherData.fcstDate)"
+        
         selectHour.text = "시각 : \(weatherData.fcstTime)"
         
         var skyState = ""
