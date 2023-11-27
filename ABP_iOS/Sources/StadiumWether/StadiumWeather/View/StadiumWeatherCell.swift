@@ -43,7 +43,7 @@ class StadiumWeatherCell: UICollectionViewCell {
     
     func configureWeatherImageWithSummaryLabel(SKY: String, PTY: String, fcstDate: String) -> UIImage {
         if SKY == Sky.Sunny.rawValue && PTY == Pty.Sunny.rawValue{
-            if  fcstDate >= "0600" || fcstDate <= "1800" {
+            if  fcstDate >= "0600" && fcstDate <= "1800" {
                 summaryLabel.text = "맑음(눈,비 소식없음)"
                 self.contentView.backgroundColor = .systemOrange
                 return (UIImage(systemName: "sun.max.fill")?.withRenderingMode(.alwaysOriginal))!

@@ -20,7 +20,7 @@ extension UIViewController {
     
     func configureWeatherImage(SKY: String, PTY: String, fcstTime: String) -> UIImage {
         if SKY == Sky.Sunny.rawValue && PTY == Pty.Sunny.rawValue{
-            if  fcstTime >= "0600" || fcstTime <= "1800" {
+            if  fcstTime >= "0600" && fcstTime <= "1800" {
                 return (UIImage(systemName: "sun.max.fill")?.withRenderingMode(.alwaysOriginal))!
             } else {
                 return (UIImage(systemName: "moon.fill")?.withRenderingMode(.alwaysOriginal).withTintColor(UIColor.yellow))!
