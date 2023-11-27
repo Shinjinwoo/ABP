@@ -18,10 +18,16 @@ class DetailStadiumWetherViewController: UIViewController {
     @IBOutlet weak var secondView: UIView!
     @IBOutlet weak var thirdView: UIView!
     @IBOutlet weak var skyLabel: UILabel!
-    @IBOutlet weak var oneHourRainFall: UILabel!
+    @IBOutlet weak var oneHourRainFallLabel: UILabel!
     //@IBOutlet weak var oneHourSnowFall: UILabel!
     @IBOutlet weak var POPLable: UILabel!
     @IBOutlet weak var rainImageView: UIImageView!
+    
+    
+    @IBOutlet weak var temperaturesImage: UIImageView!
+    @IBOutlet weak var temperaturesLabel: UILabel!
+    
+    
     let weatherData:Weather
     
     
@@ -46,11 +52,12 @@ class DetailStadiumWetherViewController: UIViewController {
         secondView.layer.cornerRadius = 16
         thirdView.layer.cornerRadius = 16
         rainImageView.layer.cornerRadius = 16
+        temperaturesImage.layer.cornerRadius = 16
         timeView.layer.cornerRadius = 16
         
         
-        selectDate.text = weatherData.fcstDate
-        selectHour.text = weatherData.fcstTime
+        selectDate.text = "일자 : \(weatherData.fcstDate)"
+        selectHour.text = "시각 : \(weatherData.fcstTime)"
         
         var skyState = ""
         
@@ -63,7 +70,10 @@ class DetailStadiumWetherViewController: UIViewController {
         
         skyLabel.text = skyState
         POPLable.text = "\(weatherData.weatherData.POP)% 확률"
-        oneHourRainFall.text = "\(weatherData.weatherData.PCP)"
+        oneHourRainFallLabel.text = "\(weatherData.weatherData.PCP)"
+        
+        temperaturesLabel.text = "\(weatherData.weatherData.TMP)℃"
+        
         
         // TODO : 하기 데이터 기반으로 화면 구성하기
         
