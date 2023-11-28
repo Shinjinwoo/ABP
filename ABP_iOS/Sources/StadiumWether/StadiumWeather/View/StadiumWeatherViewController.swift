@@ -70,6 +70,20 @@ class StadiumWeatherViewController: UIViewController {
         print("StadiumWetherViewController : viewDidLoad")
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        locationManager.delegate = nil
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        // 다음과 같이 뷰가 다 나타난 후에 화면전화를 진행해야한다.
+        
+        locationManager.delegate = self
+    }
+    
     func bind() {
         weatherViewModel.$items
             .receive(on: RunLoop.main)
@@ -155,17 +169,6 @@ class StadiumWeatherViewController: UIViewController {
         snapshot.appendItems(items, toSection: section)
         dataSource.apply(snapshot)
     }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        // 다음과 같이 뷰가 다 나타난 후에 화면전화를 진행해야한다.
-    }
-    
     
     private func setUpUI() {
         //self.navigationItem.title = "경기장 날씨검색"
