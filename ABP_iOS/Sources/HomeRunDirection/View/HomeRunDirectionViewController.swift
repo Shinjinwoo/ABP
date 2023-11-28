@@ -63,25 +63,6 @@ class HomeRunDirectionViewController: UIViewController {
         }
     }
     
-    private func orientationAdjustment() -> CGFloat {
-      let isFaceDown: Bool = {
-        switch UIDevice.current.orientation {
-        case .faceDown: return true
-        default: return false
-        }
-      }()
-      
-      let adjAngle: CGFloat = {
-        switch UIApplication.shared.statusBarOrientation {
-        case .landscapeLeft:  return 90
-        case .landscapeRight: return -90
-        case .portrait, .unknown: return 0
-        case .portraitUpsideDown: return isFaceDown ? 180 : -180
-        }
-      }()
-      return 0
-    }
-    
     func computeNewAngle(with newAngle: CGFloat) -> CGFloat {
       let heading: CGFloat = {
         let originalHeading = 0 - newAngle.degreesToRadians
@@ -91,7 +72,7 @@ class HomeRunDirectionViewController: UIViewController {
         }
       }()
       
-      return CGFloat(self.orientationAdjustment().degreesToRadians + heading)
+      return CGFloat(0.degreesToRadians + heading)
     }
 }
 
