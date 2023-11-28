@@ -62,18 +62,6 @@ class HomeRunDirectionViewController: UIViewController {
             break
         }
     }
-    
-    func computeNewAngle(with newAngle: CGFloat) -> CGFloat {
-      let heading: CGFloat = {
-        let originalHeading = 0 - newAngle.degreesToRadians
-        switch UIDevice.current.orientation {
-        case .faceDown: return -originalHeading
-        default: return originalHeading
-        }
-      }()
-      
-      return CGFloat(0.degreesToRadians + heading)
-    }
 }
 
 
@@ -82,7 +70,8 @@ extension HomeRunDirectionViewController: CLLocationManagerDelegate {
         print(newHeading.trueHeading)
         
         UIView.animate(withDuration: 0.5) {
-            let angle = self.computeNewAngle(with: CGFloat(newHeading.trueHeading))
+            let heading = 0 - newHeading.trueHeading.degreesToRadians
+            let angle = CGFloat(0.degreesToRadians + heading)
           self.compassBorderImageView.transform = CGAffineTransform(rotationAngle: angle)
         }
     }
