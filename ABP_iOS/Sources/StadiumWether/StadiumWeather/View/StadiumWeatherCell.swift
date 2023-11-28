@@ -38,12 +38,22 @@ class StadiumWeatherCell: UICollectionViewCell {
             temperaturesLabel.text = "\(weatherData.TMP)°C"
         }
     
-        weatherImage.image = configureWeatherImageWithSummaryLabel(SKY: weatherData.SKY, PTY: weatherData.PTY, fcstDate: weatherItem.fcstDate )
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "ko_KR") // 한국 로케일 사용
+        dateFormatter.dateFormat = "a h시" // 입력된 문자열 형식
+
+        if let date = dateFormatter.date(from: weatherItem.fcstTime) {
+            dateFormatter.dateFormat = "HHmm" // 출력할 문자열 형식
+            let formattedTime = dateFormatter.string(from: date)
+            weatherImage.image = configureWeatherImageWithSummaryLabel(SKY: weatherData.SKY, PTY: weatherData.PTY, fcstTime: formattedTime )
+        } else {
+            print("시간을 변환할 수 없습니다.")
+        }
     }
     
-    func configureWeatherImageWithSummaryLabel(SKY: String, PTY: String, fcstDate: String) -> UIImage {
+    func configureWeatherImageWithSummaryLabel(SKY: String, PTY: String, fcstTime: String) -> UIImage {
         if SKY == Sky.Sunny.rawValue && PTY == Pty.Sunny.rawValue{
-            if  fcstDate >= "0600" && fcstDate <= "1800" {
+            if  fcstTime >= "0600" && fcstTime <= "1800" {
                 summaryLabel.text = "맑음(눈,비 소식없음)"
                 self.contentView.backgroundColor = .systemOrange
                 return (UIImage(systemName: "sun.max.fill")?.withRenderingMode(.alwaysOriginal))!
