@@ -28,7 +28,8 @@ class StadiumWeatherCell: UICollectionViewCell {
         
         
         if let temperature  = Int(weatherData.TMP) {
-            if temperature >= 0 {
+            if temperature > 0 {
+                temperaturesLabel.textColor = UIColor.systemRed
                 temperaturesLabel.text = "\(temperature)°C"
             } else {
                 temperaturesLabel.textColor = UIColor.systemBlue
