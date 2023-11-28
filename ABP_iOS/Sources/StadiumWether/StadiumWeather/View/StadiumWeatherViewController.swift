@@ -18,9 +18,6 @@ class StadiumWeatherViewController: UIViewController {
     @IBOutlet var mkMapView: MKMapView!
     @IBOutlet weak var pageControl: UIPageControl!
     
-    
-    let colors: [UIColor] = [.systemPurple, .systemOrange, .systemPink, .systemRed, .systemTeal]
-    
     typealias Item = Weather
     enum Section {
         case main
@@ -265,10 +262,10 @@ class StadiumWeatherViewController: UIViewController {
         locationManager.requestWhenInUseAuthorization()
         locationManager.distanceFilter = 1000
         
-        grantLocationPermission()
+        grantLocationPermission(locationManager)
     }
     
-    private func grantLocationPermission() {
+    private func grantLocationPermission(_ locationManager: CLLocationManager) {
         switch locationManager.authorizationStatus {
         case .authorizedWhenInUse, .authorizedAlways:
             DispatchQueue.global().async {
@@ -317,24 +314,7 @@ extension StadiumWeatherViewController: CLLocationManagerDelegate {
     }
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-        switch locationManager.authorizationStatus {
-        case .authorizedWhenInUse, .authorizedAlways:
-            DispatchQueue.global().async {
-                if CLLocationManager.locationServicesEnabled() {
-                    print("위치 서비스 On 상태")
-                    self.locationManager.startUpdatingLocation()
-                    
-                    print(self.locationManager.location?.coordinate.latitude as Any)
-                    print(self.locationManager.location?.coordinate.longitude as Any)
-                }
-            }
-            
-        case .denied, .restricted:
-            print("위치 서비스 Off 상태")
-            // 위치 권한이 거부되었거나 제한되었을 때 처리할 작업을 수행합니다.
-        default:
-            break
-        }
+        grantLocationPermission(manager)
     }
 }
 
