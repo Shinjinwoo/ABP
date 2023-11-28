@@ -179,7 +179,6 @@ class StadiumWeatherViewModel {
         // 시작 날짜에 1일을 더한 날짜가 종료 날짜가 된다.
         if let endDate = Calendar.current.date(byAdding: .day, value: 1, to: startDate) {
             endDateString = dateFormatter.string(from: endDate)
-            print("endDate: \(endDateString)")
         } else {
             fatalError("Failed to calculate endDate")
             endDateString = startDateString
@@ -254,7 +253,6 @@ class StadiumWeatherViewModel {
             weatherItemModels[index].fcstTime = convertToTimeForKor(formatHHmmTime: weatherItemModels[index].fcstTime) // 새로운 fcstTime 값으로 변경
         }
         
-        print(weatherItemModels.last)
         //퍼블리싱
         return weatherItemModels
     }
