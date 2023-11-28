@@ -5,6 +5,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -15,10 +16,36 @@
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8x3-fr-cY2">
+                                <rect key="frame" x="0.0" y="179" width="393" height="393"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Compass_Border" translatesAutoresizingMaskIntoConstraints="NO" id="pwv-1N-glH">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="393"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="8x3-fr-cY2" secondAttribute="height" multiplier="1:1" id="3En-x0-gw0"/>
+                                    <constraint firstAttribute="bottom" secondItem="pwv-1N-glH" secondAttribute="bottom" id="CH0-nG-IXz"/>
+                                    <constraint firstItem="pwv-1N-glH" firstAttribute="leading" secondItem="8x3-fr-cY2" secondAttribute="leading" id="axR-MP-y5K"/>
+                                    <constraint firstItem="pwv-1N-glH" firstAttribute="top" secondItem="8x3-fr-cY2" secondAttribute="top" id="blR-vr-PxO"/>
+                                    <constraint firstAttribute="trailing" secondItem="pwv-1N-glH" secondAttribute="trailing" id="ud2-48-rSW"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <constraints>
+                            <constraint firstItem="8x3-fr-cY2" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="120" id="eoS-b4-vHO"/>
+                            <constraint firstItem="8x3-fr-cY2" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="yCc-yr-Kvy"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="8x3-fr-cY2" secondAttribute="trailing" id="yPy-LH-SY3"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="타구방향" image="list.bullet.clipboard" catalog="system" selectedImage="list.bullet.clipboard.fill" id="a2A-ni-roq" userLabel="타구방향"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="compassBorderImageView" destination="pwv-1N-glH" id="DTg-jL-HOo"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -26,7 +53,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Compass_Border" width="1200" height="1200"/>
         <image name="list.bullet.clipboard" catalog="system" width="98" height="128"/>
         <image name="list.bullet.clipboard.fill" catalog="system" width="98" height="128"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

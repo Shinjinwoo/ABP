@@ -10,7 +10,9 @@ import CoreLocation
 
 class HomeRunDirectionViewController: UIViewController {
 
-    let locationManager = CLLocationManager()
+    @IBOutlet weak var compassBorderImageView: UIImageView!
+    
+    var locationManager = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +24,11 @@ class HomeRunDirectionViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         setupCL()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        locationManager.delegate = nil
     }
     
     private func setupUI() {
@@ -55,12 +62,48 @@ class HomeRunDirectionViewController: UIViewController {
             break
         }
     }
+    
+    private func orientationAdjustment() -> CGFloat {
+      let isFaceDown: Bool = {
+        switch UIDevice.current.orientation {
+        case .faceDown: return true
+        default: return false
+        }
+      }()
+      
+      let adjAngle: CGFloat = {
+        switch UIApplication.shared.statusBarOrientation {
+        case .landscapeLeft:  return 90
+        case .landscapeRight: return -90
+        case .portrait, .unknown: return 0
+        case .portraitUpsideDown: return isFaceDown ? 180 : -180
+        }
+      }()
+      return 0
+    }
+    
+    func computeNewAngle(with newAngle: CGFloat) -> CGFloat {
+      let heading: CGFloat = {
+        let originalHeading = 0 - newAngle.degreesToRadians
+        switch UIDevice.current.orientation {
+        case .faceDown: return -originalHeading
+        default: return originalHeading
+        }
+      }()
+      
+      return CGFloat(self.orientationAdjustment().degreesToRadians + heading)
+    }
 }
 
 
 extension HomeRunDirectionViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
         print(newHeading.trueHeading)
+        
+        UIView.animate(withDuration: 0.5) {
+            let angle = self.computeNewAngle(with: CGFloat(newHeading.trueHeading))
+          self.compassBorderImageView.transform = CGAffineTransform(rotationAngle: angle)
+        }
     }
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
