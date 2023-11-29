@@ -232,13 +232,19 @@ class RefereeCounterViewController: UIViewController {
     }
     
     @IBAction func homeTeamScoreEditingChanged(_ sender: UITextField) {
-        let textValue: Int = Int(String(sender.text!))!
-        viewModel.setHomeTeamScore(score: Int(textValue))
+        if sender.text != nil {
+            if let intValue: Int = Int(sender.text!) {
+                viewModel.setHomeTeamScore(score: Int(intValue))
+            }
+        }
     }
     
     @IBAction func awayTeamScoreEditingChanged(_ sender: UITextField) {
-        let textValue: Int = Int(String(sender.text!))!
-        viewModel.setAwayTeamScore(score: Int(textValue))
+        if sender.text != nil {
+            if let intValue: Int = Int(sender.text!) {
+                viewModel.setAwayTeamScore(score: Int(intValue))
+            }
+        }
     }
     
     
