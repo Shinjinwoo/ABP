@@ -80,7 +80,7 @@ class HomeRunDirectionViewController: UIViewController {
         for case let subview in stackView.arrangedSubviews {
             subview.layer.cornerRadius = 16 // 설정하고 싶은 radius 값
             subview.layer.masksToBounds = true // 설정한 radius 값으로 뷰를 자르도록 설정
-            subview.backgroundColor = .systemGray4
+            //subview.backgroundColor = .systemGray4
         }
         
         indicatorView.addSubview(activityIndicator)

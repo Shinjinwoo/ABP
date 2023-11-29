@@ -63,7 +63,7 @@
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="풍향" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jBy-Ir-sWU">
                                                         <rect key="frame" x="37" y="32" width="29.5" height="20.5"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
@@ -76,11 +76,11 @@
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="200°" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6jx-Wl-nxb">
                                                         <rect key="frame" x="33" y="105.5" width="38" height="20.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <nil key="textColor"/>
+                                                        <color key="textColor" systemColor="systemMintColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <color key="backgroundColor" systemColor="systemGray2Color"/>
                                                 <constraints>
                                                     <constraint firstItem="x4T-46-GU6" firstAttribute="top" secondItem="jBy-Ir-sWU" secondAttribute="bottom" constant="16" id="P2m-Fl-hqg"/>
                                                     <constraint firstItem="jBy-Ir-sWU" firstAttribute="centerX" secondItem="ztF-AL-XxM" secondAttribute="centerX" id="V8J-yj-VNU"/>
@@ -95,13 +95,14 @@
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="풍속" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5AM-Vy-hpr">
                                                         <rect key="frame" x="37.5" y="32" width="29.5" height="20.5"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oIy-sy-CS0">
                                                         <rect key="frame" x="42" y="69" width="20" height="19"/>
                                                         <constraints>
+                                                            <constraint firstAttribute="width" secondItem="oIy-sy-CS0" secondAttribute="height" multiplier="1:1" id="rxI-br-JhY"/>
                                                             <constraint firstAttribute="width" secondItem="oIy-sy-CS0" secondAttribute="height" multiplier="1:1" id="vCg-Uc-qKE"/>
                                                         </constraints>
                                                         <imageReference key="image" image="gauge.with.dots.needle.bottom.100percent" catalog="system" renderingMode="hierarchical-single">
@@ -115,18 +116,17 @@
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10ms " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vNU-Nx-LLf">
                                                         <rect key="frame" x="29.5" y="104.5" width="45" height="20.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <nil key="textColor"/>
+                                                        <color key="textColor" systemColor="systemRedColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <color key="backgroundColor" systemColor="systemGray2Color"/>
                                                 <constraints>
                                                     <constraint firstItem="vNU-Nx-LLf" firstAttribute="centerX" secondItem="oIy-sy-CS0" secondAttribute="centerX" id="3up-OC-6xo"/>
                                                     <constraint firstItem="oIy-sy-CS0" firstAttribute="top" secondItem="5AM-Vy-hpr" secondAttribute="bottom" constant="16" id="H8Z-eu-54T"/>
                                                     <constraint firstItem="5AM-Vy-hpr" firstAttribute="centerX" secondItem="seQ-eE-jPB" secondAttribute="centerX" id="Hwn-9A-nET"/>
                                                     <constraint firstItem="5AM-Vy-hpr" firstAttribute="top" secondItem="seQ-eE-jPB" secondAttribute="top" constant="32" id="lg8-Xc-BDc"/>
                                                     <constraint firstItem="vNU-Nx-LLf" firstAttribute="top" secondItem="oIy-sy-CS0" secondAttribute="bottom" constant="16" id="qhq-B1-gXs"/>
-                                                    <constraint firstItem="oIy-sy-CS0" firstAttribute="width" secondItem="oIy-sy-CS0" secondAttribute="height" multiplier="1:1" id="rxI-br-JhY"/>
                                                     <constraint firstItem="oIy-sy-CS0" firstAttribute="centerX" secondItem="5AM-Vy-hpr" secondAttribute="centerX" id="uBn-zi-xko"/>
                                                 </constraints>
                                             </view>
@@ -135,7 +135,7 @@
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="습도" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qdF-Mm-37v">
                                                         <rect key="frame" x="37" y="32" width="29.5" height="20.5"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
@@ -143,26 +143,26 @@
                                                         <rect key="frame" x="41" y="70.5" width="21.5" height="19"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="Wze-Pm-TC6" secondAttribute="height" multiplier="1:1" id="FQg-cW-wYV"/>
+                                                            <constraint firstAttribute="width" secondItem="Wze-Pm-TC6" secondAttribute="height" multiplier="1:1" id="gBT-ta-Vbs"/>
+                                                            <constraint firstAttribute="width" secondItem="Wze-Pm-TC6" secondAttribute="height" multiplier="1:1" id="tFf-kU-gjj"/>
                                                         </constraints>
                                                         <imageReference key="image" image="humidity.fill" catalog="system" renderingMode="original"/>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7nV-vn-R32">
                                                         <rect key="frame" x="33.5" y="105.5" width="36" height="20.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <nil key="textColor"/>
+                                                        <color key="textColor" systemColor="tintColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <color key="backgroundColor" systemColor="systemGray2Color"/>
                                                 <constraints>
                                                     <constraint firstItem="Wze-Pm-TC6" firstAttribute="centerX" secondItem="qdF-Mm-37v" secondAttribute="centerX" id="4Wi-rx-Wy8"/>
                                                     <constraint firstItem="qdF-Mm-37v" firstAttribute="top" secondItem="0sW-aq-Tum" secondAttribute="top" constant="32" id="Acf-cS-xZX"/>
                                                     <constraint firstItem="7nV-vn-R32" firstAttribute="top" secondItem="Wze-Pm-TC6" secondAttribute="bottom" constant="16" id="FGu-N0-thV"/>
                                                     <constraint firstItem="Wze-Pm-TC6" firstAttribute="top" secondItem="qdF-Mm-37v" secondAttribute="bottom" constant="16" id="GWn-wd-5pl"/>
                                                     <constraint firstItem="7nV-vn-R32" firstAttribute="centerX" secondItem="Wze-Pm-TC6" secondAttribute="centerX" id="RMx-2L-b5C"/>
-                                                    <constraint firstItem="Wze-Pm-TC6" firstAttribute="width" secondItem="Wze-Pm-TC6" secondAttribute="height" multiplier="1:1" id="gBT-ta-Vbs"/>
                                                     <constraint firstItem="qdF-Mm-37v" firstAttribute="centerX" secondItem="0sW-aq-Tum" secondAttribute="centerX" id="mmZ-Gn-oal"/>
-                                                    <constraint firstItem="Wze-Pm-TC6" firstAttribute="width" secondItem="Wze-Pm-TC6" secondAttribute="height" multiplier="1:1" id="tFf-kU-gjj"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
@@ -236,11 +236,20 @@
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
+        <systemColor name="systemGray2Color">
+            <color red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemMintColor">
+            <color red="0.0" green="0.78039215689999997" blue="0.74509803919999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="tertiaryLabelColor">
             <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.29803921570000003" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="tintColor">
+            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
