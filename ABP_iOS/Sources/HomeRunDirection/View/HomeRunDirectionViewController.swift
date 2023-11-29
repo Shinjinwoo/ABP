@@ -38,15 +38,23 @@ class HomeRunDirectionViewController: UIViewController {
         setupCL()
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        locationManager.delegate = nil
-        isFirtstCallHead = true
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        locationManager.delegate = nil // delegate에 nil 할당
+        locationManager.stopUpdatingLocation() // 위치 업데이트 중지
+        locationManager.stopUpdatingHeading() // 방향 정보 업데이트 중지
+    }
+    
+    deinit {
+        locationManager.delegate = nil // delegate에 nil 할당
+        locationManager.stopUpdatingLocation() // 위치 업데이트 중지
+        locationManager.stopUpdatingHeading() // 방향 정보 업데이트 중지
     }
     
     private func setupUI() {
         
-        
+        self.bottomView.layer.cornerRadius = 16
+        self.bottomView.backgroundColor = .systemGray4
         
     }
     

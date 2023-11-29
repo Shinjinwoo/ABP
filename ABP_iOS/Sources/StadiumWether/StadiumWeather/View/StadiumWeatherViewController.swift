@@ -72,14 +72,20 @@ class StadiumWeatherViewController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        
-        locationManager.delegate = nil
-        
+        locationManager.delegate = nil // delegate에 nil 할당
+        locationManager.stopUpdatingLocation() // 위치 업데이트 중지
+        locationManager.stopUpdatingHeading() // 방향 정보 업데이트 중지
+    }
+    
+    deinit {
+        locationManager.delegate = nil // delegate에 nil 할당
+        locationManager.stopUpdatingLocation() // 위치 업데이트 중지
+        locationManager.stopUpdatingHeading() // 방향 정보 업데이트 중지
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        // 다음과 같이 뷰가 다 나타난 후에 화면전화를 진행해야한다.
+        // 다음과 같이 뷰가 다 나타난 후에 화면전환을 진행해야한다.
         
         locationManager.delegate = self
     }
