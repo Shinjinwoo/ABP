@@ -60,7 +60,7 @@ class StadiumWeatherCell: UICollectionViewCell {
                 return (UIImage(systemName: "sun.max.fill")?.withRenderingMode(.alwaysOriginal))!
             } else {
                 summaryLabel.text = "맑음(눈,비 소식없음)"
-                self.contentView.backgroundColor = .systemOrange
+                self.contentView.backgroundColor = .systemCyan
                 return (UIImage(systemName: "moon.fill")?.withRenderingMode(.alwaysOriginal).withTintColor(UIColor.yellow))!
             }
         }
@@ -74,7 +74,7 @@ class StadiumWeatherCell: UICollectionViewCell {
                 
             case Pty.Raniy.rawValue :
                 summaryLabel.text = "흐림(비)"
-                self.contentView.backgroundColor = .systemIndigo
+                self.contentView.backgroundColor = .systemTeal
                 return (UIImage(systemName: "cloud.rain.fill")?.withRenderingMode(.alwaysOriginal))!
                 
             case Pty.RainyAndSnowy.rawValue :
