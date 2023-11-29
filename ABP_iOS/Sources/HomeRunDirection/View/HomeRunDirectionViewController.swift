@@ -13,6 +13,9 @@ class HomeRunDirectionViewController: UIViewController {
     
     @IBOutlet weak var compassBorderImageView: UIImageView!
     
+    @IBOutlet weak var bottomView: UIView!
+    
+    
     var locationManager = CLLocationManager()
     
     let viewModel = StadiumWeatherViewModel()
@@ -65,11 +68,24 @@ class HomeRunDirectionViewController: UIViewController {
                 if let degreeStr = list?[0].weatherData.VEC {
                     if let degreeFloat = Float(degreeStr), let degree = CGFloat(exactly: degreeFloat) {
                         print(degree) // 변환된 CGFloat 값 출력
-                        UIView.animate(withDuration: 1) {
+                        
+                        self.bottomView.translatesAutoresizingMaskIntoConstraints = false
+
+                        UIView.animate(withDuration: 0.5) {
                             let rotationAngle = CGFloat(degree * Double.pi / 180)
-                            
                             self.windImageView.transform = CGAffineTransform(rotationAngle: rotationAngle).translatedBy(x: self.northPointedArrow.bounds.minX,
                                                                                                                         y: self.northPointedArrow.bounds.minY)
+                            if let tabBar = self.tabBarController?.tabBar {
+                                UIView.animate(withDuration: 0.5) {
+                                    NSLayoutConstraint.activate([
+                                        self.bottomView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
+                                        self.bottomView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
+                                        self.bottomView.heightAnchor.constraint(equalToConstant: 200),
+                                        self.bottomView.bottomAnchor.constraint(equalTo: tabBar.topAnchor, constant: -32 )
+                                    ])
+                                    self.view.layoutIfNeeded()
+                                }
+                            }
                         }
                     } else {
                         print("문자열을 CGFloat으로 변환할 수 없습니다.")
@@ -106,7 +122,6 @@ class HomeRunDirectionViewController: UIViewController {
         }
     }
 }
-
 
 extension HomeRunDirectionViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {

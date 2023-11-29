@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8x3-fr-cY2">
-                                <rect key="frame" x="0.0" y="140" width="375" height="375"/>
+                                <rect key="frame" x="0.0" y="28" width="375" height="375"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Compass_Border2" translatesAutoresizingMaskIntoConstraints="NO" id="pwv-1N-glH">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
@@ -45,19 +45,29 @@
                                 </constraints>
                             </view>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrowshape.up.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="6LR-id-DcB">
-                                <rect key="frame" x="170.5" y="300.5" width="30" height="30"/>
+                                <rect key="frame" x="170.5" y="188.5" width="30" height="30"/>
                                 <color key="tintColor" systemColor="systemRedColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Ci3-79-uWJ"/>
                                     <constraint firstAttribute="width" constant="30" id="SY1-qK-Kbb"/>
                                 </constraints>
                             </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NR7-v3-BfO" userLabel="Bottom View">
+                                <rect key="frame" x="16" y="667" width="343" height="190"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" priority="500" constant="190" id="qCN-Fz-B9v"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <constraints>
+                            <constraint firstItem="NR7-v3-BfO" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="bottom" priority="900" id="DgM-kX-U3Z"/>
                             <constraint firstItem="6LR-id-DcB" firstAttribute="centerY" secondItem="pwv-1N-glH" secondAttribute="centerY" constant="-12" id="RqV-sB-5AC"/>
-                            <constraint firstItem="8x3-fr-cY2" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="120" id="eoS-b4-vHO"/>
+                            <constraint firstItem="NR7-v3-BfO" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" priority="900" constant="16" id="bxy-p8-taY"/>
+                            <constraint firstItem="8x3-fr-cY2" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="8" id="eoS-b4-vHO"/>
                             <constraint firstItem="6LR-id-DcB" firstAttribute="centerX" secondItem="pwv-1N-glH" secondAttribute="centerX" constant="-2" id="jbV-ea-RVf"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="NR7-v3-BfO" secondAttribute="trailing" priority="900" constant="16" id="t7k-d7-xNS"/>
                             <constraint firstItem="8x3-fr-cY2" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="yCc-yr-Kvy"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="8x3-fr-cY2" secondAttribute="trailing" id="yPy-LH-SY3"/>
                         </constraints>
@@ -65,6 +75,7 @@
                     <tabBarItem key="tabBarItem" title="타구방향" image="list.bullet.clipboard" catalog="system" selectedImage="list.bullet.clipboard.fill" id="a2A-ni-roq" userLabel="타구방향"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="bottomView" destination="NR7-v3-BfO" id="mNR-T4-AKe"/>
                         <outlet property="compassBorderImageView" destination="pwv-1N-glH" id="DTg-jL-HOo"/>
                         <outlet property="containerView" destination="8x3-fr-cY2" id="pjT-T6-nd8"/>
                         <outlet property="northPointedArrow" destination="6LR-id-DcB" id="lVA-KS-qT9"/>
