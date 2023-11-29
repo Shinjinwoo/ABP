@@ -133,7 +133,6 @@ class HomeRunDirectionViewController: UIViewController {
         self.activityIndicator.stopAnimating()
         if let degreeStr = weather?.weatherData.VEC {
             if let degreeFloat = Float(degreeStr), let degree = CGFloat(exactly: degreeFloat) {
-                print(degree) // 변환된 CGFloat 값 출력
                 
                 bottomView.translatesAutoresizingMaskIntoConstraints = false
                 
@@ -141,22 +140,17 @@ class HomeRunDirectionViewController: UIViewController {
                     let rotationAngle = CGFloat(degree * Double.pi / 180)
                     self.windImageView.transform = CGAffineTransform(rotationAngle: rotationAngle).translatedBy(x: self.northPointedArrow.bounds.minX,
                                                                                                                 y: self.northPointedArrow.bounds.minY)
-                    if let tabBar = self.tabBarController?.tabBar {
-                        UIView.animate(withDuration: 0.5) {
-                            NSLayoutConstraint.activate([
-                                self.bottomView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
-                                self.bottomView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
-                                self.bottomView.topAnchor.constraint(equalTo: self.indicatorView.topAnchor, constant: 16),
-                                self.bottomView.heightAnchor.constraint(equalToConstant: 200)
-                            ])
-                            self.view.layoutIfNeeded()
-                        }
-                    }
+                    NSLayoutConstraint.activate([
+                        self.bottomView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
+                        self.bottomView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
+                        self.bottomView.topAnchor.constraint(equalTo: self.indicatorView.topAnchor, constant: 16),
+                        self.bottomView.heightAnchor.constraint(equalToConstant: 200)
+                    ])
+                    self.view.layoutIfNeeded()
                     
                     self.windDirectionLabel.text = "\(degreeStr)°"
                     self.windVelocityLabel.text = "\(weather?.weatherData.WSD ?? "0" )m/s"
                     self.humdityLabel.text = "\(weather?.weatherData.REH ?? "0")%"
-                    
                 }
             } else {
                 print("문자열을 CGFloat으로 변환할 수 없습니다.")
