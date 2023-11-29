@@ -191,25 +191,11 @@ class StadiumWeatherViewController: UIViewController {
         
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         
-        let centerXConstraint = NSLayoutConstraint(item: activityIndicator,
-                                                   attribute: .centerX,
-                                                   relatedBy: .equal,
-                                                   toItem: collectionView,
-                                                   attribute: .centerX,
-                                                   multiplier: 1.0,
-                                                   constant: 0.0)
-        collectionView.addConstraint(centerXConstraint)
+        NSLayoutConstraint.activate([
+            activityIndicator.centerXAnchor.constraint(equalTo: collectionView.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: collectionView.centerYAnchor)
+        ])
 
-        // 수직 중앙 정렬
-        let centerYConstraint = NSLayoutConstraint(item: activityIndicator,
-                                                   attribute: .centerY,
-                                                   relatedBy: .equal,
-                                                   toItem: collectionView,
-                                                   attribute: .centerY,
-                                                   multiplier: 1.0,
-                                                   constant: 0.0)
-        
-        collectionView.addConstraint(centerYConstraint)
         
         pageControl.numberOfPages = 5
         
