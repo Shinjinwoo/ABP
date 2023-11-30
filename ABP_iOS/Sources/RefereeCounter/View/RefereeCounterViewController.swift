@@ -276,6 +276,36 @@ extension RefereeCounterViewController: UITextFieldDelegate {
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        textField.selectedTextRange = textField.textRange(from: textField.beginningOfDocument, to: textField.endOfDocument)
+        switch textField {
+        case homeTeamScore : presentScoreInputAlert(for: homeTeamScore, with: homeTeamNameTF.text, placeholder: "홈팀")
+        case awayTeamScore : presentScoreInputAlert(for: awayTeamScore, with: awayTeamNameTF.text, placeholder: "어웨이팀")
+        default : break
+        }
+    }
+    
+    func presentScoreInputAlert(for scoreTextField: UITextField, with teamName: String?, placeholder: String) {
+        let alertController = UIAlertController(title: teamName == "" ? placeholder : teamName,
+                                                message: "스코어 입력", preferredStyle: .alert)
+        
+        let okAction = UIAlertAction(title: "확인", style: .default) { (action) in
+            if let textField = alertController.textFields?.first, let strValue = textField.text, let intValue = Int(strValue) {
+                switch scoreTextField {
+                case self.homeTeamScore: self.viewModel.setHomeTeamScore(score: intValue)
+                case self.awayTeamScore: self.viewModel.setAwayTeamScore(score: intValue)
+                default: break
+                }
+            }
+        }
+        
+        let noAction = UIAlertAction(title: "취소", style: .default)
+        
+        alertController.addAction(noAction)
+        alertController.addAction(okAction)
+        
+        alertController.addTextField { (textField) in
+            textField.placeholder = "새로운 스코어 입력"
+            textField.keyboardType = .numberPad
+        }
+        self.present(alertController, animated: true, completion: nil)
     }
 }
