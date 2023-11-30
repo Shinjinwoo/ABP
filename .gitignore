@@ -69,6 +69,10 @@ replay_pid*
 
 ### Xcode ###
 
+# CocoaPods
+Pods/
+Podfile.lock
+
 ## DrivedData
 build/
 DerivedData/
