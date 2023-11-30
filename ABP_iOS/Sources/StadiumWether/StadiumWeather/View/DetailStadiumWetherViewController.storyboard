@@ -177,7 +177,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" systemColor="systemGray5Color"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="0NK-Eq-5Ej" secondAttribute="trailing" constant="40" id="Ekl-5W-BbW"/>
                                     <constraint firstAttribute="trailing" secondItem="VTz-HA-VU6" secondAttribute="trailing" constant="40" id="GFj-Db-hMb"/>
@@ -195,7 +195,7 @@
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="systemGray5Color"/>
                         <constraints>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="YyB-FC-reW" secondAttribute="bottom" id="5Yd-ds-Xtd"/>
                             <constraint firstItem="YyB-FC-reW" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="5gk-Qr-dWL"/>
@@ -228,8 +228,8 @@
         <image name="cloud.rain.fill" catalog="system" width="126" height="128"/>
         <image name="sun.max.fill" catalog="system" width="128" height="125"/>
         <image name="thermometer.high" catalog="system" width="80" height="128"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        <systemColor name="systemGray5Color">
+            <color red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemIndigoColor">
             <color red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
