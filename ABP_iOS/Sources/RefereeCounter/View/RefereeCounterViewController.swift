@@ -277,21 +277,28 @@ extension RefereeCounterViewController: UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         switch textField {
-        case homeTeamScore : presentScoreInputAlert(for: homeTeamScore, with: homeTeamNameTF.text, placeholder: "홈팀")
-        case awayTeamScore : presentScoreInputAlert(for: awayTeamScore, with: awayTeamNameTF.text, placeholder: "어웨이팀")
+        case homeTeamScore : presentInputAlert(for: homeTeamScore, with: homeTeamNameTF.text, placeholder: "홈팀",isTeamNameField: false)
+        case awayTeamScore : presentInputAlert(for: awayTeamScore, with: awayTeamNameTF.text, placeholder: "어웨이팀",isTeamNameField: false)
+        case homeTeamNameTF : presentInputAlert(for: homeTeamNameTF, with: homeTeamNameTF.text, placeholder: "홈팀",isTeamNameField: true)
+        case awayTeamNameTF : presentInputAlert(for: awayTeamNameTF, with: awayTeamNameTF.text, placeholder: "어웨이팀",isTeamNameField: true)
         default : break
         }
     }
     
-    func presentScoreInputAlert(for scoreTextField: UITextField, with teamName: String?, placeholder: String) {
-        let alertController = UIAlertController(title: teamName == "" ? placeholder : teamName,
-                                                message: "스코어 입력", preferredStyle: .alert)
+    func presentInputAlert(for parentTextField: UITextField, with alertTitle: String?, placeholder: String, isTeamNameField:Bool) {
+        
+        let tile = alertTitle == "" ? placeholder : alertTitle
+        let message = isTeamNameField ? "팀명" : "스코어"
+        let alertController = UIAlertController(title: tile,
+                                                message: "\(message) 입력창", preferredStyle: .alert)
         
         let okAction = UIAlertAction(title: "확인", style: .default) { (action) in
-            if let textField = alertController.textFields?.first, let strValue = textField.text, let intValue = Int(strValue) {
-                switch scoreTextField {
-                case self.homeTeamScore: self.viewModel.setHomeTeamScore(score: intValue)
-                case self.awayTeamScore: self.viewModel.setAwayTeamScore(score: intValue)
+            if let textField = alertController.textFields?.first, let strValue = textField.text {
+                switch parentTextField {
+                case self.homeTeamScore: if let intValue = Int(strValue) { self.viewModel.setHomeTeamScore(score: intValue) }
+                case self.awayTeamScore: if let intValue = Int(strValue) { self.viewModel.setAwayTeamScore(score: intValue) }
+                case self.homeTeamNameTF: self.homeTeamNameTF.text = strValue
+                case self.awayTeamNameTF: self.awayTeamNameTF.text = strValue
                 default: break
                 }
             }
@@ -303,9 +310,10 @@ extension RefereeCounterViewController: UITextFieldDelegate {
         alertController.addAction(okAction)
         
         alertController.addTextField { (textField) in
-            textField.placeholder = "새로운 스코어 입력"
-            textField.keyboardType = .numberPad
+            textField.placeholder = "새로운 \(message) 입력"
+            textField.keyboardType = isTeamNameField ? .default : .numberPad
         }
         self.present(alertController, animated: true, completion: nil)
     }
 }
+
