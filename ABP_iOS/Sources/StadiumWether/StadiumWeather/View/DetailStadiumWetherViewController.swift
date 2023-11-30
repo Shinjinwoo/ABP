@@ -57,6 +57,7 @@ class DetailStadiumWetherViewController: UIViewController {
     }
     
     func setupUI() {
+        
         headerTimeView.layer.cornerRadius = 16
         
         skyInfoView.layer.cornerRadius = 16
@@ -127,34 +128,5 @@ class DetailStadiumWetherViewController: UIViewController {
                 temperaturesLabel.text = "영하 \(temperature)℃"
             }
         }
-        
-        
-        
-        // TODO : 하기 데이터 기반으로 화면 구성하기
-        
-        /**
-         
-         SKY : 하늘상태
-         
-         강수확률 {
-         POP : 강수확률
-         PTY : 강수형태
-         
-         PCP : 1시간 강수량
-         SNO : 1시간 신적설
-         }
-         
-         기온 {
-         TMP : 1시간 기온,
-         TMN : 일 최저 기온,
-         TMX : 일 최고 기온
-         }
-         
-         홈런 {
-         VEC : 풍향,
-         WSD : 풍속,
-         REH : 습도
-         }
-         */
     }
 }
