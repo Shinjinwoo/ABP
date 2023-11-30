@@ -131,7 +131,6 @@ class RefereeCounterViewController: UIViewController {
             
             awayTeamNameTF.layer.borderWidth  = 1.0
             awayTeamNameTF.layer.borderColor  = UIColor.systemBlue.cgColor
-//            awayTeamNameTF.layer.cornerRadius = 15
             
             homeTeamNameTF.layer.borderWidth = 0
             
@@ -140,7 +139,6 @@ class RefereeCounterViewController: UIViewController {
             
             homeTeamNameTF.layer.borderWidth  = 1.0
             homeTeamNameTF.layer.borderColor  = UIColor.systemBlue.cgColor
-//            homeTeamNameTF.layer.cornerRadius = 15
             
             awayTeamNameTF.layer.borderWidth = 0
         }
