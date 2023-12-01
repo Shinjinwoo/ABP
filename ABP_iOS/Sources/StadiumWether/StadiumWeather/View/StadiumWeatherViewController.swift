@@ -83,11 +83,11 @@ class StadiumWeatherViewController: UIViewController {
         locationManager.stopUpdatingHeading() // 방향 정보 업데이트 중지
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        // 다음과 같이 뷰가 다 나타난 후에 화면전환을 진행해야한다.
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
         locationManager.delegate = self
+        grantLocationPermission(locationManager)
     }
     
     func bind() {
@@ -165,7 +165,6 @@ class StadiumWeatherViewController: UIViewController {
     }
     
     func startActivityIndicator(){
-
         activityIndicator.startAnimating()
     }
     
@@ -257,7 +256,7 @@ class StadiumWeatherViewController: UIViewController {
         locationManager.requestWhenInUseAuthorization()
         locationManager.distanceFilter = 1000
         
-        grantLocationPermission(locationManager)
+        //grantLocationPermission(locationManager)
     }
     
     private func grantLocationPermission(_ locationManager: CLLocationManager) {
@@ -294,8 +293,8 @@ extension StadiumWeatherViewController: CLLocationManagerDelegate {
         
         if ( isMoveCameraByLocate == true ) {
             mkMapViewCameraFector(latitude: latitude, longitude: longitude)
-            //weatherViewModel.requestWeatherAPI(latitude: latitude, longitude: longitude)
             weatherViewModel.fetchWeatherAPI(latitude: latitude, longitude: longitude)
+            self.startActivityIndicator()
         }
     }
     
@@ -309,7 +308,25 @@ extension StadiumWeatherViewController: CLLocationManagerDelegate {
     }
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-        grantLocationPermission(manager)
+        switch locationManager.authorizationStatus {
+        case .authorizedWhenInUse, .authorizedAlways:
+            DispatchQueue.global().async {
+                if CLLocationManager.locationServicesEnabled() {
+                    print("위치 서비스 On 상태")
+                    self.locationManager.startUpdatingLocation()
+                    
+                    print("latitude : \(self.locationManager.location?.coordinate.latitude as Any)")
+                    print("longitude : \(self.locationManager.location?.coordinate.longitude as Any)")
+                    
+                }
+            }
+            
+        case .denied, .restricted:
+            print("위치 서비스 Off 상태")
+            // 위치 권한이 거부되었거나 제한되었을 때 처리할 작업을 수행합니다.
+        default:
+            break
+        }
     }
 }
 
