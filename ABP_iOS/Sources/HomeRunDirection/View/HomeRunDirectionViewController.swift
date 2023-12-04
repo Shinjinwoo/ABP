@@ -48,13 +48,18 @@ class HomeRunDirectionViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
         bind()
+        setupCL()
         
         print("HomeRunDirectionViewController-viewDidLoad")
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        grantPermission(locationManager)
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        setupCL()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -89,6 +94,8 @@ class HomeRunDirectionViewController: UIViewController {
             activityIndicator.centerXAnchor.constraint(equalTo: indicatorView.centerXAnchor),
             activityIndicator.centerYAnchor.constraint(equalTo: indicatorView.centerYAnchor)
         ])
+        
+        self.view.layoutIfNeeded()
     }
     
     private func bind() {
@@ -105,7 +112,7 @@ class HomeRunDirectionViewController: UIViewController {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.distanceFilter = 1000
-        grantPermission(locationManager)
+        //grantPermission(locationManager)
     }
     
     
