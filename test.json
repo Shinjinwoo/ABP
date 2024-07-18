@@ -1,7 +1,25 @@
 {
-    "BOMTOON_TW": {  "dev" : "qweqwe",
-                      "stage": "efd0c76b9339e8475bfcfca2153e220b68bb886bd21bb34bbb3470db7078a362" },
+    "BOMTOON_COM": {  
+        "simulator":{
+            "dev" : "qweqwe",
+            "stage" : "qweqwe",
+            "product" : "qweqwe" },
+        "device": {
+            "dev" : "qweqwe",
+            "stage" : "qweqwe",
+            "product" : "qweqwe"
+        }
+    },
 
-    "BOOMTOON_COM": { "dev" : "qweqwe",
-                      "stage": "qweqwe" }
+    "BOOMTOON_COM": {  
+        "simulator":{
+            "dev" : "qweqwe",
+            "stage" : "qweqwe",
+            "product" : "qweqwe" },
+        "device": {
+            "dev" : "qweqwe",
+            "stage" : "qweqwe",
+            "product" : "qweqwe"
+        }
+    }
 }
